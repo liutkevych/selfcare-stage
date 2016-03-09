@@ -1,3 +1,21 @@
-<h2 id="title">Welcome to Ember</h2>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <img alt="Brand" src="...">
+      </a>
+    </div>
+
+    {{#if session.isAuthenticated }}
+      <button type="button" class="btn btn-warning navbar-btn navbar-right" {{ action 'invalidateSession' }}>
+        Sign out
+      </button>
+    {{else}}
+      {{#link-to 'sign-in' type="button" class="btn btn-success navbar-btn navbar-right"}}
+        Sign in
+      {{/link-to}}
+    {{/if}}
+  </div>
+</nav>
 
 {{outlet}}
