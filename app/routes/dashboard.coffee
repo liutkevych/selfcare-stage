@@ -1,5 +1,5 @@
 `import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';`
 
-VisitsRoute = Em.Route.extend AuthenticatedRouteMixin, {}
+DashboardRoute = Em.Route.extend AuthenticatedRouteMixin, {}
 
-`export default VisitsRoute;`
+`export default DashboardRoute;`
