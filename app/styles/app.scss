@@ -1,6 +1,7 @@
 @import 'theme';
 @import 'top-stripe';
 @import 'menu';
+@import 'outlet';
 
 html {
   height: 100%;
@@ -17,7 +18,11 @@ html {
       .page {
         width: auto;
         margin: 0;
-        padding: 0 !important;
+        padding: 0;
+
+        .outlet {
+          width: 100%;
+        }
       }
     }
   }
