@@ -1,0 +1,18 @@
+.top-stripe {
+  background: $color-3;
+
+  i.fa {
+    line-height: 50px;
+    font-size: 30px;
+    float: right;
+    margin-right: 30px;
+  }
+
+  i.fa.fa-bars {
+    float: left;
+  }
+
+  .btn {
+    float: right;
+  }
+}
