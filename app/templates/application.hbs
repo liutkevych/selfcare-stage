@@ -1,4 +1,6 @@
-{{partial 'menu'}}
+{{#if showMenu}}
+  {{partial 'menu'}}
+{{/if}}
 <div class="page">
   {{partial 'top-stripe'}}
   {{outlet}}
