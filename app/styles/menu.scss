@@ -1,0 +1,38 @@
+.menu {
+  float: left;
+  height: 100%;
+  width: $menu-width;
+  background: $color-1;
+
+  img {
+    display: table-cell;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+  }
+
+  .menu-item {
+    height: 50px;
+    text-align: center;
+
+    a {
+      color: $color-2;
+      text-decoration: none;
+    }
+
+    a:hover, a:active {
+      color: $color-3;
+    }
+
+    span {
+      line-height: 50px;
+      font-size: 18px;
+      vertical-align: middle;
+    }
+
+    span.icon {
+      font-size: 30px;
+    }
+  }
+}

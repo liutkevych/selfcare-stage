@@ -1,5 +1,8 @@
 .top-stripe {
   background: $color-3;
+  margin: 0;
+  padding: 0;
+  height: 50px;
 
   i.fa {
     line-height: 50px;
@@ -10,9 +13,16 @@
 
   i.fa.fa-bars {
     float: left;
+    margin-left: 10px;
   }
 
   .btn {
     float: right;
+    height: 40px;
+    margin: 5px;
+
+    span {
+      vertical-align: middle;
+    }
   }
 }

@@ -1,16 +1,14 @@
-<nav class="navbar navbar-default top-stripe">
-  <div class="container-fluid">
-    {{#if session.isAuthenticated }}
-      <button type="button" class="btn btn-warning navbar-btn" {{ action 'invalidateSession' }}>
-        Sign out
-      </button>
-    {{else}}
-      {{#link-to 'sign-in' type="button" class="btn btn-success navbar-btn"}}
-        Sign in
-      {{/link-to}}
-    {{/if}}
-    {{fa-icon 'flag'}}
-    {{fa-icon 'bell'}}
-    {{fa-icon 'bars'}}
-  </div>
-</nav>
+<div class="top-stripe">
+  {{#if session.isAuthenticated }}
+    <button class="btn btn-warning" {{ action 'invalidateSession' }}>
+      Sign out
+    </button>
+  {{else}}
+    {{#link-to 'sign-in' class="btn btn-success"}}
+      <span>Sign in</span>
+    {{/link-to}}
+  {{/if}}
+  {{fa-icon 'flag'}}
+  {{fa-icon 'bell'}}
+  {{fa-icon 'bars'}}
+</div>
