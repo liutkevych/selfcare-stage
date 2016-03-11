@@ -1,7 +1,7 @@
 {
   "name": "simplify-selfcare",
   "version": "0.0.0",
-  "description": "Small description for simplify-selfcare goes here",
+  "description": "Web client for SIMP customers",
   "private": true,
   "directories": {
     "doc": "doc",
