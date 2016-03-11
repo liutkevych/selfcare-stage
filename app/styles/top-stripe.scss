@@ -1,14 +1,19 @@
 .top-stripe {
-  background: $color-3;
+  background: $color-4;
   margin: 0;
   padding: 0;
   height: 50px;
+  border-bottom: 2px solid $color-1;
 
   i.fa {
     line-height: 50px;
     font-size: 30px;
     float: right;
     margin-right: 30px;
+  }
+
+  i.fa:hover {
+    color: $color-2;
   }
 
   i.fa.fa-bars {
