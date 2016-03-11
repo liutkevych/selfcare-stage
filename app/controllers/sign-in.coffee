@@ -1,9 +1,8 @@
 SignInController = Em.Controller.extend
-  session: Ember.inject.service(),
+  session: Ember.inject.service('session'),
 
   actions:
     signIn: ->
-      console.log 'signing in...'
       @get('session').authenticate(
         'authenticator:devise',
         @get('name'),
