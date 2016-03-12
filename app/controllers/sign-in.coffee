@@ -6,7 +6,7 @@ SignInController = Em.Controller.extend
       @get('session').authenticate(
         'authenticator:devise',
         @get('name'),
-        @get('password')
+        @get('password'),
       )
 
 `export default SignInController;`

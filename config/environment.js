@@ -2,6 +2,16 @@
 
 module.exports = function(environment) {
   var ENV = {
+    API_VERSION: 'v1',
+    contentSecurityPolicy: {
+      'default-src': ["'none'"],
+      'script-src':  ["'self'"],
+      'font-src':    ["'self'"],
+      'connect-src': ["'self'"],
+      'img-src':     ["'self'"],
+      'style-src':   ["'self'"],
+      'media-src':   ["'self'"]
+    },
     modulePrefix: 'simplify-selfcare',
     environment: environment,
     baseURL: '/',
@@ -25,6 +35,8 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.SERVER_URL = 'http://localhost:3000'
+    ENV.contentSecurityPolicy['connect-src'][0] += "http://localhost:3000";
   }
 
   if (environment === 'test') {
@@ -40,7 +52,13 @@ module.exports = function(environment) {
   }
 
   if (environment === 'production') {
+    ENV.SERVER_URL = 'http://openwifi.simp.no'
+    ENV.contentSecurityPolicy['connect-src'][0] += "https://openwifi.simp.no";
+  }
 
+  if (environment === 'staging') {
+    ENV.SERVER_URL = 'http://simplify-stage.herokuapp.com'
+    ENV.contentSecurityPolicy['connect-src'][0] += "http://simplify-stage.herokuapp.com";
   }
 
   ENV['ember-simple-auth'] = {

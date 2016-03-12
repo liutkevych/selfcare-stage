@@ -7,6 +7,9 @@ var ApplicationRoute = Ember.Route.extend(ApplicationRouteMixin, {
     invalidateSession: function() {
       this.get('session').invalidate();
     }
+  },
+
+  sessionAuthenticated: function() {
   }
 });
 
