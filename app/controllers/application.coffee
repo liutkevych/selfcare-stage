@@ -1,9 +1,10 @@
 ApplicationController = Ember.Controller.extend
-  showMenu: true
   session: Ember.inject.service('session')
 
   actions:
     toggleMenu: ->
-      @set('showMenu', !@get('showMenu'))
+      $('.menu').animate
+        width: 'toggle'
+      , 128
 
 `export default ApplicationController;`

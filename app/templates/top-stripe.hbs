@@ -1,4 +1,5 @@
 <div class="top-stripe">
+
   {{#if session.isAuthenticated }}
     <button class="btn btn-warning" {{ action 'invalidateSession' }}>
       Sign out
@@ -8,6 +9,8 @@
       <span>Sign in</span>
     {{/link-to}}
   {{/if}}
+
+  <span class="email">{{session.data.authenticated.customer.email}}</span>
 
   {{fa-icon 'flag'}}
   {{fa-icon 'bell'}}

@@ -3,5 +3,6 @@
 
 DeviseAuthenticator = Devise.extend
   serverTokenEndpoint: "#{ENV.SERVER_URL}/api/#{ENV.API_VERSION}/sessions"
+  resourceName: 'customer'
 
 `export default DeviseAuthenticator;`

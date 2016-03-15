@@ -1,12 +1,16 @@
 SignInController = Em.Controller.extend
   session: Ember.inject.service('session'),
+  email: 'example@email.com'
 
   actions:
     signIn: ->
       @get('session').authenticate(
         'authenticator:devise',
-        @get('name'),
+        @get('email'),
         @get('password'),
-      )
+      ).then =>
+        @transitionToRoute('dashboard')
+      , ->
+        console.error 'Failed to authenticate'
 
 `export default SignInController;`
