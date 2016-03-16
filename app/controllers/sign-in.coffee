@@ -9,7 +9,11 @@ SignInController = Em.Controller.extend
         @get('email'),
         @get('password'),
       ).then =>
-        # console.log @get('session.data.authenticated')
+        currentUser = @store.createRecord(
+          'customer',
+          @get('session.data.authenticated.data')
+        )
+        @set('session.data.authenticated.data', currentUser)
         @transitionToRoute('dashboard')
       , ->
         console.error 'Failed to authenticate'
