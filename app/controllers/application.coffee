@@ -1,7 +1,7 @@
 ApplicationController = Ember.Controller.extend
   session: Ember.inject.service('session')
-  currentUser: Ember.computed 'session.data.authenticated.data', ->
-    @get 'session.data.authenticated.data'
+  currentUser: Ember.computed 'session.data.authenticated', ->
+    @get 'session.data.authenticated'
 
   actions:
     toggleMenu: ->

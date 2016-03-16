@@ -7,13 +7,8 @@ SignInController = Em.Controller.extend
       @get('session').authenticate(
         'authenticator:devise',
         @get('email'),
-        @get('password'),
+        @get('password')
       ).then =>
-        currentUser = @store.createRecord(
-          'customer',
-          @get('session.data.authenticated.data')
-        )
-        @set('session.data.authenticated.data', currentUser)
         @transitionToRoute('dashboard')
       , ->
         console.error 'Failed to authenticate'
