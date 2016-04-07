@@ -7,6 +7,6 @@ DashboardRoute = Em.Route.extend AuthenticatedRouteMixin,
     controller.set 'model', model
     @store.findAll('location').then (locations) ->
       controller.set 'locations', locations
-      controller.set 'location_id', locations.get('lastObject.id')
+      controller.set 'location_id', locations.get('firstObject.id')
 
 `export default DashboardRoute;`
