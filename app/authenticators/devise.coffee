@@ -2,7 +2,7 @@
 `import ENV from 'simplify-selfcare/config/environment';`
 
 DeviseAuthenticator = Devise.extend
-  serverTokenEndpoint: "#{ENV.SERVER_URL}/api/#{ENV.API_VERSION}/sessions"
+  serverTokenEndpoint: "#{ENV.SERVER_URL}/api/#{ENV.API_VERSION}/auth/selfcare"
   resourceName: 'customer'
 
 `export default DeviseAuthenticator;`

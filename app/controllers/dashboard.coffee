@@ -1,9 +1,8 @@
 DashboardController = Ember.Controller.extend
   session: Ember.inject.service('session')
+
   actions:
-    createUser: ->
-      newUser = @store.createRecord 'user',
-        firstName: 'Eugene'
-      newUser.save()
+    selectLocation: (value) ->
+      @set 'location_id', value
 
 `export default DashboardController;`

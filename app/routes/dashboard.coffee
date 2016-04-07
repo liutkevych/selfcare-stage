@@ -3,8 +3,10 @@
 DashboardRoute = Em.Route.extend AuthenticatedRouteMixin,
   session: Ember.inject.service('session')
 
-  model: ->
-    @store.findAll('visit').catch (reason) ->
-      console.error 'Failed to retrieve visits data from the server'
+  setupController: (controller, model) ->
+    controller.set 'model', model
+    @store.findAll('location').then (locations) ->
+      controller.set 'locations', locations
+      controller.set 'location_id', locations.get('lastObject.id')
 
 `export default DashboardRoute;`

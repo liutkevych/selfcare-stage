@@ -1,4 +1,7 @@
-{{#each model as |visit|}}
-  <br>
-  {{visit.created_at}}
-{{/each}}
+<select onchange={{action "selectLocation" value="target.value"}}>
+  {{#each locations as |location|}}
+    <option value={{location.id}} selected={{eq location.id location_id}}>
+      {{location.name}}
+    </option>
+  {{/each}}
+</select>
