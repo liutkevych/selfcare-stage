@@ -12,9 +12,6 @@ DashboardController = Ember.Controller.extend
       options:
         location_id: location_id
         start_time: '29 March 2016 15:10:19 +0300'
-    .then (visitsStats) =>
-      @set 'stats.visits', visitsStats
-
 
   actions:
     selectLocation: (value) ->

@@ -6,7 +6,7 @@ DataChartComponent = Ember.Component.extend
     return if !@get('chartData') || !@get('googleCharts.loaded')
 
     chartData = []
-    perDay = @get('chartData.details.per_day')
+    perDay = @get('chartData')
     Object.keys(perDay).forEach (date) ->
       chartData.push [new Date(date), perDay[date]]
     data = new google.visualization.DataTable()
