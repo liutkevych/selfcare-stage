@@ -1,14 +1,16 @@
-<select onchange={{action "selectLocation" value="target.value"}}>
-  {{#each locations as |location|}}
-    <option value={{location.id}} selected={{eq location.id location_id}}>
-      {{location.name}}
-    </option>
-  {{/each}}
-</select>
-{{#stats-panel}}
-  <h2>Visits:</h2>
-  <h3>Total: {{stats.details.total}}</h3>
-  <h3>Visits per day stats:</h3>
-  {{data-chart type='bars' chartData=stats.details.per_day}}
-{{/stats-panel}}
-
+<div class='dashboard'>
+  <select onchange={{action "selectLocation" value="target.value"}}>
+    {{#each locations as |location|}}
+      <option value={{location.id}} selected={{eq location.id location_id}}>
+        {{location.name}}
+      </option>
+    {{/each}}
+  </select>
+  <br>
+  {{#stats-panel}}
+    <h2>Visits:</h2>
+    <h3>Total: {{stats.details.total}}</h3>
+    <h3>Visits per day stats:</h3>
+    {{data-chart type='bars' chartData=stats.details showMenu=applicationController.showMenu}}
+  {{/stats-panel}}
+</div>

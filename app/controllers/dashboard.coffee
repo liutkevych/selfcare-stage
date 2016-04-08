@@ -2,6 +2,7 @@
 
 DashboardController = Ember.Controller.extend
   session: Ember.inject.service('session')
+  applicationController: Ember.inject.controller('application')
 
   stats: Ember.computed 'location_id', ->
     location_id = @get('location_id')

@@ -2,13 +2,14 @@
 
 ApplicationController = Ember.Controller.extend
   session: Ember.inject.service('session')
-  currentUser: Ember.computed 'session.data.authenticated', ->
-    @get 'session.data.authenticated'
+
+  showMenu: false
 
   actions:
     toggleMenu: ->
       $('.menu').animate
         width: 'toggle'
-      , 128
+      , 128, =>
+        @set 'showMenu', !@get('showMenu')
 
 `export default ApplicationController;`
