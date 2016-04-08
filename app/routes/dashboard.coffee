@@ -1,6 +1,7 @@
+`import Ember from 'ember'`
 `import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';`
 
-DashboardRoute = Em.Route.extend AuthenticatedRouteMixin,
+DashboardRoute = Ember.Route.extend AuthenticatedRouteMixin,
   session: Ember.inject.service('session')
 
   setupController: (controller, model) ->

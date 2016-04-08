@@ -1,3 +1,5 @@
+`import Ember from 'ember'`
+
 SignInController = Em.Controller.extend
   session: Ember.inject.service('session'),
   email: 'example@email.com'
