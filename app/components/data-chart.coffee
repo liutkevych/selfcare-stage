@@ -6,7 +6,6 @@ DataChartComponent = Ember.Component.extend
     @get('chartData.total') == 0
 
   chart: Ember.computed 'googleCharts.loaded', 'chartData', 'showMenu', ->
-
     $element = $('.chart')
     return if !@get('chartData') || !@get('googleCharts.loaded')
 
@@ -26,8 +25,6 @@ DataChartComponent = Ember.Component.extend
         gridlines:
           count: chartData.length
 
-    console.log('here')
     new google.visualization.ColumnChart($element[0]).draw(data, options)
-
 
 `export default DataChartComponent`

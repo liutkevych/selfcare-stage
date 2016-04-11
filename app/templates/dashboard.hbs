@@ -1,19 +1,26 @@
 <div class='dashboard'>
-  <select onchange={{action "selectLocation" value="target.value"}}>
-    {{#each locations as |location|}}
-      <option value={{location.id}} selected={{eq location.id location_id}}>
-        {{location.name}}
-      </option>
-    {{/each}}
-  </select>
-  <br>
+  <div>
+    <select onchange={{action "selectLocation" value="target.value"}}>
+      {{#each locations as |location|}}
+        <option value={{location.id}} selected={{eq location.id location_id}}>
+          {{location.name}}
+        </option>
+      {{/each}}
+    </select>
+  </div>
+  <div>
+    Stard time: {{bootstrap-datepicker value=startTime autoclose=true}}
+    End time: {{bootstrap-datepicker value=endTime autoclose=true}}
+  </div>
   {{#stats-panel}}
-    <h3>Total:</h3>
-    <ul>
-      <li>Visits: {{stats.details.total.visits}}</li>
-      <li>Sessions: {{stats.details.total.sessions}}</li>
-    </ul>
-    <h3>Daily stats:</h3>
-    {{data-chart type='column' chartData=stats.details showMenu=applicationController.showMenu}}
+    <div>
+      <h3>Total:</h3>
+      <ul>
+        <li>Visits: {{stats.details.total.visits}}</li>
+        <li>Sessions: {{stats.details.total.sessions}}</li>
+      </ul>
+      <h3>Daily stats:</h3>
+      {{data-chart type='column' chartData=stats.details showMenu=applicationController.showMenu}}
+    </div>
   {{/stats-panel}}
 </div>

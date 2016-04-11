@@ -1,9 +1,13 @@
-`import Ember from 'ember'`
+`import Ember from 'ember';`
+`import moment from 'moment';`
 
 DashboardController = Ember.Controller.extend
   applicationController: Ember.inject.controller('application')
 
-  stats: Ember.computed 'location_id', ->
+  startTime: moment().subtract(1, 'months').toDate()
+  endTime: new Date()
+
+  stats: Ember.computed 'location_id', 'startTime', 'endTime', ->
     location_id = @get('location_id')
     return unless location_id
 
@@ -11,6 +15,8 @@ DashboardController = Ember.Controller.extend
       name: 'presence'
       options:
         location_id: location_id
+        start_time: @get('startTime')
+        end_time: @get('endTime')
 
   actions:
     selectLocation: (value) ->
