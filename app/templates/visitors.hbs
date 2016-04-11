@@ -1,0 +1,18 @@
+<select onchange={{action "selectLocation" value="target.value"}}>
+  {{#each locations as |location|}}
+    <option value={{location.id}} selected={{eq location.id location_id}}>
+      {{location.name}}
+    </option>
+  {{/each}}
+</select>
+<ul>
+  {{#each visitors as |visitor|}}
+    {{#if visitor.phone}}
+      <li>
+        {{visitor.phone}}
+      </li>
+    {{/if}}
+  {{else}}
+    No visitors found
+  {{/each}}
+</ul>

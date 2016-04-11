@@ -1,7 +1,6 @@
 `import Ember from 'ember'`
 
 DashboardController = Ember.Controller.extend
-  session: Ember.inject.service('session')
   applicationController: Ember.inject.controller('application')
 
   stats: Ember.computed 'location_id', ->
@@ -9,10 +8,9 @@ DashboardController = Ember.Controller.extend
     return unless location_id
 
     @store.queryRecord 'stat',
-      name: 'visits'
+      name: 'presence'
       options:
         location_id: location_id
-        start_time: '29 March 2016 15:10:19 +0300'
 
   actions:
     selectLocation: (value) ->
