@@ -2,15 +2,15 @@
 
 DataChartComponent = Ember.Component.extend
   googleCharts: Ember.inject.service('google-charts')
-  empty: Ember.computed 'chartData', ->
-    @get('chartData.total') == 0
+  classNames: ['data-chart']
 
-  chart: Ember.computed 'googleCharts.loaded', 'chartData', 'showMenu', ->
-    $element = $('.chart')
-    return if !@get('chartData') || !@get('googleCharts.loaded')
+  chart: Ember.computed 'googleCharts.loaded', 'model.id', ->
+    return if !@get('googleCharts.loaded') || !@get('model.details') || !@get('model.id')
+
+    $element = $('.data-chart')
 
     chartData = []
-    perDay = @get('chartData.per_day')
+    perDay = @get('model.details.per_day')
     Object.keys(perDay).forEach (date) ->
       chartData.push [new Date(date), perDay[date].visits, perDay[date].sessions]
 

@@ -20,7 +20,7 @@
         <li>Sessions: {{stats.details.total.sessions}}</li>
       </ul>
       <h3>Daily stats:</h3>
-      {{data-chart type='column' chartData=stats.details showMenu=applicationController.showMenu}}
+      {{data-chart type='column' model=stats showMenu=applicationController.showMenu}}
     </div>
   {{/stats-panel}}
 </div>

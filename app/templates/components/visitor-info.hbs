@@ -1,0 +1,22 @@
+<div>
+  <span><i class="fa fa-phone"/> </span>
+  {{#if model.phone}}
+    <span class="phone-number">{{model.phone}}</span>
+  {{else}}
+    <span class="unknown">Unknown</span>
+  {{/if}}
+</div>
+<div>
+  <span>Social networks info:</span>
+  {{#if model.socialNetworks}}
+    <ul class="social-networks-list">
+      {{#each model.socialNetworks as |socialNetwork|}}
+        <li>
+          {{social-info model=socialNetwork}}
+        </li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <span class="unknown">no information</span>
+  {{/if}}
+</div>

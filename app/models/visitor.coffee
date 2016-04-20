@@ -2,5 +2,6 @@
 
 VisitorModel = DS.Model.extend
   phone: DS.attr()
+  socialNetworks: DS.attr()
 
 `export default VisitorModel;`
