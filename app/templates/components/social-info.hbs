@@ -1,12 +1,9 @@
 <div class="container-fluid">
-  <span class="social-kind">{{social-icon model.kind}}</span>
-</div>
-<div class="container-fluid">
-  <div class="column col-xs-2">
-    <i class="fa fa-envelope"/>
-    <span>Email:</span>
+  <div class="column col-xs-1">
+    <span class="social-kind">{{social-icon model.kind}}</span>
   </div>
-  <div class="column col-xs-4">
+  <div class="column col-xs-3">
+    <i class="fa fa-envelope"/>
     <span>
       {{#if model.email}}
         {{model.email}}
@@ -15,8 +12,8 @@
       {{/if}}
     </span>
   </div>
-</div>
-<div class="row">
-  <span>Name:</span>
-  {{model.firstName}} {{model.lastName}}
+  <div class="column col-xs-8">
+    <span>Name:</span>
+    {{model.first_name}} {{model.last_name}}
+  </div>
 </div>

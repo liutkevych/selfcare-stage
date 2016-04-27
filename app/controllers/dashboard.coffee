@@ -5,6 +5,10 @@ DashboardController = Ember.Controller.extend
   startTime: moment().subtract(1, 'months').toDate()
   endTime: new Date()
 
+  anyPresence: Ember.computed 'presence.id', ->
+    presence = @get 'presence.details.total'
+    presence && (presence.visits > 0 || presence.sessions > 0)
+
   presence: Ember.computed 'location_id', 'startTime', 'endTime', ->
     location_id = @get('location_id')
     return unless location_id

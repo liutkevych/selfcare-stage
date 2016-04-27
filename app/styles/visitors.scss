@@ -1,19 +1,26 @@
-@import 'social-info';
-
 .visitors {
+  .location {
+    text-align: center;
+    margin: 10px 0px;
+  }
+
   ul.visitors-list {
     list-style: none;
     padding: 0;
   }
 
+  .empty-result {
+    margin-top: 10px;
+  }
+
   .visitor-info {
-    border: 1px solid $color-3;
+    border: 3px solid $color-1;
     border-radius: 8px;
-    margin: 10px;
-    padding: 10px;
+    margin: 5px;
+    padding: 0;
 
     >div {
-      padding: 10px;
+      padding: 5px;
 
       span {
         margin-right: 5px;

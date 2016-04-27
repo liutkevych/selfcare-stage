@@ -1,19 +1,19 @@
-{{testVisitor.visit.device_id}}
-{{testVisitor.phone}}
 <div class='visitors'>
-  <select onchange={{action "selectLocation" value="target.value"}}>
-    {{#each locations as |location|}}
-      <option value={{location.id}} selected={{eq location.id location_id}}>
-        {{location.name}}
-      </option>
-    {{/each}}
-  </select>
-  <br>
+  <div class='location'>
+    <span>{{fa-icon 'location-arrow' title='Location'}}</span>
+    <select onchange={{action "selectLocation" value="target.value"}}>
+      {{#each locations as |location|}}
+        <option value={{location.id}} selected={{eq location.id location_id}}>
+          {{location.name}}
+        </option>
+      {{/each}}
+    </select>
+  </div>
   <ul class="visitors-list">
     {{#each visitors as |visitor|}}
       <li>{{visitor-info model=visitor}}</li>
     {{else}}
-      No visitors found
+      {{empty-result}}
     {{/each}}
   </ul>
 </div>

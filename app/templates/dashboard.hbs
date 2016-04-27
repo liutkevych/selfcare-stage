@@ -1,5 +1,6 @@
 <div class='dashboard'>
-  <div>
+  <div class='location'>
+    <span>{{fa-icon 'location-arrow' title='Location'}}</span>
     <select onchange={{action "selectLocation" value="target.value"}}>
       {{#each model as |location|}}
         <option value={{location.id}} selected={{eq location.id location_id}}>
@@ -8,17 +9,22 @@
       {{/each}}
     </select>
   </div>
-  <div>
-    Stard time: {{bootstrap-datepicker value=startTime autoclose=true}}
-    End time: {{bootstrap-datepicker value=endTime autoclose=true}}
+  <div class='time'>
+    <span>{{fa-icon 'calendar'}}</span>
+    {{bootstrap-datepicker value=startTime autoclose=true}}
+    <span>{{fa-icon 'arrows-h'}}</span>
+    {{bootstrap-datepicker value=endTime autoclose=true}}
   </div>
   <div>
-    <h3>Total:</h3>
-    <ul>
-      <li>Visits: {{stats.details.total.visits}}</li>
-      <li>Sessions: {{stats.details.total.sessions}}</li>
-    </ul>
-    <h3>Daily stats:</h3>
-    {{data-chart model=presence.details.per_day}}
+    {{#if anyPresence}}
+      {{data-chart model=presence.details.per_day}}
+      <ul class='total'>
+        <h3>Total</h3>
+        <li>Visits: <b>{{presence.details.total.visits}}</b></li>
+        <li>Sessions: <b>{{presence.details.total.sessions}}</b></li>
+      </ul>
+    {{else}}
+      {{empty-result}}
+    {{/if}}
   </div>
 </div>

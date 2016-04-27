@@ -1,5 +1,23 @@
 .dashboard {
-  .data-chart {
-    height: 400px;
+  .location {
+    margin: 10px 0px;
+    text-align: center;
+  }
+
+  .empty-result {
+    margin-top: 10px;
+  }
+
+  .time {
+    text-align: center;
+
+    input:first-child {
+      text-align: right;
+    }
+  }
+
+  ul.total {
+    text-align: center;
+    list-style: none;
   }
 }

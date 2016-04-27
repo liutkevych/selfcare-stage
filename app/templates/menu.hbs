@@ -1,7 +1,7 @@
 <div class="menu">
   {{#if session.isAuthenticated }}
-    {{#link-to 'dashboard'}}{{fa-icon 'home'}}{{/link-to}}
-    {{#link-to 'visitors'}}{{fa-icon 'user'}}{{/link-to}}
+    {{#link-to 'dashboard'}}{{fa-icon 'dashboard' title='Dashboard'}}{{/link-to}}
+    {{#link-to 'visitors'}}{{fa-icon 'user' title="Visitors stats"}}{{/link-to}}
     <span class="email">{{currentUser.email}}</span>
     <button class="btn btn-warning" {{ action 'invalidateSession' }}>
       Sign out
