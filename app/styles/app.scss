@@ -1,9 +1,9 @@
 @import 'theme';
-@import 'top-stripe';
 @import 'menu';
 @import 'sign-in';
 @import 'dashboard';
 @import 'visitors';
+@import 'components';
 
 html {
   height: 100%;
@@ -12,7 +12,6 @@ html {
     height: 100%;
 
     > .ember-view {
-      display: flex;
       height: 100%;
       width: 100%;
       padding: 0;

@@ -8,5 +8,6 @@ GoogleChartsService = Ember.Service.extend
       packages: ['corechart']
     google.charts.setOnLoadCallback =>
       @set 'loaded', true
+      @get('onLoad')()
 
 `export default GoogleChartsService`

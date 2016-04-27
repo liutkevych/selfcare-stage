@@ -1,23 +1,14 @@
 <div class="menu">
-  <img src="images/logo.png">
-  <div class='menu-item'>
-    {{#link-to 'dashboard'}}
-      <span class="icon">
-        {{fa-icon 'home'}}
-      </span>
-      <span>
-        Dashboard
-      </span>
+  {{#if session.isAuthenticated }}
+    {{#link-to 'dashboard'}}{{fa-icon 'home'}}{{/link-to}}
+    {{#link-to 'visitors'}}{{fa-icon 'user'}}{{/link-to}}
+    <span class="email">{{currentUser.email}}</span>
+    <button class="btn btn-warning" {{ action 'invalidateSession' }}>
+      Sign out
+    </button>
+  {{else}}
+    {{#link-to 'sign-in' class="btn btn-success"}}
+      <span>Sign in</span>
     {{/link-to}}
-  </div>
-  <div class='menu-item'>
-    {{#link-to 'visitors'}}
-      <span class="icon">
-        {{fa-icon 'users'}}
-      </span>
-      <span>
-        Visitors
-      </span>
-    {{/link-to}}
-  </div>
+  {{/if}}
 </div>

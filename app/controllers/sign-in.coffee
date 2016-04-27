@@ -3,6 +3,7 @@
 SignInController = Em.Controller.extend
   session: Ember.inject.service('session'),
   email: 'example@email.com'
+  error: null
 
   actions:
     signIn: ->
@@ -12,7 +13,7 @@ SignInController = Em.Controller.extend
         @get('password')
       ).then =>
         @transitionToRoute('dashboard')
-      , ->
-        console.error 'Failed to authenticate'
+      , (error) =>
+        @set 'error', error
 
 `export default SignInController;`

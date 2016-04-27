@@ -1,6 +1,11 @@
 <form class="sign-in" {{action "signIn" on="submit"}}>
   <div class="form">
     <h1>Sign in</h1>
+    {{#if error}}
+      <div class="alert alert-danger">
+        {{error.message}}
+      </div>
+    {{/if}}
     <div class="form-group">
       {{input type='email' value=email placeholder='Name' required=true}}
     </div>

@@ -1,39 +1,42 @@
 .menu {
-  float: left;
-  height: 100%;
-  width: $menu-width;
   background: $color-1;
-  display: none;
+  margin: 0;
+  padding: 0;
+  height: 50px;
 
-  img {
-    display: table-cell;
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 10px;
+  i.fa {
+    line-height: 50px;
+    font-size: 30px;
+    margin: 0 10px;
+    color: $color-4;
   }
 
-  .menu-item {
-    height: 50px;
-    margin-left: 20px;
+  i.fa:hover {
+    color: $color-3;
+  }
 
-    a {
-      color: $color-2;
-      text-decoration: none;
-    }
+  a.active i.fa {
+    color: $color-3;
+  }
 
-    a:hover, a:active {
-      color: $color-3;
-    }
+  i.fa.fa-bars {
+    float: left;
+    margin-left: 10px;
+  }
+
+  .btn {
+    float: right;
+    height: 40px;
+    margin: 5px;
 
     span {
-      line-height: 50px;
-      font-size: 18px;
       vertical-align: middle;
     }
+  }
 
-    span.icon {
-      font-size: 30px;
-    }
+  span.email {
+    float: right;
+    line-height: 50px;
+    font-size: 18px;
   }
 }
