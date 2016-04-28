@@ -9,12 +9,14 @@
       {{/each}}
     </select>
   </div>
-  <ul class="visitors-list">
-    {{#each visitors as |visitor|}}
-      <li>{{visitor-info model=visitor}}</li>
-    {{else}}
-      {{empty-result}}
-    {{/each}}
-  </ul>
+  <div class="container-fluid">
+    <div class="row">
+      {{#each visitors as |visitor|}}
+        <div class="column col-xs-2 col-md-4 col-sm-12">{{visitor-info model=visitor}}</div>
+      {{else}}
+        {{empty-result}}
+      {{/each}}
+    </div>
+  </div>
 </div>
 

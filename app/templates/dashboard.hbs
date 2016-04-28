@@ -18,11 +18,13 @@
   <div>
     {{#if anyPresence}}
       {{data-chart model=presence.details.per_day}}
-      <ul class='total'>
+      <div class="total">
         <h3>Total</h3>
-        <li>Visits: <b>{{presence.details.total.visits}}</b></li>
-        <li>Sessions: <b>{{presence.details.total.sessions}}</b></li>
-      </ul>
+        <ul>
+          <li>Visits: <b>{{presence.details.total.visits}}</b></li>
+          <li>Sessions: <b>{{presence.details.total.sessions}}</b></li>
+        </ul>
+      </div>
     {{else}}
       {{empty-result}}
     {{/if}}

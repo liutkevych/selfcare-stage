@@ -4,7 +4,20 @@
   margin: 5px;
   padding: 10px;
 
-  .row {
-    margin: 0;
+  .container-fluid {
+    padding: 0px;
+
+    .column {
+      height: 50px;
+      text-align: center;
+
+      span {
+        &.social-kind {
+          font-size: 30px;
+        }
+
+        line-height: 50px;
+      }
+    }
   }
 }

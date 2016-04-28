@@ -14,10 +14,17 @@
     input:first-child {
       text-align: right;
     }
+
+    margin-bottom: 5px;
   }
 
-  ul.total {
+  .total {
     text-align: center;
-    list-style: none;
+
+    ul {
+      margin: 0px;
+      padding: 0px;
+      list-style: none;
+    }
   }
 }

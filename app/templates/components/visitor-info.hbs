@@ -7,7 +7,6 @@
   {{/if}}
 </div>
 <div>
-  <span>Social networks info:</span>
   {{#if model.socialNetworks}}
     <ul class="social-networks-list">
       {{#each model.socialNetworks as |socialNetwork|}}
@@ -16,7 +15,5 @@
         </li>
       {{/each}}
     </ul>
-  {{else}}
-    <span class="unknown">no information</span>
   {{/if}}
 </div>
