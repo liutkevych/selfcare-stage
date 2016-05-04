@@ -5,30 +5,31 @@ DataChartComponent = Ember.Component.extend
   classNames: ['data-chart']
 
   renderChart: (context) ->
-    data = []
     model = context.get('model')
-    Object.keys(model).forEach (date) ->
-      data.push [new Date(date), model[date].visits, model[date].sessions]
 
-    dataTable = new google.visualization.DataTable()
-    dataTable.addColumn('date', 'Date')
-    dataTable.addColumn('number', 'Visits')
-    dataTable.addColumn('number', 'Sessions')
-    dataTable.addRows(data)
+    data = context.get('dataFormatter')(model)
+    options = context.get('options')(model)
 
-    options =
-      hAxis:
-        gridlines:
-          count: data.length
+    type = context.get('type')
+    container = context.$('.chart-area')[0]
 
-    container = $('.chart-area')[0]
+    chart = switch type
+      when 'column'
+        new google.visualization.ColumnChart(container)
+      when 'pie'
+        new google.visualization.PieChart(container)
 
-    new google.visualization.ColumnChart(container).draw(dataTable, options)
+    chart.draw(data, options)
 
   isReadyToRender: (context) ->
-    context.get('model') && context.get('googleCharts.loaded') && $('.chart-area').length > 0
+    context.get('model') &&
+    context.get('googleCharts.loaded') &&
+    context.$('.chart-area') != undefined
 
   didReceiveAttrs: ->
+    @get('renderChart')(this) if @get('isReadyToRender')(this)
+
+  didInsertElement: ->
     @get('renderChart')(this) if @get('isReadyToRender')(this)
 
   didRender: ->
@@ -37,7 +38,8 @@ DataChartComponent = Ember.Component.extend
     @get('renderChart')(this) if @get('isReadyToRender')(this)
 
     unless @get('googleCharts.loaded')
-      @set 'googleCharts.onLoad', =>
+      onLoad = @get('googleCharts.onLoad')
+      onLoad.push =>
         @get('renderChart')(this) if @get('isReadyToRender')(this)
 
 `export default DataChartComponent`

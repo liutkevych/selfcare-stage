@@ -1,23 +1,24 @@
 <div class='dashboard'>
-  <div class='location'>
-    <span>{{fa-icon 'location-arrow' title='Location'}}</span>
-    <select onchange={{action "selectLocation" value="target.value"}}>
-      {{#each model as |location|}}
-        <option value={{location.id}} selected={{eq location.id location_id}}>
-          {{location.name}}
-        </option>
-      {{/each}}
-    </select>
-  </div>
-  <div class='time'>
-    <span>{{fa-icon 'calendar'}}</span>
-    {{bootstrap-datepicker value=startTime autoclose=true}}
-    <span>{{fa-icon 'arrows-h'}}</span>
-    {{bootstrap-datepicker value=endTime autoclose=true}}
-  </div>
   <div>
+    <h2>Presence</h2>
+    <div class='location'>
+      <span>{{fa-icon 'location-arrow' title='Location'}}</span>
+      <select onchange={{action "selectLocation" value="target.value"}}>
+        {{#each model as |location|}}
+          <option value={{location.id}} selected={{eq location.id location_id}}>
+            {{location.name}}
+          </option>
+        {{/each}}
+      </select>
+    </div>
+    <div class='time'>
+      <span>{{fa-icon 'calendar'}}</span>
+      {{bootstrap-datepicker value=startTime autoclose=true}}
+      <span>{{fa-icon 'arrows-h'}}</span>
+      {{bootstrap-datepicker value=endTime autoclose=true}}
+    </div>
     {{#if anyPresence}}
-      {{data-chart model=presence.details.per_day}}
+      {{data-chart model=presence.details.per_day dataFormatter=presenceDataFormatter options=presenceChartOptions type='column'}}
       <div class="total">
         <h3>Total</h3>
         <ul>
@@ -28,5 +29,9 @@
     {{else}}
       {{empty-result}}
     {{/if}}
+  </div>
+  <div>
+    <h2>Platforms</h2>
+    {{data-chart model=platforms.details dataFormatter=platformsDataFormatter options=platformsChartOptions type='pie'}}
   </div>
 </div>
