@@ -40,8 +40,13 @@ DashboardController = Ember.Controller.extend
           count: Object.keys(data).length / 2
 
   platforms: Ember.computed 'location_id', ->
+    location_id = @get('location_id')
+    return unless location_id
+
     @store.queryRecord 'stat',
       name: 'platforms'
+      options:
+        location_id: location_id
 
   platformsDataFormatter: (data) ->
     dataTable = new google.visualization.DataTable()
@@ -56,6 +61,30 @@ DashboardController = Ember.Controller.extend
     dataTable
 
   platformsChartOptions: (data) ->
+      height: 300
+
+  registrations: Ember.computed 'location_id', ->
+    location_id = @get('location_id')
+    return unless location_id
+
+    @store.queryRecord 'stat',
+      name: 'registrations'
+      options:
+        location_id: location_id
+
+  registrationsDataFormatter: (data) ->
+    dataTable = new google.visualization.DataTable()
+    dataTable.addColumn 'string', 'Source'
+    dataTable.addColumn 'number', 'Registrations'
+
+    rows = []
+    Object.keys(data).forEach (source) ->
+      rows.push [source, data[source]]
+
+    dataTable.addRows rows
+    dataTable
+
+  registrationsChartOptions: ->
       height: 300
 
   actions:
