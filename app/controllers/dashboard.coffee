@@ -87,6 +87,30 @@ DashboardController = Ember.Controller.extend
   registrationsChartOptions: ->
       height: 300
 
+  authorizations: Ember.computed 'location_id', ->
+    location_id = @get('location_id')
+    return unless location_id
+
+    @store.queryRecord 'stat',
+      name: 'authorizations'
+      options:
+        location_id: location_id
+
+  authorizationsDataFormatter: (data) ->
+    dataTable = new google.visualization.DataTable()
+    dataTable.addColumn 'string', 'Source'
+    dataTable.addColumn 'number', 'Authorizations'
+
+    rows = []
+    Object.keys(data).forEach (source) ->
+      rows.push [source, data[source]]
+
+    dataTable.addRows rows
+    dataTable
+
+  authorizationsChartOptions: ->
+      height: 300
+
   actions:
     selectLocation: (value) ->
       @set 'location_id', value

@@ -30,12 +30,18 @@
       {{empty-result}}
     {{/if}}
   </div>
+  <hr>
   <div>
     <h2>Platforms</h2>
     {{data-chart model=platforms.details dataFormatter=platformsDataFormatter options=platformsChartOptions type='pie'}}
   </div>
+  <hr>
   <div>
     <h2>Registrations</h2>
     {{data-chart model=registrations.details dataFormatter=registrationsDataFormatter options=registrationsChartOptions type='pie'}}
+  </div>
+  <div>
+    <h2>Authorizations</h2>
+    {{data-chart model=authorizations.details dataFormatter=authorizationsDataFormatter options=authorizationsChartOptions type='pie'}}
   </div>
 </div>
