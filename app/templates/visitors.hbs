@@ -12,7 +12,7 @@
   <div class="container-fluid">
     <div class="row">
       {{#each visitors as |visitor|}}
-        <div class="column col-xs-2 col-md-4 col-sm-12">{{visitor-info model=visitor}}</div>
+        <div class="column col-xs-12 col-md-4">{{visitor-info model=visitor}}</div>
       {{else}}
         {{empty-result}}
       {{/each}}
