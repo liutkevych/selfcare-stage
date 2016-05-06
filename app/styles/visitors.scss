@@ -1,12 +1,8 @@
 .visitors {
-  .location {
-    text-align: center;
-    margin: 10px 0px;
-  }
+  text-align: center;
 
-  ul.visitors-list {
-    list-style: none;
-    padding: 0;
+  .location {
+    margin: 10px 0px;
   }
 
   .empty-result {
@@ -18,46 +14,11 @@
     margin: 0px;
   }
 
-  .visitor-info {
-    height: 175px;
-    border: 3px solid $color-1;
-    border-radius: 8px;
+  .panel {
     margin: 10px;
-    padding: 0;
-
-    >div:first-child {
-      padding: 15px;
-    }
-
-    >div {
-      span {
-        margin-right: 5px;
-
-        i.fa-phone {
-          font-size: 25px;
-          line-height: 25px;
-          color: green;
-        }
-
-        i.fa-envelope {
-          color: $color-1;
-        }
-      }
-
-      span.phone-number {
-        font-size: 25px;
-        color: $color-3;
-      }
-
-      span.unknown {
-        color: gray;
-      }
-    }
   }
 
-  ul.social-networks-list {
-    list-style: none;
-    padding: 0;
-    owerflow: scroll;
+  .table td {
+    text-align: left;
   }
 }

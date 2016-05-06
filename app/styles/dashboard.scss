@@ -1,4 +1,19 @@
 .dashboard {
+  .query {
+    display: none;
+    margin-left: 10px;
+    color: grey;
+    margin-top: 5px;
+  }
+
+  .column:not(:last-child) {
+    border-right: 1px solid lightgray;
+  }
+
+  button {
+    margin-left: 10px;
+  }
+
   h2 {
     text-align: center;
   }

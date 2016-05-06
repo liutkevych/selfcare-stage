@@ -8,6 +8,8 @@ Router.map ->
   @route 'sign-in'
   @route 'dashboard',
     path: '/'
-  @route 'visitors'
+  @route 'visitors', ->
+    @route 'emails'
+    @route 'phones'
 
 `export default Router;`

@@ -2,21 +2,17 @@
   <div class='location'>
     <span>{{fa-icon 'location-arrow' title='Location'}}</span>
     <select onchange={{action "selectLocation" value="target.value"}}>
-      {{#each locations as |location|}}
+      {{#each model as |location|}}
         <option value={{location.id}} selected={{eq location.id location_id}}>
           {{location.name}}
         </option>
       {{/each}}
     </select>
   </div>
-  <div class="container-fluid">
-    <div class="row">
-      {{#each visitors as |visitor|}}
-        <div class="column col-xs-12 col-md-4">{{visitor-info model=visitor}}</div>
-      {{else}}
-        {{empty-result}}
-      {{/each}}
-    </div>
+  <div class="btn-group" role="group">
+    {{#link-to 'visitors.emails' type="button" class="btn btn-info"}}Emails{{/link-to}}
+    {{#link-to 'visitors.phones' type="button" class="btn btn-info"}}Phone numbers{{/link-to}}
   </div>
+  {{outlet}}
 </div>
 

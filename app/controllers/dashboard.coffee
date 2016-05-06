@@ -2,6 +2,9 @@
 `import moment from 'moment';`
 
 DashboardController = Ember.Controller.extend
+  location_id: Ember.computed 'model', ->
+    @get 'model.firstObject.id'
+
   startTime: moment().subtract(30, 'days').toDate()
   endTime: new Date()
 
@@ -60,8 +63,13 @@ DashboardController = Ember.Controller.extend
     dataTable.addRows rows
     dataTable
 
-  platformsChartOptions: (data) ->
-      height: 300
+  pieChartOptions: (data) ->
+      height: 200
+      chartArea:
+        height: '90%'
+        width: '100%'
+      legend:
+        alignment: 'center'
 
   registrations: Ember.computed 'location_id', ->
     location_id = @get('location_id')
@@ -84,9 +92,6 @@ DashboardController = Ember.Controller.extend
     dataTable.addRows rows
     dataTable
 
-  registrationsChartOptions: ->
-      height: 300
-
   authorizations: Ember.computed 'location_id', ->
     location_id = @get('location_id')
     return unless location_id
@@ -108,11 +113,11 @@ DashboardController = Ember.Controller.extend
     dataTable.addRows rows
     dataTable
 
-  authorizationsChartOptions: ->
-      height: 300
-
   actions:
     selectLocation: (value) ->
       @set 'location_id', value
+
+    toggleQuery: (id) ->
+      $("##{id}").slideToggle(128)
 
 `export default DashboardController;`

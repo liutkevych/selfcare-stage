@@ -1,6 +1,5 @@
 <div class='dashboard'>
   <div>
-    <h2>Presence</h2>
     <div class='location'>
       <span>{{fa-icon 'location-arrow' title='Location'}}</span>
       <select onchange={{action "selectLocation" value="target.value"}}>
@@ -31,17 +30,40 @@
     {{/if}}
   </div>
   <hr>
-  <div>
-    <h2>Platforms</h2>
-    {{data-chart model=platforms.details dataFormatter=platformsDataFormatter options=platformsChartOptions type='pie'}}
-  </div>
-  <hr>
-  <div>
+  <div class="column col-md-4 col-sm-12">
     <h2>Registrations</h2>
-    {{data-chart model=registrations.details dataFormatter=registrationsDataFormatter options=registrationsChartOptions type='pie'}}
+    <button class='btn btn-info' onclick={{action 'toggleQuery' 'query-3'}}>Toggle SQL query</button>
+    <br>
+    <small id='query-3' class='query'>
+      Socials:
+      <br>
+      SELECT social_networks.kind, count(distinct social_networks.person_id)
+      FROM social_networks INNER JOIN events ON social_networks.person_id = events.person_id WHERE events.service = 'registrator' #{location_cond}
+      GROUP BY social_networks.kind;
+      <br>Phone:<br>
+      SELECT COUNT(distinct people.id)
+      FROM people INNER JOIN events ON people.id = events.person_id WHERE events.service = 'registrator' AND phone IS NOT NULL #{location_cond};
+    </small>
+    {{data-chart model=registrations.details dataFormatter=registrationsDataFormatter options=pieChartOptions type='pie'}}
   </div>
-  <div>
+  <div class="column col-md-4 col-sm-12">
     <h2>Authorizations</h2>
-    {{data-chart model=authorizations.details dataFormatter=authorizationsDataFormatter options=authorizationsChartOptions type='pie'}}
+    <button class='btn btn-info' onclick={{action 'toggleQuery' 'query-4'}}>Toggle SQL query</button>
+    <br>
+    <small id='query-4' class='query'>
+      SELECT source, COUNT(*)
+      FROM sessions #{location_cond}
+      GROUP BY source;
+    </small>
+    {{data-chart model=authorizations.details dataFormatter=authorizationsDataFormatter options=pieChartOptions type='pie'}}
+  </div>
+  <div class="column col-md-4 col-sm-12">
+    <h2>Platforms</h2>
+    <button class='btn btn-info' onclick={{action 'toggleQuery' 'query-2'}}>Toggle SQL query</button>
+    <br>
+    <small id='query-2' class='query'>
+      SELECT platform, count(distinct platform) FROM visits #{location_cond} GROUP BY platform;
+    </small>
+    {{data-chart model=platforms.details dataFormatter=platformsDataFormatter options=pieChartOptions type='pie'}}
   </div>
 </div>
