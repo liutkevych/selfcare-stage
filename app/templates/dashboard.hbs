@@ -32,7 +32,7 @@
   <hr>
   <div class="column col-md-4 col-sm-12">
     <h2>Registrations</h2>
-    <button class='btn btn-info' onclick={{action 'toggleQuery' 'query-3'}}>Toggle SQL query</button>
+    <button class='btn btn-info' onclick={{action 'toggleQuery' 'query-3'}}><small>Toggle SQL query</small></button>
     <br>
     <small id='query-3' class='query'>
       Socials:
@@ -48,7 +48,7 @@
   </div>
   <div class="column col-md-4 col-sm-12">
     <h2>Authorizations</h2>
-    <button class='btn btn-info' onclick={{action 'toggleQuery' 'query-4'}}>Toggle SQL query</button>
+    <button class='btn btn-info' onclick={{action 'toggleQuery' 'query-4'}}><small>Toggle SQL query</small></button>
     <br>
     <small id='query-4' class='query'>
       SELECT source, COUNT(*)
@@ -59,10 +59,13 @@
   </div>
   <div class="column col-md-4 col-sm-12">
     <h2>Platforms</h2>
-    <button class='btn btn-info' onclick={{action 'toggleQuery' 'query-2'}}>Toggle SQL query</button>
+    <button class='btn btn-info' onclick={{action 'toggleQuery' 'query-2'}}><small>Toggle SQL query</small></button>
     <br>
     <small id='query-2' class='query'>
-      SELECT platform, count(distinct platform) FROM visits #{location_cond} GROUP BY platform;
+      SELECT platform
+      FROM visits
+      INNER JOIN sessions
+        ON visits.device_id = sessions.device_id
     </small>
     {{data-chart model=platforms.details dataFormatter=platformsDataFormatter options=pieChartOptions type='pie'}}
   </div>

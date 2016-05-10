@@ -3,7 +3,14 @@
     display: none;
     margin-left: 10px;
     color: grey;
-    margin-top: 5px;
+  }
+
+  .column {
+    text-align: center;
+
+    small {
+      text-align: left;
+    }
   }
 
   .column:not(:last-child) {
@@ -11,11 +18,7 @@
   }
 
   button {
-    margin-left: 10px;
-  }
-
-  h2 {
-    text-align: center;
+    margin: 10px;
   }
 
   .location {
