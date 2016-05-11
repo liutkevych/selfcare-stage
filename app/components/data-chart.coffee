@@ -24,7 +24,8 @@ DataChartComponent = Ember.Component.extend
   isReadyToRender: (context) ->
     context.get('model') &&
     context.get('googleCharts.loaded') &&
-    context.$('.chart-area') != undefined
+    context.$('.chart-area') != undefined &&
+    context.$('.chart-area').length > 0
 
   didReceiveAttrs: ->
     @get('renderChart')(this) if @get('isReadyToRender')(this)

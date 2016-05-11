@@ -1,5 +1,6 @@
 <div class='dashboard'>
-  <div>
+  <div class="column col-12-xs">
+
     <div class='location'>
       <span>{{fa-icon 'location-arrow' title='Location'}}</span>
       <select onchange={{action "selectLocation" value="target.value"}}>
@@ -10,6 +11,7 @@
         {{/each}}
       </select>
     </div>
+
     <h2>Presence</h2>
     <div class='time'>
       <span>{{fa-icon 'calendar'}}</span>
@@ -17,34 +19,42 @@
       <span>{{fa-icon 'arrows-h'}}</span>
       {{bootstrap-datepicker value=endTime autoclose=true}}
     </div>
-    {{#if anyPresence}}
-      {{data-chart model=presence.details.per_day dataFormatter=presenceDataFormatter options=presenceChartOptions type='column'}}
-      <div class="total">
-        <h3>Total</h3>
-        <ul>
-          <li>Visits: <b>{{presence.details.total.visits}}</b></li>
-          <li>Signins: <b>{{presence.details.total.sessions}}</b></li>
-        </ul>
-      </div>
-    {{else}}
-      {{empty-result}}
-    {{/if}}
+
+    {{data-chart model=presence.details.per_day
+                 dataFormatter=presenceDataFormatter
+                 options=presenceChartOptions
+                 anyData=anyPresence
+                 loading=presenceLoading
+                 type='column'
+    }}
+    <div class="total">
+      <h3>Total</h3>
+      <ul>
+        <li>Visits: <b>{{presence.details.total.visits}}</b></li>
+        <li>Signins: <b>{{presence.details.total.sessions}}</b></li>
+      </ul>
+    </div>
+
   </div>
   <hr>
   <div class="column col-md-6 col-sm-12">
     <h2>Signins</h2>
-    {{#if anySignins}}
-      {{data-chart model=signins.details dataFormatter=signinsDataFormatter options=pieChartOptions type='pie'}}
-    {{else}}
-      {{empty-result}}
-    {{/if}}
+    {{data-chart model=signins.details
+                 dataFormatter=signinsDataFormatter
+                 options=pieChartOptions
+                 anyData=anySignins
+                 loading=signinsLoading
+                 type='pie'
+    }}
   </div>
   <div class="column col-md-6 col-sm-12">
     <h2>Platforms</h2>
-    {{#if anyPlatformsInfo}}
-      {{data-chart model=platforms.details dataFormatter=platformsDataFormatter options=pieChartOptions type='pie'}}
-    {{else}}
-      {{empty-result}}
-    {{/if}}
+    {{data-chart model=platforms.details
+                 dataFormatter=platformsDataFormatter
+                 options=pieChartOptions
+                 anyData=anyPlatformsInfo
+                 loading=platformsLoading
+                 type='pie'
+    }}
   </div>
 </div>

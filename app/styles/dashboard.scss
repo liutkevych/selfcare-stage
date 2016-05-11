@@ -49,4 +49,17 @@
       list-style: none;
     }
   }
+
+  .spinner-wrapper {
+    position: relative;
+  }
+
+  .column:first-child .spinner-wrapper {
+    height: 400px;
+  }
+
+  .column:not(:first-child) .spinner-wrapper {
+    height: 200px;
+  }
+
 }

@@ -8,6 +8,15 @@ DashboardController = Ember.Controller.extend
   startTime: moment().subtract(30, 'days').toDate()
   endTime: new Date()
 
+  presenceLoading: Ember.computed 'presence.content', 'presence.id', ->
+    @get('presence.content') == null
+
+  signinsLoading: Ember.computed 'signins.content', 'signins.id', ->
+    @get('signins.content') == null
+
+  platformsLoading: Ember.computed 'platforms.content', 'platforms.id', ->
+    @get('platforms.content') == null
+
   anyPresence: Ember.computed 'presence.id', ->
     presence = @get 'presence.details.total'
     presence && (presence.visits > 0 || presence.sessions > 0)
