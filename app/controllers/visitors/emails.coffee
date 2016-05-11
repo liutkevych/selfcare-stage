@@ -8,8 +8,12 @@ VisitorsEmailsController = Ember.Controller.extend
   emails: Ember.computed 'model', ->
     @fetchEmails()
 
+  loading: Ember.computed 'emails', ->
+    @get('emails') == undefined
+
   fetchEmails: Ember.observer 'visitors.location_id', ->
     location_id = @get 'visitors.location_id'
+    @set 'emails', undefined
 
     @get('session').authorize('authorizer:devise', (headerName, headerValue) =>
       headers = {}

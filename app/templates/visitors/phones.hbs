@@ -1,18 +1,24 @@
-{{#if phones}}
-  <div class="panel panel-info">
-    <div class="panel-heading">
-      Total: {{phones.length}}
-    </div>
-    <table class="table">
-      <tbody>
-        {{#each phones as |phone|}}
-          <tr>
-            <td class="unselectable">{{phone}}</td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
+{{#if loading}}
+  <div class="spinner-wrapper">
+    {{gear-spinner}}
   </div>
 {{else}}
-  {{empty-result}}
+  {{#if phones}}
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        Total: {{phones.length}}
+      </div>
+      <table class="table">
+        <tbody>
+          {{#each phones as |phone|}}
+            <tr>
+              <td class="unselectable">{{phone}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  {{else}}
+    {{empty-result}}
+  {{/if}}
 {{/if}}

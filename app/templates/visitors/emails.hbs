@@ -1,18 +1,24 @@
-{{#if emails}}
-  <div class="panel panel-info">
-    <div class="panel-heading">
-      Total: {{emails.length}}
-    </div>
-    <table class="table">
-      <tbody>
-        {{#each emails as |email|}}
-          <tr>
-            <td class="unselectable">{{email}}</td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
+{{#if loading}}
+  <div class="spinner-wrapper">
+    {{gear-spinner}}
   </div>
 {{else}}
-  {{empty-result}}
+  {{#if emails}}
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        Total: {{emails.length}}
+      </div>
+      <table class="table">
+        <tbody>
+          {{#each emails as |email|}}
+            <tr>
+              <td class="unselectable">{{email}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  {{else}}
+    {{empty-result}}
+  {{/if}}
 {{/if}}

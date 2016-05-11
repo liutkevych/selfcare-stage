@@ -5,11 +5,15 @@ VisitorsPhonesController = Ember.Controller.extend
   visitors: Ember.inject.controller()
   session: Ember.inject.service()
 
+  loading: Ember.computed 'phones', ->
+    @get('phones') == undefined
+
   phones: Ember.computed 'model', ->
     @fetchPhones()
 
   fetchPhones: Ember.observer 'visitors.location_id', ->
     location_id = @get 'visitors.location_id'
+    @set 'phones', undefined
 
     @get('session').authorize('authorizer:devise', (headerName, headerValue) =>
       headers = {}
