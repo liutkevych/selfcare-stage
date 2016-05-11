@@ -33,30 +33,18 @@
   <hr>
   <div class="column col-md-6 col-sm-12">
     <h2>Signins</h2>
-    {{!-- <button class='btn btn-info' onclick={{action 'toggleQuery' 'query-1'}}><small>Toggle SQL query</small></button>
-    <br>
-    <small id='query-1' class='query'>
-      SELECT source, COUNT(source)
-      FROM sessions #{location_cond}
-      GROUP BY source;
-    </small> --}}
-    {{data-chart model=signins.details dataFormatter=signinsDataFormatter options=pieChartOptions type='pie'}}
+    {{#if anySignins}}
+      {{data-chart model=signins.details dataFormatter=signinsDataFormatter options=pieChartOptions type='pie'}}
+    {{else}}
+      {{empty-result}}
+    {{/if}}
   </div>
   <div class="column col-md-6 col-sm-12">
     <h2>Platforms</h2>
-    {{!-- <button class='btn btn-info' onclick={{action 'toggleQuery' 'query-2'}}><small>Toggle SQL query</small></button>
-    <br>
-    <small id='query-2' class='query'>
-      SELECT platform
-        FROM (
-          SELECT distinct(sessions.device_id), platform
-          FROM visits
-            INNER JOIN sessions
-            ON visits.device_id = sessions.device_id
-            #{location_cond}
-
-        ) AS by_device;
-    </small> --}}
-    {{data-chart model=platforms.details dataFormatter=platformsDataFormatter options=pieChartOptions type='pie'}}
+    {{#if anyPlatformsInfo}}
+      {{data-chart model=platforms.details dataFormatter=platformsDataFormatter options=pieChartOptions type='pie'}}
+    {{else}}
+      {{empty-result}}
+    {{/if}}
   </div>
 </div>

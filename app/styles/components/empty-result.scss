@@ -1,7 +1,13 @@
 .empty-result {
+  margin: 30px;
   text-align: center;
 
   i.fa {
     font-size: 50px;
+  }
+
+  div:last-child {
+    margin-top: 10px;
+    font-size: 25px;
   }
 }

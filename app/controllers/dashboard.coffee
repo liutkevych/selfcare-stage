@@ -12,6 +12,14 @@ DashboardController = Ember.Controller.extend
     presence = @get 'presence.details.total'
     presence && (presence.visits > 0 || presence.sessions > 0)
 
+  anySignins: Ember.computed 'signins.id', ->
+    signins = @get 'signins.details'
+    signins && Object.keys(signins).length > 0
+
+  anyPlatformsInfo: Ember.computed 'platforms.id', ->
+    platforms = @get 'platforms.details'
+    platforms && Object.keys(platforms).length > 0
+
   presence: Ember.computed 'location_id', 'startTime', 'endTime', ->
     location_id = @get('location_id')
     return unless location_id
