@@ -6,11 +6,15 @@ Router = Ember.Router.extend
 
 Router.map ->
   @route 'sign-in'
+  @route 'sign-out'
+
   @route 'dashboard',
     path: '/'
+
   @route 'visitors', ->
     @route 'emails'
     @route 'phones'
+
   @route 'campaings', ->
     @route 'new'
 
