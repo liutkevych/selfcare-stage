@@ -27,7 +27,7 @@ DashboardController = Ember.Controller.extend
     dataTable = new google.visualization.DataTable()
     dataTable.addColumn 'date', 'Date'
     dataTable.addColumn 'number', 'Visits'
-    dataTable.addColumn 'number', 'Sessions'
+    dataTable.addColumn 'number', 'Signins'
 
     rows = []
     Object.keys(data).forEach (date) ->
@@ -58,57 +58,38 @@ DashboardController = Ember.Controller.extend
 
     rows = []
     Object.keys(data).forEach (platform) ->
-      rows.push [platform, data[platform]]
+      rows.push ["#{platform}: #{data[platform].count} (#{data[platform].persentage}%)", data[platform].count]
 
     dataTable.addRows rows
     dataTable
 
   pieChartOptions: (data) ->
       height: 200
+      tooltip:
+        text: 'none'
       chartArea:
         height: '90%'
         width: '100%'
       legend:
         alignment: 'center'
 
-  registrations: Ember.computed 'location_id', ->
+  signins: Ember.computed 'location_id', ->
     location_id = @get('location_id')
     return unless location_id
 
     @store.queryRecord 'stat',
-      name: 'registrations'
+      name: 'signins'
       options:
         location_id: location_id
 
-  registrationsDataFormatter: (data) ->
+  signinsDataFormatter: (data) ->
     dataTable = new google.visualization.DataTable()
     dataTable.addColumn 'string', 'Source'
-    dataTable.addColumn 'number', 'Registrations'
+    dataTable.addColumn 'number', 'Signins'
 
     rows = []
     Object.keys(data).forEach (source) ->
-      rows.push [source, data[source]]
-
-    dataTable.addRows rows
-    dataTable
-
-  authorizations: Ember.computed 'location_id', ->
-    location_id = @get('location_id')
-    return unless location_id
-
-    @store.queryRecord 'stat',
-      name: 'authorizations'
-      options:
-        location_id: location_id
-
-  authorizationsDataFormatter: (data) ->
-    dataTable = new google.visualization.DataTable()
-    dataTable.addColumn 'string', 'Source'
-    dataTable.addColumn 'number', 'Authorizations'
-
-    rows = []
-    Object.keys(data).forEach (source) ->
-      rows.push [source, data[source]]
+      rows.push ["#{source}: #{data[source].count} (#{data[source].persentage}%)", data[source].count]
 
     dataTable.addRows rows
     dataTable

@@ -1,0 +1,18 @@
+{{#if model}}
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      Campaings
+    </div>
+    <table class="table">
+      <tbody>
+        {{#each model as |campaing|}}
+        <tr>
+          <td>{{campaing}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+{{else}}
+  {{empty-result}}
+{{/if}}

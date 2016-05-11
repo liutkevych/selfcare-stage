@@ -10,6 +10,7 @@
         {{/each}}
       </select>
     </div>
+    <h2>Presence</h2>
     <div class='time'>
       <span>{{fa-icon 'calendar'}}</span>
       {{bootstrap-datepicker value=startTime autoclose=true}}
@@ -22,7 +23,7 @@
         <h3>Total</h3>
         <ul>
           <li>Visits: <b>{{presence.details.total.visits}}</b></li>
-          <li>Sessions: <b>{{presence.details.total.sessions}}</b></li>
+          <li>Signins: <b>{{presence.details.total.sessions}}</b></li>
         </ul>
       </div>
     {{else}}
@@ -30,42 +31,31 @@
     {{/if}}
   </div>
   <hr>
-  <div class="column col-md-4 col-sm-12">
-    <h2>Registrations</h2>
-    <button class='btn btn-info' onclick={{action 'toggleQuery' 'query-3'}}><small>Toggle SQL query</small></button>
+  <div class="column col-md-6 col-sm-12">
+    <h2>Signins</h2>
+    <button class='btn btn-info' onclick={{action 'toggleQuery' 'query-1'}}><small>Toggle SQL query</small></button>
     <br>
-    <small id='query-3' class='query'>
-      Socials:
-      <br>
-      SELECT social_networks.kind, count(distinct social_networks.person_id)
-      FROM social_networks INNER JOIN events ON social_networks.person_id = events.person_id WHERE events.service = 'registrator' #{location_cond}
-      GROUP BY social_networks.kind;
-      <br>Phone:<br>
-      SELECT COUNT(distinct people.id)
-      FROM people INNER JOIN events ON people.id = events.person_id WHERE events.service = 'registrator' AND phone IS NOT NULL #{location_cond};
-    </small>
-    {{data-chart model=registrations.details dataFormatter=registrationsDataFormatter options=pieChartOptions type='pie'}}
-  </div>
-  <div class="column col-md-4 col-sm-12">
-    <h2>Authorizations</h2>
-    <button class='btn btn-info' onclick={{action 'toggleQuery' 'query-4'}}><small>Toggle SQL query</small></button>
-    <br>
-    <small id='query-4' class='query'>
-      SELECT source, COUNT(*)
+    <small id='query-1' class='query'>
+      SELECT source, COUNT(source)
       FROM sessions #{location_cond}
       GROUP BY source;
     </small>
-    {{data-chart model=authorizations.details dataFormatter=authorizationsDataFormatter options=pieChartOptions type='pie'}}
+    {{data-chart model=signins.details dataFormatter=signinsDataFormatter options=pieChartOptions type='pie'}}
   </div>
-  <div class="column col-md-4 col-sm-12">
+  <div class="column col-md-6 col-sm-12">
     <h2>Platforms</h2>
     <button class='btn btn-info' onclick={{action 'toggleQuery' 'query-2'}}><small>Toggle SQL query</small></button>
     <br>
     <small id='query-2' class='query'>
       SELECT platform
-      FROM visits
-      INNER JOIN sessions
-        ON visits.device_id = sessions.device_id
+        FROM (
+          SELECT distinct(sessions.device_id), platform
+          FROM visits
+            INNER JOIN sessions
+            ON visits.device_id = sessions.device_id
+            #{location_cond}
+
+        ) AS by_device;
     </small>
     {{data-chart model=platforms.details dataFormatter=platformsDataFormatter options=pieChartOptions type='pie'}}
   </div>

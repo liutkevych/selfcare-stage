@@ -11,5 +11,7 @@ Router.map ->
   @route 'visitors', ->
     @route 'emails'
     @route 'phones'
+  @route 'campaings', ->
+    @route 'new'
 
 `export default Router;`
