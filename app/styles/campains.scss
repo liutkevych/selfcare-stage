@@ -1,0 +1,49 @@
+.campains-new {
+  text-align: center;
+
+  form {
+    padding: 10px;
+  }
+}
+
+.campains {
+  padding: 10px;
+  text-align: center;
+
+  .panel {
+    thead td {
+      font-weight: bold;
+      background: $color-3;
+    }
+
+
+    td:not(:last-child) {
+      border-right: 1px solid lightgray;
+    }
+  }
+
+  .fa {
+    font-size: 30px;
+
+    &.fa-plus-circle {
+      font-size: 50px;
+      margin-bottom: 5px;
+    }
+
+    &.fa-clock-o {
+      color: orange;
+    }
+
+    &.fa-check-circle {
+      color: green;
+    }
+
+    &.fa-warning {
+      color: red;
+    }
+
+    &.fa-question-circle {
+      color: darkred;
+    }
+  }
+}

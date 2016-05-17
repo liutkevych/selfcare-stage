@@ -1,0 +1,42 @@
+{{#if loading}}
+  <div class="spinner-wrapper">
+    {{gear-spinner}}
+  </div>
+{{else}}
+  {{#link-to 'campains.new'}}{{fa-icon 'plus-circle'}}{{/link-to}}
+  {{#if model}}
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        Campains
+      </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <td>Title</td>
+            <td>Message</td>
+            <td>Status</td>
+            <td>Targets count</td>
+            <td>Completed</td>
+            <td>Failed</td>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each model as |campain|}}
+          <tr>
+            <td>{{campain.title}}</td>
+            <td>{{campain.message}}</td>
+            <td>
+              {{campain-status-icon campain.status}}
+            </td>
+            <td>{{campain.targets_count}}</td>
+            <td>{{campain.completed_count}}</td>
+            <td>{{campain.failed_count}}</td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  {{else}}
+    {{empty-result}}
+  {{/if}}
+{{/if}}

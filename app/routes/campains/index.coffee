@@ -1,8 +1,8 @@
 `import Ember from 'ember'`
 `import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';`
 
-CampaingsIndexRoute = Ember.Route.extend AuthenticatedRouteMixin,
+CampainsIndexRoute = Ember.Route.extend AuthenticatedRouteMixin,
   model: ->
-    @store.findAll 'campaing'
+    @store.findAll 'campain'
 
-`export default CampaingsIndexRoute;`
+`export default CampainsIndexRoute;`

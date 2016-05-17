@@ -21,7 +21,7 @@ VisitorsEmailsController = Ember.Controller.extend
 
       Ember.$.ajax
         headers: headers
-        url: "#{ENV.SERVER_URL}/api/v1/visitors/emails"
+        url: "#{ENV.SERVER_URL}/api/#{ENV.API_VERSION}/visitors/emails"
         data:
           location_id: location_id
         success: (result) =>

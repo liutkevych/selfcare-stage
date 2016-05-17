@@ -1,0 +1,20 @@
+<form data-remote="true" onsubmit={{action 'create'}}>
+  <fieldset class="form-group">
+    <span>{{fa-icon 'location-arrow' title='Location'}}</span>
+    <select onchange={{action "selectLocation" value="target.value"}}>
+      {{#each model as |location|}}
+        <option value={{location.id}}>
+          {{location.name}}
+        </option>
+      {{/each}}
+    </select>
+  </fieldset>
+  <fieldset class="form-group">
+    {{input class="form-control" value=newCampain.title placeholder="Title" required=true}}
+  </fieldset>
+  <fieldset class="form-group">
+    {{textarea class="form-control" placeholder="Message" value=newCampain.message required=true}}
+    <small>Symbols left: {{symbolsLeft}}</small>
+  </fieldset>
+  {{input type="submit" class="btn btn-success" value="Create"}}
+</form>

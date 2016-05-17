@@ -1,15 +1,12 @@
 <div class="menu">
-  <div class="logo">
-    <img src="images/logo.png">
-  </div>
   {{#if session.isAuthenticated }}
     {{#link-to 'dashboard'}}{{fa-icon 'dashboard' title='Dashboard'}}{{/link-to}}
-    {{#link-to 'visitors'}}{{fa-icon 'user' title="Visitors info"}}{{/link-to}}
-{{!--     {{#link-to 'campaings'}}{{fa-icon 'envelope' title="Campaings"}}{{/link-to}} --}}
+    {{#link-to 'visitors'}}{{fa-icon 'user' title="Visitors stats"}}{{/link-to}}
+    {{#link-to 'campains'}}{{fa-icon 'envelope' title="Campains"}}{{/link-to}}
     <span class="email">{{currentUser.email}}</span>
-    {{#link-to 'sign-out' class="btn btn-warning"}}
+    <button class="btn btn-warning" {{ action 'invalidateSession' }}>
       Sign out
-    {{/link-to}}
+    </button>
   {{else}}
     {{#link-to 'sign-in' class="btn btn-success"}}
       <span>Sign in</span>
