@@ -17,7 +17,7 @@ Router.map ->
 
   @route 'campains', ->
     @route 'new'
-    @route 'show',
-      path: '/:id'
+    @route 'edit',
+      path: '/:id/edit'
 
 `export default Router;`

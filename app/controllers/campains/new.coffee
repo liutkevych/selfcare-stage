@@ -13,12 +13,12 @@ CampainsNewController = Ember.Controller.extend
   actions:
     selectLocation: (id) ->
       location = @store.peekRecord 'location', id
-      @set 'newCampain.location', location
+      @set 'model.location', location
 
     create: ->
       @get('currentUser.me').then (me) =>
         @store.findRecord('customer', me.data.id).then (customer) =>
-          newCampain = @get('newCampain')
+          newCampain = @get('model')
           newCampain.set 'customer', customer
           newCampain.save().then =>
             @transitionToRoute('campains.index')

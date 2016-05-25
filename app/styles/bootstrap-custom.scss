@@ -1,11 +1,25 @@
 .btn-info {
-  background-color: $color-1;
-  border-color: $color-1;
-  color: $color-4;
+  background-color: $color-1 !important;
+  border-color: $color-1 !important;
+  color: $color-4 !important;
 
   &.active, &:hover {
     background-color: $color-3 !important;
+    border-color: $color-1 !important;
     color: $color-1 !important;
+  }
+}
+
+.btn-success {
+  background: $color-2 !important;
+  border-radius: 14px;
+  border-color: $color-2 !important;
+  color: $color-4 !important;
+
+  &:hover {
+    background-color: $color-3 !important;
+    color: $color-1 !important;
+    border-color: $color-1 !important;
   }
 }
 

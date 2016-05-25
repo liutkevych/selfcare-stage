@@ -1,3 +1,4 @@
+`import Ember from 'ember';`
 `import DS from 'ember-data';`
 
 CampainModel = DS.Model.extend
@@ -10,5 +11,8 @@ CampainModel = DS.Model.extend
 
   customer:  DS.belongsTo('customer')
   location:  DS.belongsTo('location')
+
+  isPending: Ember.computed 'status', ->
+    @get('status') == 'pending'
 
 `export default CampainModel;`

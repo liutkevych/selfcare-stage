@@ -1,4 +1,4 @@
-.campains-new {
+.campains-new, .campains-edit {
   text-align: center;
 
   form {
@@ -25,6 +25,12 @@
 
     td:not(:last-child) {
       border-right: 1px solid $color-1;
+    }
+
+    td.actions {
+      >:not(:last-child) {
+        margin-right: 10px;
+      }
     }
   }
 

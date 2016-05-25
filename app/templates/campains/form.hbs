@@ -1,0 +1,7 @@
+<fieldset class="form-group">
+  {{input class="form-control" value=model.title placeholder="Title" required=true}}
+</fieldset>
+<fieldset class="form-group">
+  {{textarea class="form-control" placeholder="Message" value=model.message required=true}}
+  <small>Symbols left: {{symbolsLeft}}</small>
+</fieldset>
