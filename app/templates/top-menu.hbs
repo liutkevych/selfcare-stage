@@ -1,0 +1,13 @@
+<div class="top-menu">
+  {{#if session.isAuthenticated }}
+    <i class="fa fa-list" {{action 'toggleSideMenu'}}/>
+    <span class="email">{{currentUser.email}}</span>
+    <button class="btn btn-warning" {{ action 'invalidateSession' }}>
+      Sign out
+    </button>
+  {{else}}
+    {{#link-to 'sign-in' class="btn btn-success"}}
+      <span>Sign in</span>
+    {{/link-to}}
+  {{/if}}
+</div>

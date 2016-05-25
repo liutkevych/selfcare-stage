@@ -6,10 +6,9 @@ ApplicationController = Ember.Controller.extend
   showMenu: false
 
   actions:
-    toggleMenu: ->
-      $('.menu').animate
+    toggleSideMenu: ->
+      $('.side-menu').animate
         width: 'toggle'
-      , 128, =>
-        @set 'showMenu', !@get('showMenu')
+      , 128
 
 `export default ApplicationController;`

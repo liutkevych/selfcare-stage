@@ -10,9 +10,9 @@
   }
 }
 
-.btn-success {
+.btn-success, .btn-warning {
   background: $color-2 !important;
-  border-radius: 14px;
+  border-radius: 14px !important;
   border-color: $color-2 !important;
   color: $color-4 !important;
 

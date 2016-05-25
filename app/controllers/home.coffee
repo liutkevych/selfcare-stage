@@ -1,7 +1,7 @@
 `import Ember from 'ember';`
 `import moment from 'moment';`
 
-DashboardController = Ember.Controller.extend
+HomeController = Ember.Controller.extend
   location_id: Ember.computed 'model', ->
     @get 'model.firstObject.id'
 
@@ -118,4 +118,4 @@ DashboardController = Ember.Controller.extend
     toggleQuery: (id) ->
       $("##{id}").slideToggle(128)
 
-`export default DashboardController;`
+`export default HomeController;`

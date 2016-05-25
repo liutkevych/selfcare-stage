@@ -8,8 +8,10 @@ Router.map ->
   @route 'sign-in'
   @route 'sign-out'
 
-  @route 'dashboard',
+  @route 'home',
     path: '/'
+
+  @route 'stats'
 
   @route 'visitors', ->
     @route 'emails'

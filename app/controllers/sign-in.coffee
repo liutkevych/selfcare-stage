@@ -12,7 +12,7 @@ SignInController = Em.Controller.extend
         @get('email'),
         @get('password')
       ).then =>
-        @transitionToRoute('dashboard')
+        @transitionToRoute('home')
       , (error) =>
         @set 'error', error
 

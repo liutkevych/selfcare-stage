@@ -1,29 +1,15 @@
-.menu {
-  background: $color-1;
+.top-menu {
+  background: $color-4;
+  border-bottom: 1px solid $color-3;
   margin: 0;
   padding: 0;
-  height: 50px;
-
-  .logo {
-    position: absolute;
-    pointer-events: none;
-    height: 50px;
-    width: 100%;
-
-    img {
-      display: block;
-      height: 100%;
-      margin-left: auto;
-      margin-right: auto;
-      opacity: 0.5;
-    }
-  }
+  height: 60px;
 
   i.fa {
-    line-height: 50px;
+    line-height: 60px;
     font-size: 30px;
-    margin: 0 10px;
-    color: $color-4;
+    margin: 0 15px;
+    color: $color-2;
   }
 
   i.fa:hover {
@@ -42,8 +28,8 @@
   .btn {
     float: right;
     margin: 10px;
-    height: 30px;
-    line-height: 15px;
+    height: 40px;
+    line-height: 25px;
 
     span {
       vertical-align: middle;
