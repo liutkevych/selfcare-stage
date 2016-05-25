@@ -11,6 +11,8 @@
   text-align: center;
 
   .panel {
+    border-color: $color-1;
+
     thead td {
       font-weight: bold;
       background: $color-3;
@@ -18,16 +20,21 @@
 
 
     td:not(:last-child) {
-      border-right: 1px solid lightgray;
+      border-right: 1px solid $color-1;
     }
   }
 
   .fa {
     font-size: 30px;
+    color: $color-1;
 
     &.fa-plus-circle {
       font-size: 50px;
       margin-bottom: 5px;
+
+      &:hover {
+        color: $color-3;
+      }
     }
 
     &.fa-clock-o {
@@ -44,6 +51,12 @@
 
     &.fa-question-circle {
       color: darkred;
+    }
+
+    &.fa-trash {
+      &:hover {
+        color: $color-3;
+      }
     }
   }
 }
