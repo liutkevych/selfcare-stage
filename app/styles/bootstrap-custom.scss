@@ -1,16 +1,19 @@
 .btn-info {
-  background-color: $color-1 !important;
-  color: $color-4 !important;
+  background-color: $color-1;
+  border-color: $color-1;
+  color: $color-4;
 
   &.active, &:hover {
     background-color: $color-3 !important;
-    color: $color-4 !important;
+    color: $color-1 !important;
   }
 }
 
 .panel-info {
+  border-color: $color-1;
+
   .panel-heading {
-    background-color: $color-1 !important;
-    color: $color-4 !important;
+    background-color: $color-1;
+    color: $color-4;
   }
 }
