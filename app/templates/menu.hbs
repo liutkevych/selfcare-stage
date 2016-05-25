@@ -1,4 +1,7 @@
 <div class="menu">
+  <div class="logo">
+    <img src="images/logo.png" />
+  </div>
   {{#if session.isAuthenticated }}
     {{#link-to 'dashboard'}}{{fa-icon 'dashboard' title='Dashboard'}}{{/link-to}}
     {{#link-to 'visitors'}}{{fa-icon 'user' title="Visitors stats"}}{{/link-to}}
