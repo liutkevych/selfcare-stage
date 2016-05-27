@@ -1,3 +1,8 @@
-{{partial 'top-menu'}}
-{{partial 'side-menu'}}
-{{outlet}}
+{{#if session.isAuthenticated }}
+  {{partial 'side-menu'}}
+{{/if}}
+<div class="page-wrapper">
+  {{partial 'top-menu'}}
+  {{outlet}}
+</div>
+

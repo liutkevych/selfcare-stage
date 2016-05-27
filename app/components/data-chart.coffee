@@ -4,6 +4,12 @@ DataChartComponent = Ember.Component.extend
   googleCharts: Ember.inject.service('google-charts')
   classNames: ['data-chart']
 
+  anyData: Ember.computed 'model', ->
+    model = @get('model')
+    return false unless model
+
+    Object.keys(model).length > 0
+
   renderChart: (context) ->
     model = context.get('model')
 

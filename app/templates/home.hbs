@@ -1,60 +1,18 @@
 <div class='home'>
-  <div class="column col-12-xs">
-
-    <div class='location'>
-      <span>{{fa-icon 'location-arrow' title='Location'}}</span>
-      <select onchange={{action "selectLocation" value="target.value"}}>
-        {{#each model as |location|}}
-          <option value={{location.id}} selected={{eq location.id location_id}}>
-            {{location.name}}
-          </option>
-        {{/each}}
-      </select>
-    </div>
-
-    <h2>Presence</h2>
-    <div class='time'>
-      <span>{{fa-icon 'calendar'}}</span>
-      {{bootstrap-datepicker value=startTime autoclose=true}}
-      <span>{{fa-icon 'arrows-h'}}</span>
-      {{bootstrap-datepicker value=endTime autoclose=true}}
-    </div>
-
-    {{data-chart model=presence.details.per_day
-                 dataFormatter=presenceDataFormatter
-                 options=presenceChartOptions
-                 anyData=anyPresence
-                 loading=presenceLoading
-                 type='column'
-    }}
-    <div class="total">
-      <h3>Total</h3>
-      <ul>
-        <li>Visits: <b>{{presence.details.total.visits}}</b></li>
-        <li>Signins: <b>{{presence.details.total.sessions}}</b></li>
-      </ul>
-    </div>
-
-  </div>
-  <hr>
-  <div class="column col-md-6 col-sm-12">
-    <h2>Signins</h2>
-    {{data-chart model=signins.details
-                 dataFormatter=signinsDataFormatter
-                 options=pieChartOptions
-                 anyData=anySignins
-                 loading=signinsLoading
-                 type='pie'
+  <div class="column col-xs-12">
+    {{
+      data-chart
+      model=yearPresence.details
+      options=yearPresenceOptions
+      dataFormatter=yearPresenceFormatter
+      loading=yearPresenceLoading
+      type="column"
     }}
   </div>
-  <div class="column col-md-6 col-sm-12">
-    <h2>Platforms</h2>
-    {{data-chart model=platforms.details
-                 dataFormatter=platformsDataFormatter
-                 options=pieChartOptions
-                 anyData=anyPlatformsInfo
-                 loading=platformsLoading
-                 type='pie'
-    }}
+  <div class="last-campaign column col-xs-4 col-md-12">
+  </div>
+  <div class="tip column col-xs-4 col-md-12">
+  </div>
+  <div class="faq column col-xs-4 col-md-12">
   </div>
 </div>

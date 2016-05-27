@@ -16,12 +16,17 @@
 
   .panel {
     border-color: $color-1;
+    border-radius: 16px;
+
+    .panel-heading {
+      border-top-left-radius: 12px;
+      border-top-right-radius: 12px;
+    }
 
     thead td {
       font-weight: bold;
       background: $color-3;
     }
-
 
     td:not(:last-child) {
       border-right: 1px solid $color-1;
@@ -31,6 +36,10 @@
       >:not(:last-child) {
         margin-right: 10px;
       }
+
+      .fa:hover {
+        color: $color-3;
+      }
     }
   }
 
@@ -38,35 +47,49 @@
     font-size: 30px;
     color: $color-1;
 
+    &:hover {
+      color: $color-3;
+    }
+
     &.fa-plus-circle {
       font-size: 50px;
       margin-bottom: 5px;
-
-      &:hover {
-        color: $color-3;
-      }
     }
 
     &.fa-clock-o {
       color: orange;
+
+      &:hover {
+        color: orange;
+      }
     }
 
     &.fa-check-circle {
       color: green;
+
+      &:hover {
+        color: green;
+      }
     }
 
     &.fa-warning {
       color: red;
+
+      &:hover {
+        color: red;
+      }
     }
 
     &.fa-question-circle {
       color: darkred;
-    }
 
-    &.fa-trash {
       &:hover {
-        color: $color-3;
+        color: darkred;
       }
     }
+  }
+
+  .actions {
+
   }
 }

@@ -2,14 +2,11 @@
 `import moment from 'moment';`
 
 HomeController = Ember.Controller.extend
-  location_id: Ember.computed 'model', ->
-    @get 'model.firstObject.id'
+  applicationController: Ember.inject.controller('application')
+  locationId: Ember.computed.alias 'applicationController.locationId'
 
-  startTime: moment().subtract(30, 'days').toDate()
-  endTime: new Date()
-
-  presenceLoading: Ember.computed 'presence.content', 'presence.id', ->
-    @get('presence.content') == null
+  yearPresenceLoading: Ember.computed 'yearPresence.content', 'yearPresence.id', ->
+    @get('yearPresence.content') == null
 
   signinsLoading: Ember.computed 'signins.content', 'signins.id', ->
     @get('signins.content') == null
@@ -17,30 +14,16 @@ HomeController = Ember.Controller.extend
   platformsLoading: Ember.computed 'platforms.content', 'platforms.id', ->
     @get('platforms.content') == null
 
-  anyPresence: Ember.computed 'presence.id', ->
-    presence = @get 'presence.details.total'
-    presence && (presence.visits > 0 || presence.sessions > 0)
-
-  anySignins: Ember.computed 'signins.id', ->
-    signins = @get 'signins.details'
-    signins && Object.keys(signins).length > 0
-
-  anyPlatformsInfo: Ember.computed 'platforms.id', ->
-    platforms = @get 'platforms.details'
-    platforms && Object.keys(platforms).length > 0
-
-  presence: Ember.computed 'location_id', 'startTime', 'endTime', ->
-    location_id = @get('location_id')
-    return unless location_id
+  yearPresence: Ember.computed 'locationId', ->
+    locationId = @get('locationId')
+    return unless locationId
 
     @store.queryRecord 'stat',
-      name: 'presence'
+      name: 'yearPresence'
       options:
-        location_id: location_id
-        start_time: @get('startTime')
-        end_time: @get('endTime')
+        location_id: locationId
 
-  presenceDataFormatter: (data) ->
+  yearPresenceFormatter: (data) ->
     dataTable = new google.visualization.DataTable()
     dataTable.addColumn 'date', 'Date'
     dataTable.addColumn 'number', 'Visits'
@@ -53,20 +36,20 @@ HomeController = Ember.Controller.extend
     dataTable.addRows rows
     dataTable
 
-  presenceChartOptions: (data) ->
-      height: 400
+  yearPresenceOptions: (data) ->
+      height: 500
       hAxis:
         gridlines:
-          count: Object.keys(data).length / 2
+          count: 12
 
-  platforms: Ember.computed 'location_id', ->
-    location_id = @get('location_id')
-    return unless location_id
+  platforms: Ember.computed 'locationId', ->
+    locationId = @get('locationId')
+    return unless locationId
 
     @store.queryRecord 'stat',
       name: 'platforms'
       options:
-        location_id: location_id
+        location_id: locationId
 
   platformsDataFormatter: (data) ->
     dataTable = new google.visualization.DataTable()
@@ -90,14 +73,14 @@ HomeController = Ember.Controller.extend
       legend:
         alignment: 'center'
 
-  signins: Ember.computed 'location_id', ->
-    location_id = @get('location_id')
-    return unless location_id
+  signins: Ember.computed 'locationId', ->
+    locationId = @get('locationId')
+    return unless locationId
 
     @store.queryRecord 'stat',
       name: 'signins'
       options:
-        location_id: location_id
+        location_id: locationId
 
   signinsDataFormatter: (data) ->
     dataTable = new google.visualization.DataTable()
@@ -112,9 +95,6 @@ HomeController = Ember.Controller.extend
     dataTable
 
   actions:
-    selectLocation: (value) ->
-      @set 'location_id', value
-
     toggleQuery: (id) ->
       $("##{id}").slideToggle(128)
 

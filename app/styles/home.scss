@@ -1,65 +1,9 @@
 .home {
-  h2 {
-    text-align: center;
-  }
-
-  .query {
-    display: none;
-    margin-left: 10px;
-    color: grey;
-  }
-
   .column {
     text-align: center;
-
-    small {
-      text-align: left;
-    }
-  }
-
-  .column:not(:last-child) {
-    border-right: 1px solid lightgray;
-  }
-
-  button {
-    margin: 10px;
-  }
-
-  .location {
-    margin: 10px 0px;
-    text-align: center;
-  }
-
-  .time {
-    text-align: center;
-
-    input:first-child {
-      text-align: right;
-    }
-
-    margin-bottom: 5px;
-  }
-
-  .total {
-    text-align: center;
-
-    ul {
-      margin: 0px;
-      padding: 0px;
-      list-style: none;
-    }
   }
 
   .spinner-wrapper {
     position: relative;
   }
-
-  .column:first-child .spinner-wrapper {
-    height: 300px;
-  }
-
-  .column:not(:first-child) .spinner-wrapper {
-    height: 200px;
-  }
-
 }

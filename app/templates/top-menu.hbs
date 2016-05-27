@@ -1,6 +1,15 @@
 <div class="top-menu">
   {{#if session.isAuthenticated }}
-    <i class="fa fa-list" {{action 'toggleSideMenu'}}/>
+    <div class='location'>
+      <span>{{fa-icon 'location-arrow' title='Location'}}</span>
+      <select onchange={{action "selectLocation" value="target.value"}}>
+        {{#each locations as |location|}}
+          <option value={{location.id}} selected={{eq location.id locationId}}>
+            {{location.name}}
+          </option>
+        {{/each}}
+      </select>
+    </div>
     <span class="email">{{currentUser.email}}</span>
     <button class="btn btn-warning" {{ action 'invalidateSession' }}>
       Sign out
