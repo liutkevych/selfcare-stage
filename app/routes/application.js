@@ -6,11 +6,12 @@ var ApplicationRoute = Ember.Route.extend(ApplicationRouteMixin, {
 
   setupController: function(controller, model) {
     controller.set('model', model);
-    if (this.get('session.isAuthenticated'))
+    if (this.get('session.isAuthenticated')) {
       this.store.findAll('location').then((locations) => {
         controller.set('locations', locations);
         controller.set('locationId', locations.get('firstObject.id'));
-      })
+      });
+    }
   },
 
   actions: {
