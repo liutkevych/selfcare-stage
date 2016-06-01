@@ -1,0 +1,22 @@
+.stats {
+  .row {
+    margin: 0;
+
+    .column {
+      height: 480px;
+      margin: 0;
+      border-right: 1px solid $color-3;
+      border-bottom: 1px solid $color-3;
+
+      &.online {
+        font-size: 20px;
+        color: $color-2;
+        text-align: center;
+
+        p {
+          margin-top: 80px;
+        }
+      }
+    }
+  }
+}

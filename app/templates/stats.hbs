@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="column col-md-9 col-sm-12">
+    {{
+      data-chart
+      model=monthPresence.details
+      options=monthPresenceOptions
+      dataFormatter=monthPresenceFormatter
+      loading=monthPresenceLoading
+      type="column"
+    }}
+  </div>
+  <div class="column col-md-3 col-sm-12">
+    {{
+      data-chart
+      model=signins.details
+      options=pieChartOptions
+      dataFormatter=signinsFormatter
+      loading=signinsLoading
+      type="pie"
+    }}
+  </div>
+</div>
+<div class="row">
+  <div class="column col-md-9 col-sm-12">
+    {{
+      data-chart
+      model=dayPresence.details
+      options=dayPresenceOptions
+      dataFormatter=dayPresenceFormatter
+      loading=dayPresenceLoading
+      type="column"
+    }}
+  </div>
+  <div class="column col-md-3 col-sm-12 online">
+    <p>Online users</p>
+    {{fa-icon 'user'}} {{online.details}}
+  </div>
+</div>

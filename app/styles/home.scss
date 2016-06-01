@@ -9,6 +9,12 @@
 
   .row {
     margin: 0;
+    > p {
+      margin: 10px 0;
+      font-size: 20px;
+      text-align: center;
+      color: gray;
+    }
 
     .column {
       height: 185px;
@@ -22,6 +28,7 @@
 
       &.col-xs-12 {
         border-bottom: 1px solid $color-3;
+        height: 510px;
       }
 
       &.col-md-4 {
