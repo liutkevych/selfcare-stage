@@ -1,9 +1,30 @@
 `import Ember from 'ember';`
-`import moment from 'moment';`
+`import ENV from 'simplify-selfcare/config/environment';`
 
 HomeController = Ember.Controller.extend
   applicationController: Ember.inject.controller('application')
   locationId: Ember.computed.alias 'applicationController.locationId'
+  session: Ember.inject.service()
+
+  lastCampain: Ember.computed 'locationId', ->
+    new Ember.RSVP.Promise (resolve, reject) =>
+      @get('session').authorize 'authorizer:devise', (headerName, headerValue) =>
+        headers = {}
+        headers[headerName] = headerValue
+        locationId = @get('locationId')
+        return unless locationId
+
+        Ember.$.ajax
+          url: "#{ENV.SERVER_URL}/api/#{ENV.API_VERSION}/campains/last"
+          headers: headers
+          data:
+            location_id: locationId
+          success: (data) =>
+            lastCampain = @store.createRecord('campain', data.data.attributes)
+            @set 'lastCampain', lastCampain
+            resolve(lastCampain)
+          error: (reason) ->
+            reject reason
 
   yearPresenceLoading: Ember.computed 'yearPresence.content', 'yearPresence.id', ->
     @get('yearPresence.content') == null

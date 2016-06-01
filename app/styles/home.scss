@@ -6,4 +6,56 @@
   .spinner-wrapper {
     position: relative;
   }
+
+  .row {
+    margin: 0;
+
+    .column {
+      height: 185px;
+      color: gray;
+
+      p:first-child {
+        margin-top: 15px;
+        font-size: 20px;
+      }
+
+
+      &.col-xs-12 {
+        border-bottom: 1px solid $color-3;
+      }
+
+      &.col-md-4 {
+        border-bottom: 1px solid $color-3;
+
+        &:not(:last-child) {
+          border-right: 1px solid $color-3;
+        }
+      }
+
+      &.last-campaign {
+        p:nth-of-type(2) {
+          color: $color-2;
+          padding: 20px;
+          margin: 15px 50px;
+          border: 1px solid $color-3;
+          border-radius: 12px;
+        }
+
+        .btn {
+          width: 100px;
+        }
+      }
+
+      &.faq {
+        h5 {
+          color: black;
+        }
+
+        ul {
+          list-style: none;
+          text-align: left;
+        }
+      }
+    }
+  }
 }

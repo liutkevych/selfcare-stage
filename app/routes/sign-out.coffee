@@ -7,5 +7,4 @@ SignOutRoute = Ember.Route.extend AuthenticatedRouteMixin,
   beforeModel: ->
     @get('session').invalidate()
 
-
 `export default SignOutRoute`;

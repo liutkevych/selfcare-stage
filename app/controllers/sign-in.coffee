@@ -2,6 +2,7 @@
 
 SignInController = Em.Controller.extend
   session: Ember.inject.service('session')
+  applicationController: Ember.inject.controller('application')
   error: null
 
   actions:
@@ -11,7 +12,10 @@ SignInController = Em.Controller.extend
         @get('email'),
         @get('password')
       ).then =>
-        @transitionToRoute('home')
+        @store.findAll('location').then (locations) =>
+          @get('applicationController').set('locations', locations)
+          @get('applicationController').set('locationId', locations.get('firstObject.id'))
+          @transitionToRoute('home')
       , (error) =>
         @set 'error', error
 
