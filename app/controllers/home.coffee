@@ -21,23 +21,23 @@ HomeController = Ember.Controller.extend
     @store.queryRecord 'stat',
       name: 'yearPresence'
       options:
-        location_id: locationId
+        location_id: @get('locationId')
 
   yearPresenceFormatter: (data) ->
     dataTable = new google.visualization.DataTable()
-    dataTable.addColumn 'date', 'Date'
+    dataTable.addColumn 'string', 'Month'
     dataTable.addColumn 'number', 'Visits'
     dataTable.addColumn 'number', 'Signins'
 
     rows = []
     Object.keys(data).forEach (date) ->
-      rows.push [new Date(date), data[date]['visits'], data[date]['sessions']]
+      rows.push [date, data[date]['visits'], data[date]['sessions']]
 
     dataTable.addRows rows
     dataTable
 
   yearPresenceOptions: (data) ->
-      height: 500
+      height: 400
       hAxis:
         gridlines:
           count: 12
