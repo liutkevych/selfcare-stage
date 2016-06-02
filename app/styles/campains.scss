@@ -1,5 +1,6 @@
 .campains-new, .campains-edit {
   text-align: center;
+  background: $color-4;
 
   form {
     margin-left: auto;
@@ -11,6 +12,7 @@
 }
 
 .campains {
+  background: $color-4;
   padding: 10px;
   text-align: center;
 

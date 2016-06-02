@@ -1,9 +1,10 @@
 {{#if session.isAuthenticated }}
   {{partial 'side-menu'}}
-  <div class="page-wrapper">
+  <div class="column col-xs-10">
     {{partial 'top-menu'}}
     {{outlet}}
   </div>
 {{else}}
   {{outlet}}
 {{/if}}
+

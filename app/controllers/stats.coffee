@@ -77,7 +77,7 @@ StatsController = Em.Controller.extend
         text: 'none'
       chartArea:
         height: '90%'
-        width: '100%'
+        width: '90%'
       legend:
         alignment: 'center'
       colors: ['9999FF', '2B86C7', '94C2E3', 'dae6ef', 'EEEEFF']

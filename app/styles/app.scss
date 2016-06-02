@@ -13,15 +13,19 @@ html {
   body {
     height: 100%;
 
-    > .ember-view {
+    .container-fluid {
       height: 100%;
-      width: 100%;
+      background: $color-3;
       padding: 0;
-      margin: 0;
-      display: flex;
 
-      .page-wrapper {
-        width: 100%;
+      >.col-xs-10 {
+        height: 100%;
+        overflow: scroll;
+        background: $color-4;
+      }
+
+      >.column {
+        padding: 0;
       }
     }
   }

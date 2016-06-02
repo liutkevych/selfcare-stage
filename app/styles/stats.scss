@@ -1,9 +1,12 @@
 .stats {
+  background: $color-4;
+
   .row {
     margin: 0;
 
     .column {
-      height: 480px;
+      padding: 0;
+      height: 490px;
       margin: 0;
       border-right: 1px solid $color-3;
       border-bottom: 1px solid $color-3;
@@ -16,6 +19,10 @@
         p {
           margin-top: 80px;
         }
+      }
+
+      .data-chart {
+        padding: 10px;
       }
     }
   }

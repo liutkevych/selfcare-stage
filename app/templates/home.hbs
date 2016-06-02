@@ -1,39 +1,35 @@
 <div class='home'>
-  <div class="row">
-    <p>Number of visits/signins per month</p>
-    <div class="column col-xs-12">
-      {{
-        data-chart
-        model=yearPresence.details
-        options=yearPresenceOptions
-        dataFormatter=yearPresenceFormatter
-        loading=yearPresenceLoading
-        type="column"
-      }}
-    </div>
+  <p>Number of visits/signins per month</p>
+  <div class="column col-xs-12">
+    {{
+      data-chart
+      model=yearPresence.details
+      options=yearPresenceOptions
+      dataFormatter=yearPresenceFormatter
+      loading=yearPresenceLoading
+      type="column"
+    }}
   </div>
-  <div class="row">
-    <div class="last-campaign column col-md-4 col-sm-12">
-      <p>Current SMS campaign</p>
-      <p>{{lastCampain.message}}</p>
-      {{#link-to 'campains.edit' lastCampain}}<div class="btn btn-success">Edit</div>{{/link-to}}
-    </div>
-    <div class="tip column col-md-4 col-sm-12">
-      <p>Tip of the day</p>
-      <p>Some random usefull tip here</p>
-    </div>
-    <div class="faq column col-md-4 col-sm-12">
-      <p>Help Center</p>
-      <ul>
-        <li>
-          <h5>FAQ 1</h5>
-          <p>Question text</p>
-        </li>
-        <li>
-          <h5>FAQ 2</h5>
-          <p>Question text</p>
-        </li>
-      </ul>
-    </div>
+  <div class="last-campaign column col-md-4 col-sm-12">
+    <p>Current SMS campaign</p>
+    <p>{{lastCampain.message}}</p>
+    {{#link-to 'campains.edit' lastCampain}}<div class="btn btn-success">Edit</div>{{/link-to}}
+  </div>
+  <div class="tip column col-md-4 col-sm-12">
+    <p>Tip of the day</p>
+    <p>Some random usefull tip here</p>
+  </div>
+  <div class="faq column col-md-4 col-sm-12">
+    <p>Help Center</p>
+    <ul>
+      <li>
+        <h5>FAQ 1</h5>
+        <p>Question text</p>
+      </li>
+      <li>
+        <h5>FAQ 2</h5>
+        <p>Question text</p>
+      </li>
+    </ul>
   </div>
 </div>
