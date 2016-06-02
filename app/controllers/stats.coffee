@@ -80,7 +80,8 @@ StatsController = Em.Controller.extend
         width: '90%'
       legend:
         alignment: 'center'
-      colors: ['9999FF', '2B86C7', '94C2E3', 'dae6ef', 'EEEEFF']
+      pieHole: 0.5
+      colors: ['007bff', '3d9aff', '6bb2ff', 'a0ceff', 'c9e3fc', 'e8f3ff']
 
   signinsFormatter: (data) ->
     dataTable = new google.visualization.DataTable()
