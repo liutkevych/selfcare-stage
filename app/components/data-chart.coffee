@@ -24,6 +24,8 @@ DataChartComponent = Ember.Component.extend
         new google.visualization.ColumnChart(container)
       when 'pie'
         new google.visualization.PieChart(container)
+      when 'line'
+        new google.visualization.LineChart(container)
 
     chart.draw(data, options)
 
