@@ -22,6 +22,7 @@
             <td>Targets count</td>
             <td>Completed</td>
             <td>Failed</td>
+            <td>Visitors returned</td>
             <td>Actions</td>
           </tr>
         </thead>
@@ -36,6 +37,7 @@
             <td>{{campain.targets_count}}</td>
             <td>{{campain.completed_count}}</td>
             <td>{{campain.failed_count}}</td>
+            <td class="returned">{{campain.returned_visitors_count}}</td>
             <td class='actions'>
               {{#if campain.isPending}}
                 {{#link-to 'campains.edit' campain title='Edit'}}<span>{{fa-icon 'edit'}}</span>{{/link-to}}

@@ -34,6 +34,10 @@
       border-right: 1px solid $color-1;
     }
 
+    td.returned {
+      width: 50px;
+    }
+
     td.actions {
       >:not(:last-child) {
         margin-right: 10px;
