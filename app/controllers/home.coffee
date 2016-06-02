@@ -20,9 +20,12 @@ HomeController = Ember.Controller.extend
           data:
             location_id: locationId
           success: (id) =>
-            lastCampain = @store.find('campain', id)
-            @set 'lastCampain', lastCampain
-            resolve(lastCampain)
+            if id
+              lastCampain = @store.find('campain', id)
+              @set 'lastCampain', lastCampain
+              resolve(lastCampain)
+            else
+              resolve(null)
           error: (reason) ->
             reject reason
 

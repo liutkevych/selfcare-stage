@@ -12,8 +12,12 @@
   </div>
   <div class="last-campaign column col-md-4 col-sm-12">
     <p>Current SMS campaign</p>
-    <p>{{lastCampain.message}}</p>
-    {{#link-to 'campains.edit' lastCampain}}<div class="btn btn-success">Edit</div>{{/link-to}}
+    {{#if lastCampain.message}}
+      <p>{{lastCampain.message}}</p>
+      {{#link-to 'campains.edit' lastCampain}}<div class="btn btn-success">Edit</div>{{/link-to}}
+    {{else}}
+      <p>There is no campaigns yet</p>
+    {{/if}}
   </div>
   <div class="tip column col-md-4 col-sm-12">
     <p>Tip of the day</p>
