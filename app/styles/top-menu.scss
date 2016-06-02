@@ -12,17 +12,8 @@
     color: $color-2;
   }
 
-  i.fa:hover {
-    color: $color-3;
-  }
-
-  a.active i.fa {
-    color: $color-3;
-  }
-
-  i.fa.fa-bars, .location {
+  .location {
     float: left;
-    margin-left: 10px;
   }
 
   .btn {
@@ -34,11 +25,5 @@
     span {
       vertical-align: middle;
     }
-  }
-
-  span.email {
-    float: right;
-    line-height: 50px;
-    font-size: 18px;
   }
 }

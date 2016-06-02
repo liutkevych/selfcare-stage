@@ -80,7 +80,7 @@ StatsController = Em.Controller.extend
         width: '90%'
       legend:
         alignment: 'center'
-      pieHole: 0.5
+      pieHole: 0.6
       colors: ['007bff', '3d9aff', '6bb2ff', 'a0ceff', 'c9e3fc', 'e8f3ff']
 
   signinsFormatter: (data) ->

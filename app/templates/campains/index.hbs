@@ -3,7 +3,11 @@
     {{gear-spinner}}
   </div>
 {{else}}
-  {{#link-to 'campains.new'}}{{fa-icon 'plus-circle'}}{{/link-to}}
+  {{#if limit}}
+    <p>You've exceeded free campaigns limit of 100</p>
+  {{else}}
+    {{#link-to 'campains.new'}}{{fa-icon 'plus-circle'}}{{/link-to}}
+  {{/if}}
   {{#if model}}
     <div class="panel panel-info">
       <div class="panel-heading">

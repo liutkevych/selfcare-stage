@@ -3,8 +3,8 @@
 CampainsNewController = Ember.Controller.extend
   currentUser: Ember.inject.service()
 
-  symbolsLeft: Ember.computed 'newCampain.message.length', ->
-    messageLength = @get('newCampain.message.length')
+  symbolsLeft: Ember.computed 'model.message.length', ->
+    messageLength = @get('model.message.length')
     if messageLength
       160 - messageLength
     else

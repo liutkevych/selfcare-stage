@@ -2,6 +2,8 @@
 `import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';`
 
 CampainsNewRoute = Ember.Route.extend AuthenticatedRouteMixin,
+  session: Ember.inject.service()
+
   model: ->
     new Ember.RSVP.Promise (resolve, reject) =>
       @store.findAll('location').then (result) =>
