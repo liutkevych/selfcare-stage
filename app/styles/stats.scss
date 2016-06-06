@@ -11,13 +11,18 @@
       border-right: 1px solid $color-3;
       border-bottom: 1px solid $color-3;
 
-      &.online {
-        font-size: 20px;
-        color: $color-2;
-        text-align: center;
+      &.visitors {
+        padding: 30px;
 
-        p {
-          margin-top: 80px;
+        tr {
+          td {
+            padding: 5px;
+            text-align: center;
+
+            &:first-child {
+              background: $color-3;
+            }
+          }
         }
       }
 

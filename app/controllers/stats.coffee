@@ -95,12 +95,12 @@ StatsController = Em.Controller.extend
     dataTable.addRows rows
     dataTable
 
-  online: Ember.computed 'locationId', ->
+  visitors: Ember.computed 'locationId', ->
     locationId = @get('locationId')
     return unless locationId
 
     @store.queryRecord 'stat',
-      name: 'online'
+      name: 'visitors'
       options:
         location_id: @get('locationId')
 

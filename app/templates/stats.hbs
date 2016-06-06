@@ -31,8 +31,31 @@
       type="line"
     }}
   </div>
-  <div class="column col-md-4 col-sm-12 online">
-    <p>Online users</p>
-    {{fa-icon 'user'}} {{online.details}}
+  <div class="column col-md-4 col-sm-12 visitors">
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        {{fa-icon 'user'}} Visitors
+      </div>
+      <table class="table">
+        <tbody>
+          <tr>
+            <td>Online</td>
+            <td>{{visitors.details.online}}</td>
+          </tr>
+          <tr>
+            <td>Loyal</td>
+            <td>{{visitors.details.loyal}}</td>
+          </tr>
+          <tr>
+            <td>Known emails</td>
+            <td>{{visitors.details.emails}}</td>
+          </tr>
+          <tr>
+            <td>Known phone numbers</td>
+            <td>{{visitors.details.phones}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
