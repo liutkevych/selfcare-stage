@@ -1,6 +1,6 @@
 `import DS from 'ember-data';`
 
 CustomerModel = DS.Model.extend
-  campains: DS.hasMany('campain')
+  campaigns: DS.hasMany('campaign')
 
 `export default CustomerModel;`

@@ -1,6 +1,6 @@
 `import Ember from 'ember';`
 
-CampainsNewController = Ember.Controller.extend
+CampaignsNewController = Ember.Controller.extend
   currentUser: Ember.inject.service()
 
   symbolsLeft: Ember.computed 'model.message.length', ->
@@ -18,11 +18,11 @@ CampainsNewController = Ember.Controller.extend
     create: ->
       @get('currentUser.me').then (me) =>
         @store.findRecord('customer', me.data.id).then (customer) =>
-          newCampain = @get('model')
-          newCampain.set 'customer', customer
-          newCampain.save().then =>
-            @transitionToRoute('campains.index')
+          newCampaign = @get('model')
+          newCampaign.set 'customer', customer
+          newCampaign.save().then =>
+            @transitionToRoute('campaigns.index')
 
       return false
 
-`export default CampainsNewController;`
+`export default CampaignsNewController;`

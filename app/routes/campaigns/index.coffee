@@ -2,9 +2,9 @@
 `import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';`
 `import ENV from 'simplify-selfcare/config/environment';`
 
-CampainsIndexRoute = Ember.Route.extend AuthenticatedRouteMixin,
+CampaignsIndexRoute = Ember.Route.extend AuthenticatedRouteMixin,
   model: ->
-    @store.findAll 'campain'
+    @store.findAll 'campaign'
 
   activate: ->
     @get('session').authorize 'authorizer:devise', (headerName, headerValue) =>
@@ -13,8 +13,8 @@ CampainsIndexRoute = Ember.Route.extend AuthenticatedRouteMixin,
 
       Ember.$.ajax
         headers: headers
-        url: "#{ENV.SERVER_URL}/api/#{ENV.API_VERSION}/campains/limit"
+        url: "#{ENV.SERVER_URL}/api/#{ENV.API_VERSION}/campaigns/limit"
         success: (result) =>
-          @controllerFor('campains.index').set('limit', result)
+          @controllerFor('campaigns.index').set('limit', result)
 
-`export default CampainsIndexRoute;`
+`export default CampaignsIndexRoute;`

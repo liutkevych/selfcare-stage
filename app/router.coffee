@@ -17,7 +17,7 @@ Router.map ->
     @route 'emails'
     @route 'phones'
 
-  @route 'campains', ->
+  @route 'campaigns', ->
     @route 'new'
     @route 'edit',
       path: '/:id/edit'

@@ -6,7 +6,7 @@ HomeController = Ember.Controller.extend
   locationId: Ember.computed.alias 'applicationController.locationId'
   session: Ember.inject.service()
 
-  lastCampain: Ember.computed 'locationId', ->
+  lastCampaign: Ember.computed 'locationId', ->
     new Ember.RSVP.Promise (resolve, reject) =>
       @get('session').authorize 'authorizer:devise', (headerName, headerValue) =>
         headers = {}
@@ -15,15 +15,15 @@ HomeController = Ember.Controller.extend
         return unless locationId
 
         Ember.$.ajax
-          url: "#{ENV.SERVER_URL}/api/#{ENV.API_VERSION}/campains/last"
+          url: "#{ENV.SERVER_URL}/api/#{ENV.API_VERSION}/campaigns/last"
           headers: headers
           data:
             location_id: locationId
           success: (id) =>
             if id
-              lastCampain = @store.find('campain', id)
-              @set 'lastCampain', lastCampain
-              resolve(lastCampain)
+              lastCampaign = @store.find('campaign', id)
+              @set 'lastCampaign', lastCampaign
+              resolve(lastCampaign)
             else
               resolve(null)
           error: (reason) ->

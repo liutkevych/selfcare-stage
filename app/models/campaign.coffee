@@ -1,7 +1,7 @@
 `import Ember from 'ember';`
 `import DS from 'ember-data';`
 
-CampainModel = DS.Model.extend
+CampaignModel = DS.Model.extend
   title:                   DS.attr()
   message:                 DS.attr()
   status:                  DS.attr()
@@ -16,4 +16,4 @@ CampainModel = DS.Model.extend
   isPending: Ember.computed 'status', ->
     @get('status') == 'pending'
 
-`export default CampainModel;`
+`export default CampaignModel;`

@@ -6,12 +6,12 @@
   {{#if limit}}
     <p>You've exceeded free campaigns limit of 100</p>
   {{else}}
-    {{#link-to 'campains.new'}}{{fa-icon 'plus-circle'}}{{/link-to}}
+    {{#link-to 'campaigns.new'}}{{fa-icon 'plus-circle'}}{{/link-to}}
   {{/if}}
   {{#if model}}
     <div class="panel panel-info">
       <div class="panel-heading">
-        Campains
+        Campaigns
       </div>
       <table class="table">
         <thead>
@@ -27,22 +27,22 @@
           </tr>
         </thead>
         <tbody>
-          {{#each model as |campain|}}
+          {{#each model as |campaign|}}
           <tr>
-            <td>{{campain.title}}</td>
-            <td>{{campain.message}}</td>
+            <td>{{campaign.title}}</td>
+            <td>{{campaign.message}}</td>
             <td>
-              {{campain-status-icon campain.status}}
+              {{campaign-status-icon campaign.status}}
             </td>
-            <td>{{campain.targets_count}}</td>
-            <td>{{campain.completed_count}}</td>
-            <td>{{campain.failed_count}}</td>
-            <td class="returned">{{campain.returned_visitors_count}}</td>
+            <td>{{campaign.targets_count}}</td>
+            <td>{{campaign.completed_count}}</td>
+            <td>{{campaign.failed_count}}</td>
+            <td class="returned">{{campaign.returned_visitors_count}}</td>
             <td class='actions'>
-              {{#if campain.isPending}}
-                {{#link-to 'campains.edit' campain title='Edit'}}<span>{{fa-icon 'edit'}}</span>{{/link-to}}
+              {{#if campaign.isPending}}
+                {{#link-to 'campaigns.edit' campaign title='Edit'}}<span>{{fa-icon 'edit'}}</span>{{/link-to}}
               {{/if}}
-              <i class="fa fa-trash" {{action 'delete' campain}} title="Delete"/>
+              <i class="fa fa-trash" {{action 'delete' campaign}} title="Delete"/>
             </td>
           </tr>
           {{/each}}

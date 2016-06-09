@@ -4,6 +4,6 @@ TaskModel = DS.Model.extend
   phone:     DS.attr()
   attempt:   DS.attr()
   completed: DS.attr()
-  campain:   DS.belongsTo('campain')
+  campaign:  DS.belongsTo('campaign')
 
 `export default TaskModel;`
