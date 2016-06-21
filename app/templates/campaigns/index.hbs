@@ -12,10 +12,10 @@
         <thead>
           <tr>
             <td>Title</td>
-            <td>Message</td>
+            <td>Kind</td>
+            <td>Content</td>
             <td>Status</td>
             <td>Targets count</td>
-            <td>Completed</td>
             <td>Failed</td>
             <td>Visitors returned</td>
             <td>Actions</td>
@@ -25,18 +25,22 @@
           {{#each model as |campaign|}}
           <tr>
             <td>{{campaign.title}}</td>
-            <td>{{campaign.message}}</td>
+            <td>{{campaign.kind}}</td>
+            <td>{{campaign.content}}</td>
             <td>
-              {{campaign-status-icon campaign.status}}
+              {{#if campaign.approved}}
+                {{fa-icon 'check-circle'}}
+              {{else}}
+                {{fa-icon 'clock-o'}}
+              {{/if}}
             </td>
             <td>{{campaign.targets_count}}</td>
-            <td>{{campaign.completed_count}}</td>
-            <td>{{campaign.failed_count}}</td>
+            <td>{{campaign.failures_count}}</td>
             <td class="returned">{{campaign.returned_visitors_count}}</td>
             <td class='actions'>
-              {{#if campaign.isPending}}
+              {{#unless campaign.approved}}
                 {{#link-to 'campaigns.edit' campaign title='Edit'}}<span>{{fa-icon 'edit'}}</span>{{/link-to}}
-              {{/if}}
+              {{/unless}}
               <i class="fa fa-trash" {{action 'delete' campaign}} title="Delete"/>
             </td>
           </tr>

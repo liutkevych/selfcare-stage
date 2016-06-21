@@ -2,6 +2,8 @@
 
 CampaignsEditController = Ember.Controller.extend
   currentUser: Ember.inject.service()
+  applicationController: Ember.inject.controller('application')
+  locationId: Ember.computed.alias('applicationController.locationId')
 
   symbolsLeft: Ember.computed 'newCampaign.message.length', ->
     messageLength = @get('newCampaign.message.length')
@@ -16,7 +18,9 @@ CampaignsEditController = Ember.Controller.extend
       @set 'newCampaign.location', location
 
     update: ->
-      @get('model').save().then =>
+      campaign = @get('model')
+      campaign.set 'location', @store.peekRecord('location', @get('locationId'))
+      campaign.save().then =>
         @transitionToRoute('campaigns.index')
       false
 
