@@ -1,13 +1,9 @@
 <form data-remote="true" onsubmit={{action 'create'}}>
   <fieldset class="form-group">
-    <span>{{fa-icon 'location-arrow' title='Location'}}</span>
-    <select onchange={{action "selectLocation" value="target.value"}}>
-      {{#each locations as |location|}}
-        <option value={{location.id}}>
-          {{location.name}}
-        </option>
-      {{/each}}
-    </select>
+    <div class="btn-group" role="group">
+      <button type="button" class="btn btn-info active" onclick={{action 'changeKind'}} kind="sms">SMS</button>
+      <button type="button" class="btn btn-info" onclick={{action 'changeKind'}} kind="email">Email</button>
+    </div>
   </fieldset>
   {{partial 'campaigns/form'}}
   {{input type="submit" class="btn btn-success" value="Create"}}
