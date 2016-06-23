@@ -32,4 +32,7 @@ CampaignsNewController = Ember.Controller.extend
       $target.addClass('active')
       @set 'kind', $target.attr('kind')
 
+  substituteVars: (content) ->
+    content.replace(/\{name\}/, '*|FNAME|* *|LNAME|*')
+
 `export default CampaignsNewController;`
