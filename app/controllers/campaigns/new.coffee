@@ -20,8 +20,6 @@ CampaignsNewController = Ember.Controller.extend
           newCampaign = @get('model')
           newCampaign.set 'customer', customer
           newCampaign.set 'kind', @get('kind')
-          console.log $('#campaign-content html')
-          newCampaign.set 'content', $('#campaign-content html').html()
           newCampaign.set 'location', @store.peekRecord('location', @get('locationId'))
           newCampaign.save().then =>
             @transitionToRoute('campaigns.index')
