@@ -5,6 +5,7 @@ var ApplicationRoute = Ember.Route.extend(ApplicationRouteMixin, {
   session: Ember.inject.service('session'),
 
   setupController: function(controller, model) {
+    CKEDITOR.config.language = 'no';
     controller.set('model', model);
     if (this.get('session.isAuthenticated')) {
       this.store.findAll('location').then((locations) => {
