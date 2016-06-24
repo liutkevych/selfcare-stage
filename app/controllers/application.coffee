@@ -6,8 +6,6 @@ ApplicationController = Ember.Controller.extend
   activate: ->
     @set 'locations', @findAll('location')
 
-  showMenu: false
-
   actions:
     toggleSideMenu: ->
       $('.side-menu').animate

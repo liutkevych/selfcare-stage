@@ -20,6 +20,7 @@ CampaignsNewController = Ember.Controller.extend
           newCampaign = @get('model')
           newCampaign.set 'customer', customer
           newCampaign.set 'kind', @get('kind')
+          newCampaign.set 'content', CKEDITOR.instances['campaign-content'].getData()
           newCampaign.set 'location', @store.peekRecord('location', @get('locationId'))
           newCampaign.save().then =>
             @transitionToRoute('campaigns.index')
@@ -30,9 +31,9 @@ CampaignsNewController = Ember.Controller.extend
       $('.btn-group .btn').removeClass('active')
       $target = $(e.target)
       $target.addClass('active')
-      @set 'kind', $target.attr('kind')
-
-  substituteVars: (content) ->
-    content.replace(/\{name\}/, '*|FNAME|* *|LNAME|*')
+      newKind = $target.attr('kind')
+      @set 'kind', newKind
+      if newKind == 'email'
+        CKEDITOR.replace 'campaign-content'
 
 `export default CampaignsNewController;`
