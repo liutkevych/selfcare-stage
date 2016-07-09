@@ -2,7 +2,7 @@
   background: $color-1;
   height: 100%;
 
-  img {
+  img.logo {
     width: 100%;
     padding: 15px 40px;
   }
@@ -15,21 +15,32 @@
     li {
       height: 50px;
       line-height: 50px;
-      margin-left: 20px;
 
-      a {
+      img {
+        height: 35px;
+        width: 35px;
+        margin-right: 10px;
+      }
+
+      span {
+        margin-left: 25px;
         color: $color-4;
-        text-decoration: none;
-
-        &:hover, &.active {
-          color: $color-3;
-        }
+        pointer-events: none;
       }
 
       .fa {
         min-width: 50px;
         color: $color-2;
         font-size: 30px;
+      }
+    }
+
+    li.active {
+      border-left: 10px solid $color-2;
+      background: #122C51;
+
+      span {
+        margin-left: 15px;
       }
     }
   }

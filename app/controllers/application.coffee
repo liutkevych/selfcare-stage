@@ -17,4 +17,11 @@ ApplicationController = Ember.Controller.extend
     selectLocation: (value) ->
       @set 'locationId', value
 
+    selectSideMenuItem: (e) ->
+      $target = $(e.target)
+      route = $target.attr 'route'
+      $('.side-menu li').removeClass 'active'
+      $target.addClass 'active'
+      @transitionToRoute route
+
 `export default ApplicationController;`

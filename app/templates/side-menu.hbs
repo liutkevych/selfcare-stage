@@ -1,8 +1,23 @@
 <div class="side-menu column col-xs-2">
-  <img src="images/logo.png" />
+  <img class="logo" src="images/logo.png" />
   <ul>
-    <li>{{fa-icon 'home'}}{{#link-to 'home'}}Home{{/link-to}}</li>
-    <li>{{fa-icon 'bar-chart'}}{{#link-to 'stats'}}Statistics{{/link-to}}</li>
-    <li>{{fa-icon 'comment'}}{{#link-to 'campaigns'}}Campaigns{{/link-to}}</li>
+    <li route="home" class="active" onclick={{action 'selectSideMenuItem'}}>
+      <span>
+        <img src="images/home/home.svg">
+        Home
+      </span>
+    </li>
+    <li route="stats" onclick={{action 'selectSideMenuItem'}}>
+      <span>
+        <img src="images/home/stats.svg">
+        Statistics
+      </span>
+    </li>
+    <li route="campaigns" onclick={{action 'selectSideMenuItem'}}>
+      <span>
+        <img src="images/home/campaigns.svg">
+        Campaigns
+      </span>
+    </li>
   </ul>
 </div>
