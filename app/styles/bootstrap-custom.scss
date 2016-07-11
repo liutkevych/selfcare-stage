@@ -25,9 +25,11 @@
 
 .panel-info {
   border-color: $color-1;
+  border-radius: 0;
 
   .panel-heading {
     background-color: $color-1;
+    border-radius: 0;
     color: $color-4;
   }
 }

@@ -1,39 +1,63 @@
-<div class='home'>
-  <p>Number of visits/signins per month</p>
-  <div class="column col-xs-12">
-    {{
-      data-chart
-      model=yearPresence.details
-      options=yearPresenceOptions
-      dataFormatter=yearPresenceFormatter
-      loading=yearPresenceLoading
-      type="column"
-    }}
+<div class="chart-wrapper">
+  <p>Number of visits/sign ins per month</p>
+  {{
+    data-chart
+    model=yearPresence.details
+    options=yearPresenceOptions
+    dataFormatter=yearPresenceFormatter
+    loading=yearPresenceLoading
+    type="column"
+  }}
+</div>
+
+<div class="container-fluid">
+  <div class="column col-xs-8">
+    <div class="row">
+      <div class="column col-xs-3">
+        <img src="images/home/visitors.svg">
+        <span>
+          <h4>Visitors</h4>
+          <p>1234</p>
+        </span>
+      </div>
+      <div class="column col-xs-3">
+        <img src="images/home/visitors.svg">
+        <span>
+          <h4>Guests</h4>
+          <p>1234</p>
+        </span>
+      </div>
+      <div class="column col-xs-3">
+        <img src="images/home/visitors.svg">
+        <span>
+          <h4>Emails</h4>
+          <p>1234</p>
+        </span>
+      </div>
+      <div class="column col-xs-3">
+        <img src="images/home/visitors.svg">
+        <span>
+          <h4>Campaigns</h4>
+          <p>1234</p>
+        </span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column col-xs-12 current-campaign">
+        <h3>Current campaign</h3>
+        {{#if lastCampaign.message}}
+          <p>{{lastCampaign.message}}</p>
+          {{#link-to 'campaigns.edit' lastCampaign}}<div class="btn btn-success">Edit</div>{{/link-to}}
+        {{else}}
+          <p>There is no campaigns yet</p>
+        {{/if}}
+      </div>
+    </div>
   </div>
-  <div class="last-campaign column col-md-4 col-sm-12">
-    <p>Current SMS campaign</p>
-    {{#if lastCampaign.message}}
-      <p>{{lastCampaign.message}}</p>
-      {{#link-to 'campaigns.edit' lastCampaign}}<div class="btn btn-success">Edit</div>{{/link-to}}
-    {{else}}
-      <p>There is no campaigns yet</p>
-    {{/if}}
-  </div>
-  <div class="tip column col-md-4 col-sm-12">
-    <p>Tip of the day</p>
-    <p>Some random usefull tip here</p>
-  </div>
-  <div class="faq column col-md-4 col-sm-12">
-    <p>Help Center</p>
-    <ul>
-      <li>
-        <h5>FAQ 1</h5>
-        <p>Question text</p>
-      </li>
-      <li>
-        <h5>FAQ 2</h5>
-        <p>Question text</p>
-      </li>
-    </ul>
+  <div class="column col-xs-4 tips">
+    <h4>Tip of the day</h4>
+    <p>
+       Set every bill you can to auto-pay. This eliminates late fees and other headaches, and prevents paper bills from cluttering your desk
+    </p>
   </div>
 </div>

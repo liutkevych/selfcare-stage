@@ -1,14 +1,9 @@
-{{#if loading}}
-  <div class="spinner-wrapper">
-    {{gear-spinner}}
-  </div>
+{{#if limit}}
+  <p>You've exceeded free campaigns limit of 100</p>
 {{else}}
-  {{#if limit}}
-    <p>You've exceeded free campaigns limit of 100</p>
-  {{else}}
-    {{#link-to 'campaigns.new'}}{{fa-icon 'plus-circle'}}{{/link-to}}
-  {{/if}}
-  {{#if model}}
+  {{#link-to 'campaigns.new'}}{{fa-icon 'plus-circle'}}{{/link-to}}
+{{/if}}
+{{#if model}}
     <div class="panel panel-info">
       <div class="panel-heading">
         Campaigns
@@ -49,7 +44,4 @@
         </tbody>
       </table>
     </div>
-  {{else}}
-    {{empty-result}}
-  {{/if}}
 {{/if}}

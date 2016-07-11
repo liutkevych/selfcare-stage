@@ -12,18 +12,12 @@
 }
 
 .campaigns {
-  background: $color-4;
-  padding: 10px;
+  padding: 20px;
   text-align: center;
 
   .panel {
     border-color: $color-1;
-    border-radius: 16px;
-
-    .panel-heading {
-      border-top-left-radius: 12px;
-      border-top-right-radius: 12px;
-    }
+    background: $color-4;
 
     thead td {
       font-weight: bold;

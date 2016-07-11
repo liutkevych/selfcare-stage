@@ -1,67 +1,65 @@
 .home {
-  overflow: scroll;
-  background: $color-4;
+  width: 100%;
+  padding: 20px;
 
-  .column {
-    text-align: center;
-  }
+  .chart-wrapper {
+    background: $color-4;
 
-  .spinner-wrapper {
-    position: relative;
-  }
-
-  > p {
-    margin: 10px 0;
-    font-size: 20px;
-    text-align: center;
-    color: gray;
-  }
-
-  .column {
-    height: 185px;
-    color: gray;
-
-    p:first-child {
-      margin-top: 15px;
+    p {
+      padding: 20px;
       font-size: 20px;
     }
+  }
 
-    &.col-xs-12 {
-      border-bottom: 1px solid $color-3;
-      height: 510px;
-    }
+  .container-fluid {
+    margin-top: 20px;
+    padding: 0;
 
-    &.col-md-4 {
-      border-bottom: 1px solid $color-3;
+    .row {
+      margin: 0;
 
-      &:not(:last-child) {
-        border-right: 1px solid $color-3;
-      }
-    }
-
-    &.last-campaign {
-      p:nth-of-type(2) {
-        color: $color-2;
+      .col-xs-3 {
+        display: flex;
         padding: 20px;
-        margin: 15px 50px;
-        border: 1px solid $color-3;
-        border-radius: 12px;
-      }
 
-      .btn {
-        width: 100px;
+        span {
+          width: 100%;
+          padding: 10px;
+          text-align: center;
+
+          p {
+            font-weight: bold;
+            font-family: Arial;
+          }
+        }
+
+        img {
+          height: 80px;
+          width: 80px;
+        }
+
+        &:not(:last-child) {
+          border-right: 20px solid $color-7;
+        }
       }
     }
 
-    &.faq {
-      h5 {
-        color: black;
-      }
+    .column {
+      background: $color-4;
+      padding: 0;
+    }
 
-      ul {
-        list-style: none;
-        text-align: left;
-      }
+    .tips {
+      border-left: 20px solid $color-7;
+      padding: 20px;
+    }
+
+    .current-campaign {
+      padding: 20px;
+    }
+
+    .row:first-child {
+      border-bottom: 20px solid $color-7;
     }
   }
 }
