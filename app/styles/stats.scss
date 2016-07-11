@@ -1,34 +1,40 @@
 .stats {
-  background: $color-4;
+  background: $color-7;
+  padding: 10px;
 
   .row {
     margin: 0;
 
     .column {
       padding: 0;
-      height: 490px;
       margin: 0;
-      border-right: 1px solid $color-3;
-      border-bottom: 1px solid $color-3;
+    }
 
-      &.visitors {
-        padding: 30px;
+    .col-xs-3 {
+      background: $color-4;
+      display: flex;
 
-        tr {
-          td {
-            padding: 5px;
-            text-align: center;
+      img {
+        height: 25px;
+        width: 25px;
+        margin: 20px;
+      }
 
-            &:first-child {
-              background: $color-3;
-            }
-          }
+      span {
+        text-align: center;
+        margin-left: 5px;
+        font-size: 12px;
+        font-weight: bold;
+
+        h4 {
+          font-family: Roboto;
+          font-size: 12px;
         }
       }
+    }
 
-      .data-chart {
-        padding: 10px;
-      }
+    .col-xs-3:not(:last-child) {
+      border-right: 10px solid $color-7;
     }
   }
 }
