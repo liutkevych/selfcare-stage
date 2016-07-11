@@ -52,7 +52,7 @@ HomeController = Ember.Controller.extend
     dataTable
 
   yearPresenceOptions: (data) ->
-      height: 500
+      height: 600
       hAxis:
         gridlines:
           count: 12

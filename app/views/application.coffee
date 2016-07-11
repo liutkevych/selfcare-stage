@@ -1,6 +1,6 @@
 `import Ember from 'ember'`
 
 ApplicationView = Ember.Component.extend
-  classNames: ['container-fluid']
+  classNames: ['application']
 
 `export default ApplicationView`
