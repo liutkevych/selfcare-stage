@@ -36,6 +36,8 @@
         img {
           height: 80px;
           width: 80px;
+          max-height: 40%;
+          max-width: 40%;
         }
 
         &:not(:last-child) {

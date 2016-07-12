@@ -72,7 +72,7 @@ StatsController = Em.Controller.extend
         location_id: @get('locationId')
 
   pieChartOptions: (data) ->
-      height: 450
+      height: 550
       tooltip:
         text: 'none'
       chartArea:
@@ -81,7 +81,7 @@ StatsController = Em.Controller.extend
       legend:
         alignment: 'center'
       pieHole: 0.5
-      colors: ['007bff', '3d9aff', '6bb2ff', 'a0ceff', 'c9e3fc', 'e8f3ff']
+      colors: ["#0E2341", "#2B85C6", "#559DD1", "#95C2E2", "#D5E7F4", "FFFFFF"]
 
   signinsFormatter: (data) ->
     dataTable = new google.visualization.DataTable()

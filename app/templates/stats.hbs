@@ -40,7 +40,7 @@
       type="column"
     }}
   </div>
-  <div class="column col-md-4 col-sm-12">
+  <div class="column col-md-4 col-sm-12 signins-chart">
     {{
       data-chart
       model=signins.details
@@ -62,31 +62,14 @@
       type="line"
     }}
   </div>
-  <div class="column col-md-4 col-sm-12 visitors">
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        {{fa-icon 'user'}} Visitors
-      </div>
-      <table class="table">
-        <tbody>
-          <tr>
-            <td>Online</td>
-            <td>{{visitors.details.online}}</td>
-          </tr>
-          <tr>
-            <td>Loyal</td>
-            <td>{{visitors.details.loyal}}</td>
-          </tr>
-          <tr>
-            <td>Known emails</td>
-            <td>{{visitors.details.emails}}</td>
-          </tr>
-          <tr>
-            <td>Known phone numbers</td>
-            <td>{{visitors.details.phones}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+  <div class="column col-md-4 col-sm-12 genders-chart">
+    {{
+      data-chart
+      model=signins.details
+      options=pieChartOptions
+      dataFormatter=signinsFormatter
+      loading=signinsLoading
+      type="pie"
+    }}
   </div>
 </div>

@@ -4,6 +4,7 @@
 
   .row {
     margin: 0;
+    margin-bottom: 5px;
 
     .column {
       padding: 0;
@@ -36,5 +37,9 @@
     .col-xs-3:not(:last-child) {
       border-right: 10px solid $color-7;
     }
+  }
+
+  .signins-chart, .genders-chart {
+    border-left: 10px solid $color-7;
   }
 }
