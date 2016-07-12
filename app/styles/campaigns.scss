@@ -19,17 +19,28 @@
     border-color: $color-1;
     background: $color-4;
 
+    .panel-heading {
+      text-align: left;
+
+      span {
+        float: left;
+        line-height: 50px;
+      }
+
+      a {
+        float: right;
+      }
+    }
+
     thead td {
+      font-family: Arial;
       font-weight: bold;
-      background: $color-3;
+      font-size: 16px;
+      color: $color-2;
     }
 
-    td:not(:last-child) {
-      border-right: 1px solid $color-1;
-    }
-
-    td.returned {
-      width: 50px;
+    td:not(.title) {
+      width: 10%;
     }
 
     td.actions {
@@ -45,7 +56,7 @@
 
   .fa {
     font-size: 30px;
-    color: $color-1;
+    color: $color-4;
 
     &:hover {
       color: $color-3;
@@ -53,7 +64,6 @@
 
     &.fa-plus-circle {
       font-size: 50px;
-      margin-bottom: 5px;
     }
 
     &.fa-clock-o {
@@ -87,6 +97,10 @@
         color: darkred;
       }
     }
+  }
+
+  table .fa.fa-trash {
+    color: $color-1;
   }
 
   .actions {

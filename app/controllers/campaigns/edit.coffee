@@ -19,6 +19,7 @@ CampaignsEditController = Ember.Controller.extend
 
     update: ->
       campaign = @get('model')
+      campaign.set 'content', CKEDITOR.instances['campaign-content'].getData()
       campaign.set 'location', @store.peekRecord('location', @get('locationId'))
       campaign.save().then =>
         @transitionToRoute('campaigns.index')
