@@ -24,7 +24,14 @@
           {{#each model as |campaign|}}
           <tr>
             <td>{{campaign.kind}}</td>
-            <td class="title">{{#link-to 'campaigns.edit' campaign title='Edit'}}{{campaign.title}}{{/link-to}}</td>
+            <td class="title">
+              {{capmaign.approved}}
+              {{#if campaign.approved}}
+                {{campaign.title}}
+              {{else}}
+                {{#link-to 'campaigns.edit' campaign title='Edit'}}{{campaign.title}}{{/link-to}}
+              {{/if}}
+            </td>
             <td>
               {{#if campaign.approved}}
                 {{fa-icon 'check-circle'}}

@@ -1,8 +1,10 @@
 `import Ember from 'ember'`
+`import ENV from 'simplify-selfcare/config/environment';`
 
 StatsController = Em.Controller.extend
   applicationController: Ember.inject.controller('application')
   locationId: Ember.computed.alias 'applicationController.locationId'
+  session: Ember.inject.service()
 
   monthPresence: Ember.computed 'locationId', ->
     locationId = @get('locationId')
@@ -69,10 +71,10 @@ StatsController = Em.Controller.extend
     @store.queryRecord 'stat',
       name: 'signins'
       options:
-        location_id: @get('locationId')
+        location_id: locationId
 
   pieChartOptions: (data) ->
-      height: 520
+      height: 535
       tooltip:
         text: 'none'
       chartArea:
@@ -82,6 +84,15 @@ StatsController = Em.Controller.extend
         alignment: 'center'
       pieHole: 0.5
       colors: ["#0E2341", "#2B85C6", "#559DD1", "#95C2E2", "#D5E7F4", "FFFFFF"]
+
+  genders: Ember.computed 'locationId', ->
+    locationId = @get('locationId')
+    return unless locationId
+
+    @store.queryRecord 'stat',
+      name: 'genders'
+      options:
+        location_id: locationId
 
   gendersChartOptions: (data) ->
       height: 450
@@ -93,7 +104,19 @@ StatsController = Em.Controller.extend
       legend:
         alignment: 'center'
       pieHole: 0.5
-      colors: ["#2B85C6", "#D5E7F4"]
+      colors: ["#2B85C6", "95C2E2", "#D5E7F4"]
+
+  gendersFormatter: (data) ->
+    dataTable = new google.visualization.DataTable()
+    dataTable.addColumn 'string', 'Gender'
+    dataTable.addColumn 'number', 'Percentage'
+
+    rows = []
+    Object.keys(data).forEach (gender) ->
+      rows.push [gender.capitalize(), data[gender]]
+
+    dataTable.addRows rows
+    dataTable
 
   signinsFormatter: (data) ->
     dataTable = new google.visualization.DataTable()
@@ -107,13 +130,18 @@ StatsController = Em.Controller.extend
     dataTable.addRows rows
     dataTable
 
-  visitors: Ember.computed 'locationId', ->
-    locationId = @get('locationId')
-    return unless locationId
+  visitorsStats: Ember.computed 'locationId', ->
+    @get('session').authorize 'authorizer:devise', (headerName, headerValue) =>
+      headers = {}
+      headers[headerName] = headerValue
+      locationId = @get('locationId')
+      return unless locationId
 
-    @store.queryRecord 'stat',
-      name: 'visitors'
-      options:
-        location_id: @get('locationId')
+      Ember.$.ajax
+        url: "#{ENV.SERVER_URL}/api/#{ENV.API_VERSION}/locations/#{locationId}/stats"
+        headers: headers
+      .then (response) =>
+        $('#online').text(response.online)
+        $('#loyals').text(response.loyals)
 
 `export default StatsController;`

@@ -5,7 +5,6 @@
     model=yearPresence.details
     options=yearPresenceOptions
     dataFormatter=yearPresenceFormatter
-    loading=yearPresenceLoading
     type="column"
   }}
 </div>
@@ -46,7 +45,7 @@
       <div class="column col-xs-12 current-campaign">
         <h3>Current campaign</h3>
         {{#if lastCampaign.message}}
-          <p>{{lastCampaign.message}}</p>
+          <p>{{{lastCampaign.message}}}</p>
           {{#link-to 'campaigns.edit' lastCampaign}}<div class="btn btn-success">Edit</div>{{/link-to}}
         {{else}}
           <p>There is no campaigns yet</p>

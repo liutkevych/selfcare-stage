@@ -14,7 +14,7 @@ HomeController = Ember.Controller.extend
       return unless locationId
 
       Ember.$.ajax
-        url: "#{ENV.SERVER_URL}/api/#{ENV.API_VERSION}/locations/#{locationId}/home_stats"
+        url: "#{ENV.SERVER_URL}/api/#{ENV.API_VERSION}/locations/#{locationId}/stats"
         headers: headers
       .then (response) =>
         $('#total-count').text(response.total)
@@ -72,9 +72,5 @@ HomeController = Ember.Controller.extend
         gridlines:
           count: 12
       colors: ['2B86C7', '94C2E3']
-
-  actions:
-    toggleQuery: (id) ->
-      $("##{id}").slideToggle(128)
 
 `export default HomeController;`

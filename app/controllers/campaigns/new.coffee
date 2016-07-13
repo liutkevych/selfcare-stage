@@ -6,8 +6,8 @@ CampaignsNewController = Ember.Controller.extend
   locationId: Ember.computed.alias('applicationController.locationId')
   kind: 'sms'
 
-  symbolsLeft: Ember.computed 'model.content.length', ->
-    contentLength = @get('model.content.length')
+  symbolsLeft: Ember.computed 'model.message.length', ->
+    contentLength = @get('model.message.length')
     if contentLength
       160 - contentLength
     else
@@ -18,9 +18,8 @@ CampaignsNewController = Ember.Controller.extend
       @get('currentUser.me').then (me) =>
         @store.findRecord('customer', me.data.id).then (customer) =>
           newCampaign = @get('model')
-          newCampaign.set 'customer', customer
           newCampaign.set 'kind', @get('kind')
-          newCampaign.set 'content', CKEDITOR.instances['campaign-content'].getData()
+          newCampaign.set 'message', CKEDITOR.instances['campaign-content'].getData()
           newCampaign.set 'location', @store.peekRecord('location', @get('locationId'))
           newCampaign.save().then =>
             @transitionToRoute('campaigns.index')

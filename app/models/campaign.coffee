@@ -3,7 +3,7 @@
 
 CampaignModel = DS.Model.extend
   title:                    DS.attr()
-  content:                  DS.attr()
+  message:                  DS.attr()
   kind:                     DS.attr()
   approved:                 DS.attr()
   targets_count:            DS.attr()

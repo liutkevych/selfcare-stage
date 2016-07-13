@@ -1,32 +1,18 @@
 <div class="row">
   <div class="column col-md-8 col-sm-12">
     <div class="row">
-      <div class="column col-xs-3">
+      <div class="column col-xs-6">
         <img src="images/stats/online.svg">
         <span>
           <h4>Online</h4>
-          123
+          <p id="online">{{visitorsStats.online}}</p>
         </span>
       </div>
-      <div class="column col-xs-3">
+      <div class="column col-xs-6">
         <img src="images/stats/loyals.svg">
         <span>
           <h4>Loyals</h4>
-          456
-        </span>
-      </div>
-      <div class="column col-xs-3">
-        <img src="images/stats/numbers.svg">
-        <span>
-          <h4>Numbers</h4>
-          123
-        </span>
-      </div>
-      <div class="column col-xs-3">
-        <img src="images/stats/emails.svg">
-        <span>
-          <h4>Emails</h4>
-          456
+          <p id="loyals">{{visitorsStats.loyals}}</p>
         </span>
       </div>
     </div>
@@ -36,7 +22,6 @@
       model=monthPresence.details
       options=monthPresenceOptions
       dataFormatter=monthPresenceFormatter
-      loading=monthPresenceLoading
       type="column"
     }}
   </div>
@@ -46,7 +31,6 @@
       model=signins.details
       options=pieChartOptions
       dataFormatter=signinsFormatter
-      loading=signinsLoading
       type="pie"
     }}
   </div>
@@ -58,17 +42,15 @@
       model=dayPresence.details
       options=dayPresenceOptions
       dataFormatter=dayPresenceFormatter
-      loading=dayPresenceLoading
       type="line"
     }}
   </div>
   <div class="column col-md-4 col-sm-12 genders-chart">
     {{
       data-chart
-      model=signins.details
+      model=genders.details
       options=gendersChartOptions
-      dataFormatter=signinsFormatter
-      loading=signinsLoading
+      dataFormatter=gendersFormatter
       type="pie"
     }}
   </div>
