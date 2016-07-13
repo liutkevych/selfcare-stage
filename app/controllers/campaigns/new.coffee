@@ -15,14 +15,14 @@ CampaignsNewController = Ember.Controller.extend
 
   actions:
     create: ->
-      @get('currentUser.me').then (me) =>
-        @store.findRecord('customer', me.data.id).then (customer) =>
-          newCampaign = @get('model')
-          newCampaign.set 'kind', @get('kind')
-          newCampaign.set 'message', CKEDITOR.instances['campaign-content'].getData()
-          newCampaign.set 'location', @store.peekRecord('location', @get('locationId'))
-          newCampaign.save().then =>
-            @transitionToRoute('campaigns.index')
+      newCampaign = @get('model')
+      kind = @get('kind')
+      newCampaign.set 'kind', kind
+      if kind == 'email'
+        newCampaign.set 'message', CKEDITOR.instances['campaign-content'].getData()
+      newCampaign.set 'location', @store.peekRecord('location', @get('locationId'))
+      newCampaign.save().then =>
+        @transitionToRoute('campaigns.index')
 
       return false
 
