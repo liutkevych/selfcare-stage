@@ -14,7 +14,7 @@ StatsController = Em.Controller.extend
         location_id: @get('locationId')
 
   monthPresenceOptions: ->
-      height: 470
+      height: 450
       hAxis:
         gridlines:
           count: 15
@@ -72,7 +72,7 @@ StatsController = Em.Controller.extend
         location_id: @get('locationId')
 
   pieChartOptions: (data) ->
-      height: 550
+      height: 520
       tooltip:
         text: 'none'
       chartArea:
@@ -82,6 +82,18 @@ StatsController = Em.Controller.extend
         alignment: 'center'
       pieHole: 0.5
       colors: ["#0E2341", "#2B85C6", "#559DD1", "#95C2E2", "#D5E7F4", "FFFFFF"]
+
+  gendersChartOptions: (data) ->
+      height: 450
+      tooltip:
+        text: 'none'
+      chartArea:
+        height: '90%'
+        width: '90%'
+      legend:
+        alignment: 'center'
+      pieHole: 0.5
+      colors: ["#2B85C6", "#D5E7F4"]
 
   signinsFormatter: (data) ->
     dataTable = new google.visualization.DataTable()

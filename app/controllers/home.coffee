@@ -6,6 +6,21 @@ HomeController = Ember.Controller.extend
   locationId: Ember.computed.alias 'applicationController.locationId'
   session: Ember.inject.service()
 
+  visitorsStats: Ember.computed 'locationId', ->
+    @get('session').authorize 'authorizer:devise', (headerName, headerValue) =>
+      headers = {}
+      headers[headerName] = headerValue
+      locationId = @get('locationId')
+      return unless locationId
+
+      Ember.$.ajax
+        url: "#{ENV.SERVER_URL}/api/#{ENV.API_VERSION}/locations/#{locationId}/home_stats"
+        headers: headers
+      .then (response) =>
+        $('#total-count').text(response.total)
+        $('#emails').text(response.emails)
+        $('#phone-numbers').text(response.phone_numbers)
+
   lastCampaign: Ember.computed 'locationId', ->
     new Ember.RSVP.Promise (resolve, reject) =>
       @get('session').authorize 'authorizer:devise', (headerName, headerValue) =>
