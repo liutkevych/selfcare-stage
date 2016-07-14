@@ -45,7 +45,7 @@ StatsController = Em.Controller.extend
         location_id: @get('locationId')
 
   dayPresenceOptions: ->
-      height: 450
+      height: 500
       hAxis:
         gridlines:
           count: 24
@@ -78,10 +78,14 @@ StatsController = Em.Controller.extend
       tooltip:
         text: 'none'
       chartArea:
-        height: '90%'
-        width: '90%'
+        width: '75%'
+        top: 100
+        bottom: 100
       legend:
+        position: 'top'
+        maxLines: 5
         alignment: 'center'
+
       pieHole: 0.5
       colors: ["#0E2341", "#2B85C6", "#559DD1", "#95C2E2", "#D5E7F4", "FFFFFF"]
 
@@ -95,14 +99,18 @@ StatsController = Em.Controller.extend
         location_id: locationId
 
   gendersChartOptions: (data) ->
-      height: 450
+      height: 500
       tooltip:
         text: 'none'
       chartArea:
-        height: '90%'
-        width: '90%'
+        width: '75%'
+        top: 100
+        bottom: 100
       legend:
+        position: 'top'
+        maxLines: 5
         alignment: 'center'
+
       pieHole: 0.5
       colors: ["#2B85C6", "95C2E2", "#D5E7F4"]
 
