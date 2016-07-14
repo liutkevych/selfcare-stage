@@ -34,5 +34,7 @@ CampaignsNewController = Ember.Controller.extend
       @set 'kind', newKind
       if newKind == 'email'
         CKEDITOR.replace 'campaign-content'
+      else if newKind == 'sms' && $('#cke_campaign-content').length > 0
+        CKEDITOR.instances['campaign-content'].destroy()
 
 `export default CampaignsNewController;`
