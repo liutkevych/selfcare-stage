@@ -1,53 +1,51 @@
-{{#if model}}
-    <div class="panel panel-info">
-      <div class="panel-heading clearfix">
-        <span>Campaigns</span>
-        {{#if limit}}
-          <p>You've exceeded free campaigns limit of 100</p>
-        {{else}}
-          {{#link-to 'campaigns.new'}}{{fa-icon 'plus-circle'}}{{/link-to}}
-        {{/if}}
-      </div>
-      <table class="table">
-        <thead>
-          <tr>
-            <td>Kind</td>
-            <td class="title">Title</td>
-            <td>Status</td>
-            <td>Targets count</td>
-            <td>Failed</td>
-            <td>Visitors returned</td>
-            <td>Actions</td>
-          </tr>
-        </thead>
-        <tbody>
-          {{#each model as |campaign|}}
-          <tr>
-            <td>{{campaign.kind}}</td>
-            <td class="title">
-              {{capmaign.approved}}
-              {{#if campaign.approved}}
-                {{campaign.title}}
-              {{else}}
-                {{#link-to 'campaigns.edit' campaign title='Edit'}}{{campaign.title}}{{/link-to}}
-              {{/if}}
-            </td>
-            <td>
-              {{#if campaign.approved}}
-                {{fa-icon 'check-circle'}}
-              {{else}}
-                {{fa-icon 'clock-o'}}
-              {{/if}}
-            </td>
-            <td>{{campaign.targets_count}}</td>
-            <td>{{campaign.failures_count}}</td>
-            <td class="returned">{{campaign.returned_visitors_count}}</td>
-            <td class='actions'>
-              <i class="fa fa-trash" {{action 'delete' campaign}} title="Delete"/>
-            </td>
-          </tr>
-          {{/each}}
-        </tbody>
-      </table>
-    </div>
-{{/if}}
+<div class="panel panel-info">
+  <div class="panel-heading clearfix">
+    <span>Campaigns</span>
+    {{#if limit}}
+      <p>You've exceeded free campaigns limit of 100</p>
+    {{else}}
+      {{#link-to 'campaigns.new'}}{{fa-icon 'plus-circle'}}{{/link-to}}
+    {{/if}}
+  </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <td>Kind</td>
+        <td class="title">Title</td>
+        <td>Status</td>
+        <td>Targets count</td>
+        <td>Failed</td>
+        <td>Visitors returned</td>
+        <td>Actions</td>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each model as |campaign|}}
+      <tr>
+        <td>{{campaign.kind}}</td>
+        <td class="title">
+          {{capmaign.approved}}
+          {{#if campaign.approved}}
+            {{campaign.title}}
+          {{else}}
+            {{#link-to 'campaigns.edit' campaign title='Edit'}}{{campaign.title}}{{/link-to}}
+          {{/if}}
+        </td>
+        <td>
+          {{#if campaign.approved}}
+            {{fa-icon 'check-circle'}}
+          {{else}}
+            {{fa-icon 'clock-o'}}
+          {{/if}}
+        </td>
+        <td>{{campaign.targets_count}}</td>
+        <td>{{campaign.failures_count}}</td>
+        <td class="returned">{{campaign.returned_visitors_count}}</td>
+        <td class='actions'>
+          <i class="fa fa-trash" {{action 'delete' campaign}} title="Delete"/>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
