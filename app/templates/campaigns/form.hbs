@@ -3,5 +3,5 @@
 </fieldset>
 <fieldset class="form-group">
   {{textarea id="campaign-content" class="form-control" placeholder="Content" value=model.message required=true}}
-  <small>Symbols left: {{symbolsLeft}}</small>
+  {{#if model.isSms}}<small>Symbols left: {{symbolsLeft}}</small>{{/if}}
 </fieldset>

@@ -10,6 +10,12 @@ CampaignModel = DS.Model.extend
   failures_count:           DS.attr()
   returned_visitors_count:  DS.attr()
 
+  isEmail: Ember.computed 'kind', ->
+    @get('kind') == 'email'
+
+  isSms: Ember.computed 'kind', ->
+    @get('kind') == 'sms'
+
   location:  DS.belongsTo('location')
 
 `export default CampaignModel;`

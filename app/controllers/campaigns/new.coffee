@@ -4,7 +4,6 @@ CampaignsNewController = Ember.Controller.extend
   currentUser: Ember.inject.service()
   applicationController: Ember.inject.controller('application')
   locationId: Ember.computed.alias('applicationController.locationId')
-  kind: 'sms'
 
   symbolsLeft: Ember.computed 'model.message.length', ->
     contentLength = @get('model.message.length')
@@ -16,8 +15,7 @@ CampaignsNewController = Ember.Controller.extend
   actions:
     create: ->
       newCampaign = @get('model')
-      kind = @get('kind')
-      newCampaign.set 'kind', kind
+      kind = @get('model.kind')
       if kind == 'email'
         newCampaign.set 'message', CKEDITOR.instances['campaign-content'].getData()
       newCampaign.set 'location', @store.peekRecord('location', @get('locationId'))
@@ -31,7 +29,7 @@ CampaignsNewController = Ember.Controller.extend
       $target = $(e.target)
       $target.addClass('active')
       newKind = $target.attr('kind')
-      @set 'kind', newKind
+      @set 'model.kind', newKind
       if newKind == 'email'
         CKEDITOR.replace 'campaign-content'
       else if newKind == 'sms' && $('#cke_campaign-content').length > 0

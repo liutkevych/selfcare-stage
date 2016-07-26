@@ -4,7 +4,6 @@ CampaignsEditController = Ember.Controller.extend
   currentUser: Ember.inject.service()
   applicationController: Ember.inject.controller('application')
   locationId: Ember.computed.alias('applicationController.locationId')
-  kind: Ember.computed.alias 'model.kind'
 
   symbolsLeft: Ember.computed 'newCampaign.message.length', ->
     messageLength = @get('newCampaign.message.length')
@@ -20,7 +19,7 @@ CampaignsEditController = Ember.Controller.extend
 
     update: ->
       campaign = @get('model')
-      kind = @get 'kind'
+      kind = @get 'model.kind'
       if kind == 'email'
         campaign.set 'message', CKEDITOR.instances['campaign-content'].getData()
       campaign.set 'location', @store.peekRecord('location', @get('locationId'))
