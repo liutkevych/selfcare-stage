@@ -16,6 +16,14 @@ StatsController = Em.Controller.extend
         location_id: @get('locationId')
 
   monthPresenceOptions: ->
+      title: 'Visits / sign ins month overview'
+      titleTextStyle:
+        color: "#2B86C7"
+        fontName: "Roboto"
+        fontSize: 18
+      legend:
+        position: 'bottom'
+        alignment: 'left'
       height: 450
       hAxis:
         gridlines:
@@ -46,6 +54,14 @@ StatsController = Em.Controller.extend
 
   dayPresenceOptions: ->
       height: 500
+      title: 'Visits / sign ins per hour overview'
+      titleTextStyle:
+        color: "#2B86C7"
+        fontName: "Roboto"
+        fontSize: 18
+      legend:
+        position: 'bottom'
+        alignment: 'left'
       hAxis:
         gridlines:
           count: 24

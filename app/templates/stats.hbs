@@ -16,14 +16,15 @@
         </span>
       </div>
     </div>
-    <div class="row"></div>
-    {{
-      data-chart
-      model=monthPresence.details
-      options=monthPresenceOptions
-      dataFormatter=monthPresenceFormatter
-      type="column"
-    }}
+    <div class="row">
+      {{
+        data-chart
+        model=monthPresence.details
+        options=monthPresenceOptions
+        dataFormatter=monthPresenceFormatter
+        type="column"
+      }}
+    </div>
   </div>
   <div class="column col-md-4 col-sm-12 signins-chart">
     {{
