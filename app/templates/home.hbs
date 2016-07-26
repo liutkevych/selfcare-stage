@@ -1,5 +1,4 @@
 <div class="chart-wrapper">
-  <p>Number of visits/sign ins per month</p>
   {{
     data-chart
     model=yearPresence.details
@@ -46,7 +45,9 @@
         <h3>Current campaign</h3>
         {{#if lastCampaign.message}}
           <p>{{{lastCampaign.message}}}</p>
-          {{#link-to 'campaigns.edit' lastCampaign}}<div class="btn btn-success">Edit</div>{{/link-to}}
+          {{#unless lastCampaign.approved}}
+            {{#link-to 'campaigns.edit' lastCampaign}}<div class="btn btn-success">Edit</div>{{/link-to}}
+          {{/unless}}
         {{else}}
           <p>There is no campaigns yet</p>
         {{/if}}

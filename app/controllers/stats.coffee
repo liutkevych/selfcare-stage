@@ -15,20 +15,45 @@ StatsController = Em.Controller.extend
       options:
         location_id: @get('locationId')
 
-  monthPresenceOptions: ->
+  monthPresenceOptions: (data) ->
+    vAxisGridsCount = if data['max'] < 5 then data['max'] + 1 else 5
+
+    {
       title: 'Visits / sign ins month overview'
       titleTextStyle:
-        color: "#2B86C7"
+        color: "#333333"
         fontName: "Roboto"
-        fontSize: 18
-      legend:
-        position: 'bottom'
-        alignment: 'left'
+        fontSize: 20
       height: 450
-      hAxis:
+      vAxis:
+        baselineColor: '#DDDDDD'
+        textStyle:
+          color: "#777777"
+          fontName: "Roboto"
+          fontSize: 14
+        textPosition: 'out'
+        format: '#'
         gridlines:
-          count: 15
-      colors: ['2B86C7', '94C2E3']
+          count: vAxisGridsCount
+          color: '#DDDDDD'
+      hAxis:
+        textStyle:
+          color: "#777777"
+          fontName: "Roboto"
+          fontSize: 14
+        textPosition: 'out'
+        showTextEvery: 2
+      chartArea:
+        height: '65%'
+        width: '80%'
+      colors: ['#3486CA', '#AEDCFD']
+      legend:
+        position: 'top'
+        textStyle:
+          color: "#777777"
+          fontName: "Roboto"
+          fontSize: 14
+    }
 
   monthPresenceFormatter: (data) ->
     dataTable = new google.visualization.DataTable()
@@ -37,8 +62,8 @@ StatsController = Em.Controller.extend
     dataTable.addColumn 'number', 'Signins'
 
     rows = []
-    Object.keys(data).forEach (date) ->
-      rows.push [date, data[date]['v'], data[date]['s']]
+    Object.keys(data['per_day']).forEach (date) ->
+      rows.push [date, data['per_day'][date]['v'], data['per_day'][date]['s']]
 
     dataTable.addRows rows
     dataTable
@@ -52,20 +77,45 @@ StatsController = Em.Controller.extend
       options:
         location_id: @get('locationId')
 
-  dayPresenceOptions: ->
-      height: 500
-      title: 'Visits / sign ins per hour overview'
+  dayPresenceOptions: (data) ->
+    vAxisGridsCount = if data['max'] < 5 then data['max'] + 1 else 5
+
+    {
+      title: 'Visits / sign ins daily overview'
       titleTextStyle:
-        color: "#2B86C7"
+        color: "#333333"
         fontName: "Roboto"
-        fontSize: 18
-      legend:
-        position: 'bottom'
-        alignment: 'left'
-      hAxis:
+        fontSize: 20
+      height: 450
+      vAxis:
+        baselineColor: '#DDDDDD'
+        textStyle:
+          color: "#777777"
+          fontName: "Roboto"
+          fontSize: 14
+        textPosition: 'out'
+        format: '#'
         gridlines:
-          count: 24
-      colors: ['2B86C7', '94C2E3']
+          count: vAxisGridsCount
+          color: '#DDDDDD'
+      hAxis:
+        textStyle:
+          color: "#777777"
+          fontName: "Roboto"
+          fontSize: 14
+        textPosition: 'out'
+        showTextEvery: 2
+      chartArea:
+        height: '65%'
+        width: '80%'
+      colors: ['#3486CA', '#AEDCFD']
+      legend:
+        position: 'top'
+        textStyle:
+          color: "#777777"
+          fontName: "Roboto"
+          fontSize: 14
+    }
 
   dayPresenceFormatter: (data) ->
     dataTable = new google.visualization.DataTable()
@@ -74,8 +124,8 @@ StatsController = Em.Controller.extend
     dataTable.addColumn 'number', 'Signins'
 
     rows = []
-    Object.keys(data).forEach (date) ->
-      rows.push [date, data[date]['v'], data[date]['s']]
+    Object.keys(data['per_hour']).forEach (date) ->
+      rows.push [date, data['per_hour'][date]['v'], data['per_hour'][date]['s']]
 
     dataTable.addRows rows
     dataTable
@@ -115,7 +165,7 @@ StatsController = Em.Controller.extend
         location_id: locationId
 
   gendersChartOptions: (data) ->
-      height: 500
+      height: 450
       tooltip:
         text: 'none'
       chartArea:
@@ -167,5 +217,7 @@ StatsController = Em.Controller.extend
       .then (response) =>
         $('#online').text(response.online)
         $('#loyals').text(response.loyals)
+        $('#emails').text(response.emails)
+        $('#phone-numbers').text(response.phone_numbers)
 
 `export default StatsController;`

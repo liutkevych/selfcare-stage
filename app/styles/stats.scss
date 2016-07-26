@@ -11,7 +11,7 @@
       margin: 0;
     }
 
-    .col-xs-6 {
+    .col-xs-3 {
       background: $color-4;
       display: flex;
 
@@ -34,7 +34,7 @@
       }
     }
 
-    .col-xs-6:not(:last-child) {
+    .col-xs-3:not(:last-child) {
       border-right: 10px solid $color-7;
     }
 
