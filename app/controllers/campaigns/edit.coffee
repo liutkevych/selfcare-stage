@@ -13,10 +13,6 @@ CampaignsEditController = Ember.Controller.extend
       160
 
   actions:
-    selectLocation: (id) ->
-      location = @store.peekRecord 'location', id
-      @set 'newCampaign.location', location
-
     update: ->
       campaign = @get('model')
       kind = @get 'model.kind'
@@ -26,5 +22,8 @@ CampaignsEditController = Ember.Controller.extend
       campaign.save().then =>
         @transitionToRoute('campaigns.index')
       false
+
+    selectTargetsFilter: (e) ->
+      @set 'model.targets_filters', [e]
 
 `export default CampaignsEditController;`

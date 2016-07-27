@@ -7,6 +7,7 @@ CampaignModel = DS.Model.extend
   kind:                     DS.attr()
   approved:                 DS.attr()
   targets_count:            DS.attr()
+  targets_filters:          DS.attr()
   failures_count:           DS.attr()
   returned_visitors_count:  DS.attr()
 

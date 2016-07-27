@@ -35,4 +35,7 @@ CampaignsNewController = Ember.Controller.extend
       else if newKind == 'sms' && $('#cke_campaign-content').length > 0
         CKEDITOR.instances['campaign-content'].destroy()
 
+    selectTargetsFilter: (e) ->
+      @set 'model.targets_filters', [e]
+
 `export default CampaignsNewController;`
