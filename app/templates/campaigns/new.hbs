@@ -18,7 +18,7 @@
       </option>
     </select>
   </fieldset>
-<p>Will affect: <b>{{targetsCount}}</b></p>
+<p>Will affect: {{targetsCount.actual}} / {{targetsCount.total}}</p>
   {{partial 'campaigns/form'}}
   {{input type="submit" class="btn btn-success" value="Create"}}
 </form>

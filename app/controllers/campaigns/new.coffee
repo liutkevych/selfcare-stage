@@ -26,7 +26,10 @@ CampaignsNewController = Ember.Controller.extend
     targets = @get 'targets'
     return unless targets
 
-    @get('targets')[@get('model.kind')][filter].length
+    {
+      actual: @get('targets')[@get('model.kind')][filter].length,
+      total: @get('targets')[@get('model.kind')]['all'].length
+    }
 
   symbolsLeft: Ember.computed 'model.message.length', ->
     contentLength = @get('model.message.length')
