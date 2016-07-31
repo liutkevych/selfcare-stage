@@ -31,6 +31,19 @@
 
       a {
         float: right;
+
+        &:hover {
+          .fa, span {
+            color: $color-3;
+          }
+        }
+      }
+
+      a span {
+        margin-right: 5px;
+        color: $color-4;
+
+
       }
     }
 

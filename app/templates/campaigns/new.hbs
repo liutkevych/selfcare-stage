@@ -5,6 +5,20 @@
       <button type="button" class="btn btn-info" onclick={{action 'changeKind'}} kind='email'>Email</button>
     </div>
   </fieldset>
+  <fieldset class="form-group">
+    <label for="targetsFilter">
+      Targets:
+    </label>
+    <select id="targetsFilter" onchange={{action "selectTargetsFilter" value="target.value"}}>
+      <option value="all">
+        All
+      </option>
+      <option value="loyals">
+        Loyals (more than 2 visits during the last month)
+      </option>
+    </select>
+  </fieldset>
+<p>Will affect: <b>{{targetsCount}}</b></p>
   {{partial 'campaigns/form'}}
   {{input type="submit" class="btn btn-success" value="Create"}}
 </form>
