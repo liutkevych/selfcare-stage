@@ -8,31 +8,24 @@
   }}
 </div>
 
-<div class="container-fluid">
-  <div class="column col-xs-8">
-    <div class="row">
-      <div class="column col-xs-4">
+<section class="bottom">
+  <div class="left-wrapper">
+    <div class="stats-wrapper">
+      <div class="stat-square">
         <img src="images/home/visitors.svg">
         <span>
           <h4>Visitors</h4>
           <p id="total-count">{{visitorsStats.total_count}}</p>
         </span>
       </div>
-      {{!-- <div class="column col-xs-4">
-        <img src="images/home/visitors.svg">
-        <span>
-          <h4>Guests</h4>
-          <p>1234</p>
-        </span>
-      </div> --}}
-      <div class="column col-xs-4">
+      <div class="stat-square">
         <img src="images/home/emails.svg">
         <span>
           <h4>Emails</h4>
           <p id="emails">{{visitorsStats.emails}}</p>
         </span>
       </div>
-      <div class="column col-xs-4">
+      <div class="stat-square">
         <img src="images/home/sms.svg">
         <span>
           <h4>SMS</h4>
@@ -40,24 +33,22 @@
         </span>
       </div>
     </div>
-    <div class="row">
-      <div class="column col-xs-12 current-campaign">
-        <h3>Current campaign</h3>
-        {{#if lastCampaign.message}}
-          <p>{{{lastCampaign.message}}}</p>
-          {{#unless lastCampaign.approved}}
-            {{#link-to 'campaigns.edit' lastCampaign}}<div class="btn btn-success">Edit</div>{{/link-to}}
-          {{/unless}}
-        {{else}}
-          <p>There is no campaigns yet</p>
-        {{/if}}
-      </div>
+    <div class="current-campaign">
+      <h3>Current campaign</h3>
+      {{#if lastCampaign.message}}
+        <p>{{{lastCampaign.message}}}</p>
+        {{#unless lastCampaign.approved}}
+          {{#link-to 'campaigns.edit' lastCampaign}}<div class="btn btn-success">Edit</div>{{/link-to}}
+        {{/unless}}
+      {{else}}
+        <p>There is no campaigns yet</p>
+      {{/if}}
     </div>
   </div>
-  <div class="column col-xs-4 tips">
+  <div class="tips">
     <h4>Tip of the day</h4>
     <p>
        Set every bill you can to auto-pay. This eliminates late fees and other headaches, and prevents paper bills from cluttering your desk
     </p>
   </div>
-</div>
+</section>

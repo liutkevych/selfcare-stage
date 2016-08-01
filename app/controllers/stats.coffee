@@ -140,7 +140,7 @@ StatsController = Em.Controller.extend
         location_id: locationId
 
   pieChartOptions: (data) ->
-      height: 535
+      height: 570
       tooltip:
         text: 'none'
       chartArea:
