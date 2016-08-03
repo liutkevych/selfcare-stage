@@ -3,6 +3,7 @@
 
 CampaignModel = DS.Model.extend
   title:                    DS.attr()
+  subject:                  DS.attr()
   message:                  DS.attr()
   kind:                     DS.attr()
   approved:                 DS.attr()
@@ -10,6 +11,7 @@ CampaignModel = DS.Model.extend
   targets_filters:          DS.attr()
   failures_count:           DS.attr()
   returned_visitors_count:  DS.attr()
+  locationId:               DS.attr()
 
   isEmail: Ember.computed 'kind', ->
     @get('kind') == 'email'
@@ -17,6 +19,6 @@ CampaignModel = DS.Model.extend
   isSms: Ember.computed 'kind', ->
     @get('kind') == 'sms'
 
-  location:  DS.belongsTo('location')
+  location:   DS.belongsTo('location')
 
 `export default CampaignModel;`

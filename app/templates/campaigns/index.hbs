@@ -1,11 +1,7 @@
 <div class="panel panel-info">
   <div class="panel-heading clearfix">
     <span>Campaigns</span>
-    {{#if limit}}
-      <p>You've exceeded free campaigns limit of 100</p>
-    {{else}}
-      {{#link-to 'campaigns.new'}}<span>Add</span>{{fa-icon 'plus-circle'}}{{/link-to}}
-    {{/if}}
+    {{#link-to 'campaigns.new'}}<span>Add</span>{{fa-icon 'plus-circle'}}{{/link-to}}
   </div>
   <table class="table">
     <thead>
@@ -20,7 +16,7 @@
       </tr>
     </thead>
     <tbody>
-      {{#each model as |campaign|}}
+      {{#each campaigns as |campaign|}}
       <tr>
         <td>{{campaign.kind}}</td>
         <td class="title">
