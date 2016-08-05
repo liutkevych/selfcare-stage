@@ -3,9 +3,6 @@
 ApplicationController = Ember.Controller.extend
   session: Ember.inject.service('session')
 
-  activate: ->
-    @set 'locations', @findAll('location')
-
   actions:
     toggleSideMenu: ->
       $('.side-menu').animate

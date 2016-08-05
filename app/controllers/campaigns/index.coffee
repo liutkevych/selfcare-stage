@@ -1,10 +1,16 @@
 `import Ember from 'ember';`
+`import ENV from 'simplify-selfcare/config/environment';`
 
 CampaignsIndexController = Ember.Controller.extend
-  loading: Ember.computed 'model', ->
-    @get('model.content') == null
+  session: Ember.inject.service()
+  applicationController: Ember.inject.controller('application')
 
-  limit: true
+  campaigns: Ember.computed 'applicationController.locationId', ->
+    locationId = @get 'applicationController.locationId'
+    return unless locationId
+
+    @store.query 'campaign',
+      location_id: locationId
 
   actions:
     delete: (campaign) ->

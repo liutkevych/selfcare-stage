@@ -5,8 +5,8 @@
 
   &.active, &:hover {
     background-color: $color-3 !important;
-    border-color: $color-1 !important;
-    color: $color-1 !important;
+    border-color: $color-3 !important;
+    color: $color-4 !important;
   }
 }
 
@@ -18,14 +18,15 @@
 
   &:hover {
     background-color: $color-3 !important;
-    color: $color-1 !important;
-    border-color: $color-1 !important;
+    color: $color-4 !important;
+    border-color: $color-3 !important;
   }
 }
 
 .panel-info {
-  border-color: $color-1;
+  border: none !important;
   border-radius: 0;
+  box-shadow: 0 0 3px #787878;
 
   .panel-heading {
     background-color: $color-1;

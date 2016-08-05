@@ -9,6 +9,8 @@ CampaignsNewRoute = Ember.Route.extend AuthenticatedRouteMixin,
       @store.findAll('location').then (result) =>
         resolve @store.createRecord('campaign',
           location: result.get('firstObject')
+          kind: 'sms',
+          targets_filters: ['all']
         )
 
   deactivate: ->

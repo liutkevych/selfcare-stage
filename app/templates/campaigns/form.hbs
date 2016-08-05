@@ -1,7 +1,12 @@
 <fieldset class="form-group">
   {{input class="form-control" value=model.title placeholder="Title" required=true}}
 </fieldset>
+{{#if model.isEmail}}
+  <fieldset class="form-group">
+    {{input class="form-control" value=model.subject placeholder="Subject" required=true}}
+  </fieldset>
+{{/if}}
 <fieldset class="form-group">
-  {{textarea id="campaign-content" class="form-control" placeholder="Content" value=model.content}}
-  <small>Symbols left: {{symbolsLeft}}</small>
+  {{textarea id="campaign-content" class="form-control" placeholder="Content" value=model.message required=true}}
+  {{#if model.isSms}}<small>Symbols left: {{symbolsLeft}}</small>{{/if}}
 </fieldset>

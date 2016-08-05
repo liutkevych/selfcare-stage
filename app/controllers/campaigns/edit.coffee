@@ -13,16 +13,17 @@ CampaignsEditController = Ember.Controller.extend
       160
 
   actions:
-    selectLocation: (id) ->
-      location = @store.peekRecord 'location', id
-      @set 'newCampaign.location', location
-
     update: ->
       campaign = @get('model')
-      campaign.set 'content', CKEDITOR.instances['campaign-content'].getData()
+      kind = @get 'model.kind'
+      if kind == 'email'
+        campaign.set 'message', CKEDITOR.instances['campaign-content'].getData()
       campaign.set 'location', @store.peekRecord('location', @get('locationId'))
       campaign.save().then =>
         @transitionToRoute('campaigns.index')
       false
+
+    selectTargetsFilter: (e) ->
+      @set 'model.targets_filters', [e]
 
 `export default CampaignsEditController;`

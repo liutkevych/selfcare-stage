@@ -4,6 +4,7 @@
 
   .chart-wrapper {
     background: $color-4;
+    box-shadow: 0 0 3px #787878;
 
     p {
       padding: 20px;
@@ -11,55 +12,59 @@
     }
   }
 
-  .container-fluid {
+  section.bottom {
+    display: flex;
     margin-top: 20px;
-    padding: 0;
 
-    .row {
-      margin: 0;
+    .left-wrapper {
+      width: 70%;
 
-      .col-xs-3 {
+      .stats-wrapper {
         display: flex;
-        padding: 20px;
 
-        span {
-          width: 100%;
-          padding: 10px;
-          text-align: center;
+        .stat-square {
+          width: 33%;
+          box-shadow: 0 0 3px #787878;
+          background: $color-4;
+          height: 100px;
+          display: flex;
 
-          p {
-            font-weight: bold;
-            font-family: Arial;
+          img {
+            height: 44px;
+            width: 44px;
+            margin-top: auto;
+            margin-left: 20px;
+            margin-bottom: auto;
           }
-        }
 
-        img {
-          height: 80px;
-          width: 80px;
-        }
+          span {
+            margin-top: auto;
+            margin-bottom: auto;
+            text-align: center;
+            width: 100%;
+          }
 
-        &:not(:last-child) {
-          border-right: 20px solid $color-7;
+          &:not(:last-child) {
+            margin-right: 20px;
+          }
         }
       }
     }
 
-    .column {
-      background: $color-4;
-      padding: 0;
-    }
-
     .tips {
-      border-left: 20px solid $color-7;
-      padding: 20px;
+      width: 30%;
+      margin-left: 20px;
+      background: $color-4;
     }
 
     .current-campaign {
-      padding: 20px;
+      margin-top: 20px;
+      background: #A6DBFD;
     }
+  }
 
-    .row:first-child {
-      border-bottom: 20px solid $color-7;
-    }
+  .tips, .current-campaign {
+    padding: 20px;
+    box-shadow: 0 0 3px #787878;
   }
 }

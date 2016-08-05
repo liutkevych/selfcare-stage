@@ -1,13 +1,38 @@
 `import Ember from 'ember';`
+`import ENV from 'simplify-selfcare/config/environment';`
 
 CampaignsNewController = Ember.Controller.extend
   currentUser: Ember.inject.service()
   applicationController: Ember.inject.controller('application')
   locationId: Ember.computed.alias('applicationController.locationId')
-  kind: 'sms'
+  session: Ember.inject.service()
 
-  symbolsLeft: Ember.computed 'model.content.length', ->
-    contentLength = @get('model.content.length')
+  fetchTargetsCount: Ember.observer 'model.targets_filters', 'locationId', 'model.kind', ->
+    locationId = @get('locationId')
+    return unless locationId
+
+    @get('session').authorize 'authorizer:devise', (headerName, headerValue) =>
+      headers = {}
+      headers[headerName] = headerValue
+
+      Ember.$.ajax
+        url: "#{ENV.SERVER_URL}/api/#{ENV.API_VERSION}/campaigns/targets/#{locationId}"
+        headers: headers
+      .then (response) =>
+        @set 'targets', response
+
+  targetsCount: Ember.computed 'model.targets_filters', 'targets', ->
+    filter = @get('model.targets_filters.firstObject')
+    targets = @get 'targets'
+    return unless targets
+
+    {
+      actual: @get('targets')[@get('model.kind')][filter].length,
+      total: @get('targets')[@get('model.kind')]['all'].length
+    }
+
+  symbolsLeft: Ember.computed 'model.message.length', ->
+    contentLength = @get('model.message.length')
     if contentLength
       160 - contentLength
     else
@@ -15,15 +40,13 @@ CampaignsNewController = Ember.Controller.extend
 
   actions:
     create: ->
-      @get('currentUser.me').then (me) =>
-        @store.findRecord('customer', me.data.id).then (customer) =>
-          newCampaign = @get('model')
-          newCampaign.set 'customer', customer
-          newCampaign.set 'kind', @get('kind')
-          newCampaign.set 'content', CKEDITOR.instances['campaign-content'].getData()
-          newCampaign.set 'location', @store.peekRecord('location', @get('locationId'))
-          newCampaign.save().then =>
-            @transitionToRoute('campaigns.index')
+      newCampaign = @get('model')
+      kind = @get('model.kind')
+      if kind == 'email'
+        newCampaign.set 'message', CKEDITOR.instances['campaign-content'].getData()
+      newCampaign.set 'location', @store.peekRecord('location', @get('locationId'))
+      newCampaign.save().then =>
+        @transitionToRoute('campaigns.index')
 
       return false
 
@@ -32,8 +55,13 @@ CampaignsNewController = Ember.Controller.extend
       $target = $(e.target)
       $target.addClass('active')
       newKind = $target.attr('kind')
-      @set 'kind', newKind
+      @set 'model.kind', newKind
       if newKind == 'email'
         CKEDITOR.replace 'campaign-content'
+      else if newKind == 'sms' && $('#cke_campaign-content').length > 0
+        CKEDITOR.instances['campaign-content'].destroy()
+
+    selectTargetsFilter: (e) ->
+      @set 'model.targets_filters', [e]
 
 `export default CampaignsNewController;`

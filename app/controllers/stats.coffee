@@ -1,8 +1,10 @@
 `import Ember from 'ember'`
+`import ENV from 'simplify-selfcare/config/environment';`
 
 StatsController = Em.Controller.extend
   applicationController: Ember.inject.controller('application')
   locationId: Ember.computed.alias 'applicationController.locationId'
+  session: Ember.inject.service()
 
   monthPresence: Ember.computed 'locationId', ->
     locationId = @get('locationId')
@@ -13,12 +15,45 @@ StatsController = Em.Controller.extend
       options:
         location_id: @get('locationId')
 
-  monthPresenceOptions: ->
-      height: 470
-      hAxis:
+  monthPresenceOptions: (data) ->
+    vAxisGridsCount = if data['max'] < 5 then data['max'] + 1 else 5
+
+    {
+      title: 'Visits / sign ins month overview'
+      titleTextStyle:
+        color: "#333333"
+        fontName: "Roboto"
+        fontSize: 20
+      height: 450
+      vAxis:
+        baselineColor: '#DDDDDD'
+        textStyle:
+          color: "#777777"
+          fontName: "Roboto"
+          fontSize: 14
+        textPosition: 'out'
+        format: '#'
         gridlines:
-          count: 15
-      colors: ['2B86C7', '94C2E3']
+          count: vAxisGridsCount
+          color: '#DDDDDD'
+      hAxis:
+        textStyle:
+          color: "#777777"
+          fontName: "Roboto"
+          fontSize: 14
+        textPosition: 'out'
+        showTextEvery: 2
+      chartArea:
+        height: '65%'
+        width: '80%'
+      colors: ['#3486CA', '#AEDCFD']
+      legend:
+        position: 'top'
+        textStyle:
+          color: "#777777"
+          fontName: "Roboto"
+          fontSize: 14
+    }
 
   monthPresenceFormatter: (data) ->
     dataTable = new google.visualization.DataTable()
@@ -27,8 +62,8 @@ StatsController = Em.Controller.extend
     dataTable.addColumn 'number', 'Signins'
 
     rows = []
-    Object.keys(data).forEach (date) ->
-      rows.push [date, data[date]['v'], data[date]['s']]
+    Object.keys(data['per_day']).forEach (date) ->
+      rows.push [date, data['per_day'][date]['v'], data['per_day'][date]['s']]
 
     dataTable.addRows rows
     dataTable
@@ -42,12 +77,45 @@ StatsController = Em.Controller.extend
       options:
         location_id: @get('locationId')
 
-  dayPresenceOptions: ->
+  dayPresenceOptions: (data) ->
+    vAxisGridsCount = if data['max'] < 5 then data['max'] + 1 else 5
+
+    {
+      title: 'Visits / sign ins daily overview'
+      titleTextStyle:
+        color: "#333333"
+        fontName: "Roboto"
+        fontSize: 20
       height: 450
-      hAxis:
+      vAxis:
+        baselineColor: '#DDDDDD'
+        textStyle:
+          color: "#777777"
+          fontName: "Roboto"
+          fontSize: 14
+        textPosition: 'out'
+        format: '#'
         gridlines:
-          count: 24
-      colors: ['2B86C7', '94C2E3']
+          count: vAxisGridsCount
+          color: '#DDDDDD'
+      hAxis:
+        textStyle:
+          color: "#777777"
+          fontName: "Roboto"
+          fontSize: 14
+        textPosition: 'out'
+        showTextEvery: 2
+      chartArea:
+        height: '65%'
+        width: '80%'
+      colors: ['#3486CA', '#AEDCFD']
+      legend:
+        position: 'top'
+        textStyle:
+          color: "#777777"
+          fontName: "Roboto"
+          fontSize: 14
+    }
 
   dayPresenceFormatter: (data) ->
     dataTable = new google.visualization.DataTable()
@@ -56,8 +124,8 @@ StatsController = Em.Controller.extend
     dataTable.addColumn 'number', 'Signins'
 
     rows = []
-    Object.keys(data).forEach (date) ->
-      rows.push [date, data[date]['v'], data[date]['s']]
+    Object.keys(data['per_hour']).forEach (date) ->
+      rows.push [date, data['per_hour'][date]['v'], data['per_hour'][date]['s']]
 
     dataTable.addRows rows
     dataTable
@@ -69,19 +137,60 @@ StatsController = Em.Controller.extend
     @store.queryRecord 'stat',
       name: 'signins'
       options:
-        location_id: @get('locationId')
+        location_id: locationId
 
   pieChartOptions: (data) ->
+      height: 570
+      tooltip:
+        text: 'none'
+      chartArea:
+        width: '75%'
+        top: 100
+        bottom: 100
+      legend:
+        position: 'top'
+        maxLines: 5
+        alignment: 'center'
+
+      pieHole: 0.5
+      colors: ["#0E2341", "#2B85C6", "#559DD1", "#95C2E2", "#D5E7F4", "FFFFFF"]
+
+  genders: Ember.computed 'locationId', ->
+    locationId = @get('locationId')
+    return unless locationId
+
+    @store.queryRecord 'stat',
+      name: 'genders'
+      options:
+        location_id: locationId
+
+  gendersChartOptions: (data) ->
       height: 450
       tooltip:
         text: 'none'
       chartArea:
-        height: '90%'
-        width: '90%'
+        width: '75%'
+        top: 100
+        bottom: 100
       legend:
+        position: 'top'
+        maxLines: 5
         alignment: 'center'
+
       pieHole: 0.5
-      colors: ['007bff', '3d9aff', '6bb2ff', 'a0ceff', 'c9e3fc', 'e8f3ff']
+      colors: ["#2B85C6", "95C2E2", "#D5E7F4"]
+
+  gendersFormatter: (data) ->
+    dataTable = new google.visualization.DataTable()
+    dataTable.addColumn 'string', 'Gender'
+    dataTable.addColumn 'number', 'Percentage'
+
+    rows = []
+    Object.keys(data).forEach (gender) ->
+      rows.push [gender.capitalize(), data[gender]]
+
+    dataTable.addRows rows
+    dataTable
 
   signinsFormatter: (data) ->
     dataTable = new google.visualization.DataTable()
@@ -95,13 +204,20 @@ StatsController = Em.Controller.extend
     dataTable.addRows rows
     dataTable
 
-  visitors: Ember.computed 'locationId', ->
-    locationId = @get('locationId')
-    return unless locationId
+  visitorsStats: Ember.computed 'locationId', ->
+    @get('session').authorize 'authorizer:devise', (headerName, headerValue) =>
+      headers = {}
+      headers[headerName] = headerValue
+      locationId = @get('locationId')
+      return unless locationId
 
-    @store.queryRecord 'stat',
-      name: 'visitors'
-      options:
-        location_id: @get('locationId')
+      Ember.$.ajax
+        url: "#{ENV.SERVER_URL}/api/#{ENV.API_VERSION}/locations/#{locationId}/stats"
+        headers: headers
+      .then (response) =>
+        $('#online').text(response.online)
+        $('#loyals').text(response.loyals)
+        $('#emails').text(response.emails)
+        $('#phone-numbers').text(response.phone_numbers)
 
 `export default StatsController;`

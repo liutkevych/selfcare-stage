@@ -3,18 +3,9 @@
 `import ENV from 'simplify-selfcare/config/environment';`
 
 CampaignsIndexRoute = Ember.Route.extend AuthenticatedRouteMixin,
-  model: ->
-    @store.findAll 'campaign'
-
   activate: ->
-    @get('session').authorize 'authorizer:devise', (headerName, headerValue) =>
-      headers = {}
-      headers[headerName] = headerValue
-
-      Ember.$.ajax
-        headers: headers
-        url: "#{ENV.SERVER_URL}/api/#{ENV.API_VERSION}/campaigns/limit"
-        success: (result) =>
-          @controllerFor('campaigns.index').set('limit', result)
+    locationId = @controllerFor('application').get('locationId')
+    @controllerFor('application').set('locationId', 0)
+    @controllerFor('application').set('locationId', locationId)
 
 `export default CampaignsIndexRoute;`
