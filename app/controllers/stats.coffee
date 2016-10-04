@@ -19,7 +19,7 @@ StatsController = Em.Controller.extend
     vAxisGridsCount = if data['max'] < 5 then data['max'] + 1 else 5
 
     {
-      title: 'Visits / sign ins month overview'
+      title: 'Sign ins month overview'
       titleTextStyle:
         color: "#333333"
         fontName: "Roboto"
@@ -80,7 +80,7 @@ StatsController = Em.Controller.extend
     vAxisGridsCount = if data['max'] < 5 then data['max'] + 1 else 5
 
     {
-      title: 'Visits / sign ins daily overview'
+      title: 'Sign ins daily overview'
       titleTextStyle:
         color: "#333333"
         fontName: "Roboto"

@@ -69,7 +69,7 @@ HomeController = Ember.Controller.extend
     vAxisGridsCount = if data['max'] < 5 then data['max'] + 1 else 5
 
     {
-      title: 'Number of visits/sign ins per month'
+      title: 'Number of sign ins per month'
       titleTextStyle:
         color: "#333333"
         fontName: "Roboto"
