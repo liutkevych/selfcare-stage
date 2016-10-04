@@ -13,10 +13,6 @@ Router.map ->
 
   @route 'stats'
 
-  @route 'visitors', ->
-    @route 'emails'
-    @route 'phones'
-
   @route 'campaigns', ->
     @route 'new'
     @route 'edit',

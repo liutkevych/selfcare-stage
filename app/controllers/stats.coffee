@@ -58,12 +58,11 @@ StatsController = Em.Controller.extend
   monthPresenceFormatter: (data) ->
     dataTable = new google.visualization.DataTable()
     dataTable.addColumn 'string', 'Month'
-    dataTable.addColumn 'number', 'Visits'
     dataTable.addColumn 'number', 'Signins'
 
     rows = []
     Object.keys(data['per_day']).forEach (date) ->
-      rows.push [date, data['per_day'][date]['v'], data['per_day'][date]['s']]
+      rows.push [date, data['per_day'][date]]
 
     dataTable.addRows rows
     dataTable
@@ -120,12 +119,11 @@ StatsController = Em.Controller.extend
   dayPresenceFormatter: (data) ->
     dataTable = new google.visualization.DataTable()
     dataTable.addColumn 'string', 'Hour'
-    dataTable.addColumn 'number', 'Visits'
     dataTable.addColumn 'number', 'Signins'
 
     rows = []
     Object.keys(data['per_hour']).forEach (date) ->
-      rows.push [date, data['per_hour'][date]['v'], data['per_hour'][date]['s']]
+      rows.push [date, data['per_hour'][date]]
 
     dataTable.addRows rows
     dataTable

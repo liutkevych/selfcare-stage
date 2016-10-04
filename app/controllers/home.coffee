@@ -56,12 +56,11 @@ HomeController = Ember.Controller.extend
   yearPresenceFormatter: (data) ->
     dataTable = new google.visualization.DataTable()
     dataTable.addColumn 'string', 'Month'
-    dataTable.addColumn 'number', 'Visits'
     dataTable.addColumn 'number', 'Signins'
 
     rows = []
     Object.keys(data['per_month']).forEach (date) ->
-      rows.push [date, data['per_month'][date]['v'], data['per_month'][date]['s']]
+      rows.push [date, data['per_month'][date]]
 
     dataTable.addRows rows
     dataTable
