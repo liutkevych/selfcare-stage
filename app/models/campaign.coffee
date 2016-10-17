@@ -12,6 +12,10 @@ CampaignModel = DS.Model.extend
   failures_count:           DS.attr()
   returned_visitors_count:  DS.attr()
   locationId:               DS.attr()
+  created:                  DS.attr()
+
+  createdAt: Ember.computed 'created', ->
+    moment(@get('created')).format('MMM Do YYYY')
 
   isEmail: Ember.computed 'kind', ->
     @get('kind') == 'email'

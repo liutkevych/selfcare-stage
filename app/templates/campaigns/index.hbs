@@ -6,6 +6,7 @@
   <table class="table">
     <thead>
       <tr>
+        <td>Created at</td>
         <td>Kind</td>
         <td class="title">Title</td>
         <td>Status</td>
@@ -18,6 +19,7 @@
     <tbody>
       {{#each campaigns as |campaign|}}
       <tr>
+        <td>{{campaign.createdAt}}</td>
         <td>{{campaign.kind}}</td>
         <td class="title">
           {{capmaign.approved}}
