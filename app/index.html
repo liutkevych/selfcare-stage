@@ -9,8 +9,8 @@
 
     {{content-for "head"}}
 
-    <link rel="stylesheet" href="assets/vendor.css">
-    <link rel="stylesheet" href="assets/simplify-selfcare.css">
+    <link rel="stylesheet" href="{{rootURL}}assets/vendor.css">
+    <link rel="stylesheet" href="a{{rootURL}}ssets/simplify-selfcare.css">
 
     <script src="//cdn.ckeditor.com/4.5.9/standard/ckeditor.js"></script>
 
@@ -19,9 +19,9 @@
   <body>
     {{content-for "body"}}
 
-    <script src="assets/vendor.js"></script>
+    <script src="{{rootURL}}assets/vendor.js"></script>
     <script src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="assets/simplify-selfcare.js"></script>
+    <script src="{{rootURL}}assets/simplify-selfcare.js"></script>
 
     {{content-for "body-footer"}}
   </body>
