@@ -1,5 +1,7 @@
-{{input id="campaign-kind" type="hidden" value=model.kind}}
-<form data-remote="true" onsubmit={{action 'update'}}>
-  {{partial 'campaigns/form'}}
-  {{input type="submit" class="btn btn-success" value="Update"}}
-</form>
+<div class="campaigns-edit">
+  {{input id="campaign-kind" type="hidden" value=model.kind}}
+  <form data-remote="true" onsubmit={{action 'update'}}>
+    {{partial 'campaigns/form'}}
+    {{input type="submit" class="btn btn-success" value="Update"}}
+  </form>
+</div>

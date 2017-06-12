@@ -1,24 +1,26 @@
-<form data-remote="true" onsubmit={{action 'create'}}>
-  <fieldset class="form-group">
-    <div class="btn-group" role="group">
-      <button type="button" class="btn btn-info active" onclick={{action 'changeKind'}} kind='sms'>SMS</button>
-      <button type="button" class="btn btn-info" onclick={{action 'changeKind'}} kind='email'>Email</button>
-    </div>
-  </fieldset>
-  <fieldset class="form-group">
-    <label for="targetsFilter">
-      Targets:
-    </label>
-    <select id="targetsFilter" onchange={{action "selectTargetsFilter" value="target.value"}}>
-      <option value="all">
-        All
-      </option>
-      <option value="loyals">
-        Loyals (more than 2 visits during the last month)
-      </option>
-    </select>
-  </fieldset>
-<p>Will affect: {{targetsCount.actual}} / {{targetsCount.total}}</p>
-  {{partial 'campaigns/form'}}
-  {{input type="submit" class="btn btn-success" value="Create"}}
-</form>
+<div class="campaigns-new">
+  <form data-remote="true" onsubmit={{action 'create'}}>
+    <fieldset class="form-group">
+      <div class="btn-group" role="group">
+        <button type="button" class="btn btn-info active" onclick={{action 'changeKind'}} kind='sms'>SMS</button>
+        <button type="button" class="btn btn-info" onclick={{action 'changeKind'}} kind='email'>Email</button>
+      </div>
+    </fieldset>
+    <fieldset class="form-group">
+      <label for="targetsFilter">
+        Targets:
+      </label>
+      <select id="targetsFilter" onchange={{action "selectTargetsFilter" value="target.value"}}>
+        <option value="all">
+          All
+        </option>
+        <option value="loyals">
+          Loyals (more than 2 visits during the last month)
+        </option>
+      </select>
+    </fieldset>
+  <p>Will affect: {{targetsCount.actual}} / {{targetsCount.total}}</p>
+    {{partial 'campaigns/form'}}
+    {{input type="submit" class="btn btn-success" value="Create"}}
+  </form>
+</div>

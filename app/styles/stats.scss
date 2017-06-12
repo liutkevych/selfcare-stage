@@ -1,5 +1,6 @@
 .stats {
   display: flex;
+  background: $color-7;
 
   .left {
     width: 60%;
@@ -13,7 +14,7 @@
         height: 100px;
         display: flex;
         background: $color-4;
-        box-shadow: 0 0 3px #787878;
+        box-shadow: 0 0 3px #CCCCCC;
 
         &:not(:last-child) {
           margin-right: 10px;
@@ -40,7 +41,7 @@
     .data-chart {
       margin-top: 20px;
       background: $color-4;
-      box-shadow: 0 0 3px #787878;
+      box-shadow: 0 0 3px #CCCCCC;
     }
   }
 
@@ -52,7 +53,7 @@
 
     .data-chart {
       background: $color-4;
-      box-shadow: 0 0 3px #787878;
+      box-shadow: 0 0 3px #CCCCCC;
 
       &:last-child {
         margin-top: 20px;

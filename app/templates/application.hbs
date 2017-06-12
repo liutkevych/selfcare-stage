@@ -1,12 +1,13 @@
-{{#if session.isAuthenticated }}
-  {{partial 'side-menu'}}
-  <div class="right-part">
-    {{partial 'top-menu'}}
-    <div class="content-wrapper">
-      {{outlet}}
+<div class="application">
+  {{#if session.isAuthenticated }}
+    {{partial 'side-menu'}}
+    <div class="right-part">
+      {{partial 'top-menu'}}
+      <div class="content-wrapper col-xs-9 col-xs-offset-3 col-md-10 col-md-offset-2">
+        {{outlet}}
+      </div>
     </div>
-  </div>
-{{else}}
-  {{outlet}}
-{{/if}}
-
+  {{else}}
+    {{outlet}}
+  {{/if}}
+</div>

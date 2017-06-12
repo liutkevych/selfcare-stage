@@ -1,3 +1,9 @@
+.campaign {
+  background: $color-7;
+}
+
+
+
 .campaigns-new, .campaigns-edit {
   text-align: center;
   background: $color-7;
@@ -10,6 +16,18 @@
     width: 80%;
     max-width: 80%;
     height: 60%;
+  }
+
+  .delay {
+    label {
+      font-weight: normal;
+    }
+
+    input {
+      width: 50px;
+      text-align: center;
+      color: $color-2;
+    }
   }
 }
 
