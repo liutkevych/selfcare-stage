@@ -1,13 +1,11 @@
 {
   "name": "simplify-selfcare",
   "dependencies": {
-    "ember": "~2.3.1",
-    "ember-cli-shims": "0.1.0",
-    "ember-cli-test-loader": "0.2.2",
-    "ember-qunit-notifications": "0.1.0",
-    "bootstrap": "~3.3.5",
     "font-awesome": "~4.5.0",
     "bootstrap-datepicker": "^1.6.0",
-    "select2": "3.5.2"
+    "select2": "3.5.2",
+    "jquery-ui": "1.11.3",
+    "moment": "^2.17.1",
+    "seiyria-bootstrap-slider": "~6.0.6"
   }
 }
