@@ -1,20 +1,21 @@
-<form {{action "signIn" on="submit"}}>
-  <img class="logo" src="images/blue_logo.png">
-  <p>Welcome to SIMP dashboard</p>
-  <p>let's see what simp has to show</p>
-  {{#if error}}
-    <div class="alert alert-danger">
-      {{error.message}}
+<div class="sign-in">
+  <form {{action "signIn" on="submit"}}>
+    <img class="logo" src="images/blue_logo.png">
+    <p>Welcome to SIMP dashboard</p>
+    <p>let's see what simp has to show</p>
+    {{#if error}}
+      <div class="alert alert-danger">
+        {{error.message}}
+      </div>
+    {{/if}}
+    <div class="form-group name">
+      <img class="icon" src="images/sign-in/username.svg">
+      {{input type='email' value=email placeholder='Name' required=true}}
     </div>
-  {{/if}}
-  <div class="form-group name">
-    <img class="icon" src="images/sign-in/username.svg">
-    {{input type='email' value=email placeholder='Name' required=true}}
-  </div>
-  <div class="form-group">
-    <img class="icon" src="images/sign-in/password.svg">
-    {{input type='password' value=password placeholder='Password' required=true}}
-  </div>
-  {{input type="submit" value="Login" class="btn btn-success"}}
-</form>
-
+    <div class="form-group">
+      <img class="icon" src="images/sign-in/password.svg">
+      {{input type='password' value=password placeholder='Password' required=true}}
+    </div>
+    {{input type="submit" value="Login" class="btn btn-success"}}
+  </form>
+</div>
