@@ -1,0 +1,98 @@
+.targets {
+  padding: 10px;
+  box-shadow: 0 0 3px #CCCCCC;
+  margin: 20px 20px;
+  background: $color-4;
+  text-align: center;
+  font-size: 18px;
+
+  .all {
+    margin: 10px 0;
+  }
+
+  .name {
+    padding: 20px 0;
+
+    input {
+      width: 300px;
+      padding: 5px;
+    }
+  }
+
+  select {
+    font-weight: normal;
+  }
+
+  .row {
+    margin-left: 100px;
+    margin-right: 100px;
+    padding: 20px;
+  }
+
+  .date-range {
+    input[type="text"] {
+      width: 100%;
+      color: $color-2;
+      padding: 5px;
+    }
+
+    .start, .end {
+      text-align: left;
+    }
+  }
+
+  .frequency label, .geography label, .gender label, .age label {
+    &:first-child {
+      display: block;
+      text-align: left;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+  }
+
+  .gender {
+    input[type="radio"] {
+      margin: 0 10px;
+    }
+
+    label:not(:first-child) {
+      font-weight: normal;
+    }
+  }
+
+  .frequency input, .age input {
+    &:not(:first-child) {
+      width: 50px;
+    }
+  }
+
+  button {
+    font-size: 20px;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+  }
+
+  .geography .slider-selection {
+    background: $color-2;
+  }
+
+  .geography {
+    span.radius {
+      color: gray;
+    }
+  }
+
+  .slider-disabled .slider-selection {
+    background: darkgray;
+  }
+
+  .frequency, .age {
+    input[type="text"]:last-child {
+      color: $color-2;
+    }
+  }
+
+  input:disabled {
+    color: lightgray !important;
+  }
+}
