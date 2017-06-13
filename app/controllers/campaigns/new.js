@@ -47,7 +47,7 @@ let CampaignsNewController = Ember.Controller.extend({
     create() {
       let newCampaign = this.get('model');
       let kind = this.get('model.kind');
-      if (kind === 'email') {
+      if (kind !== 'sms') {
         newCampaign.set('message', CKEDITOR.instances['campaign-content'].getData());
       }
       newCampaign.set('location', this.store.peekRecord('location', this.get('locationId')));
@@ -64,7 +64,7 @@ let CampaignsNewController = Ember.Controller.extend({
       $target.addClass('active');
       let newKind = $target.attr('kind');
       this.set('model.kind', newKind);
-      if (newKind === 'email') {
+      if (newKind !== 'sms') {
         return CKEDITOR.replace('campaign-content');
       } else if ((newKind === 'sms') && ($('#cke_campaign-content').length > 0)) {
         return CKEDITOR.instances['campaign-content'].destroy();

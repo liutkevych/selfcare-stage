@@ -26,6 +26,12 @@ let CampaignModel = DS.Model.extend({
     return this.get('kind') === 'sms';
   }),
 
+  notSms: Ember.computed.not('isSms'),
+
+  isPopup: Ember.computed('kind', function() {
+    return this.get('kind') === 'popup';
+  }),
+
   location:   DS.belongsTo('location')
 });
 

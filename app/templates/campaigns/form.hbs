@@ -2,7 +2,7 @@
   <fieldset class="form-group">
     {{input class="form-control" value=model.title placeholder="Title" required=true}}
   </fieldset>
-  {{#if model.isEmail}}
+  {{#if model.notSms}}
     <fieldset class="form-group">
       {{input class="form-control" value=model.subject placeholder="Subject" required=true}}
     </fieldset>
