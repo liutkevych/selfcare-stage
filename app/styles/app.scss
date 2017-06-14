@@ -37,8 +37,9 @@ html {
     }
 
     .right-part {
-      height: 100%;
+      height: 100vh;
       position: relative;
+      background: $color-7;
     }
 
     .side-menu {
@@ -55,7 +56,7 @@ html {
     .content-wrapper {
       position: absolute;
       top: 60px;
-      background: $color-7;
+
     }
   }
 }
