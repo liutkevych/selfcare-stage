@@ -2,6 +2,13 @@
   "name": "simplify-selfcare",
   "dependencies": {
     "font-awesome": "~4.5.0",
+    "ember":"2.13.3",
+    "qunit-notifications":"~1.17.0",
+    "jquery":"3.2.1",
+    "ember-qunit-notifications":"0.1.0",
+    "ember-cli-test-loader":"0.2.2",
+    "ember-cli-shims": "0.1.0",
+    "bootstrap":"3.3.7",
     "bootstrap-datepicker": "^1.6.0",
     "select2": "3.5.2",
     "jquery-ui": "1.11.3",
