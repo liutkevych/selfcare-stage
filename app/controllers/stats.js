@@ -171,7 +171,7 @@ let StatsController = Em.Controller.extend({
 
   pieChartOptions(data) {
       return {
-        height: 570,
+        height: 555,
         tooltip: {
           text: 'none'
         },

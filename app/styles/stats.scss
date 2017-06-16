@@ -4,7 +4,8 @@
 
   .left {
     width: 60%;
-    padding: 20px;
+    padding-top: 15px;
+    padding-right: 5px;
 
     .stats-wrapper {
       display: flex;
@@ -17,7 +18,7 @@
         box-shadow: 0 0 3px #CCCCCC;
 
         &:not(:last-child) {
-          margin-right: 10px;
+          margin-right: 5px;
         }
 
         img {
@@ -39,7 +40,7 @@
     }
 
     .data-chart {
-      margin-top: 20px;
+      margin-top: 5px;
       background: $color-4;
       box-shadow: 0 0 3px #CCCCCC;
     }
@@ -47,16 +48,14 @@
 
   .right {
     width: 40%;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-right: 20px;
+    padding-top: 15px;
 
     .data-chart {
       background: $color-4;
       box-shadow: 0 0 3px #CCCCCC;
 
       &:last-child {
-        margin-top: 20px;
+        margin-top: 5px;
       }
     }
   }
