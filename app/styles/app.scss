@@ -56,7 +56,10 @@ html {
     .content-wrapper {
       position: absolute;
       top: 60px;
-
+      bottom: 0;
+      width: 100%;
+      overflow: auto;
+      background: #F3F3F3;
     }
   }
 }
