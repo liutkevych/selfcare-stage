@@ -73,6 +73,10 @@ let CampaignsNewController = Ember.Controller.extend({
 
     selectTargetsFilter(e) {
       return this.set('model.targets_filters', [e]);
+    },
+
+    selectGenderFilter(e) {
+      return this.set('model.targets_filters', [e]);
     }
   }});
 

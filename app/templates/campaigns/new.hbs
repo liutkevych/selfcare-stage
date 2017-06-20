@@ -7,19 +7,52 @@
         <button type="button" class="btn btn-info" onclick={{action 'changeKind'}} kind='popup'>Pop up</button>
       </div>
     </fieldset>
-    <fieldset class="form-group">
-      <label for="targetsFilter">
-        Targets:
-      </label>
-      <select id="targetsFilter" onchange={{action "selectTargetsFilter" value="target.value"}}>
-        <option value="all">
-          All
-        </option>
-        <option value="loyals">
-          Loyals (more than 2 visits during the last month)
-        </option>
-      </select>
-    </fieldset>
+    <div class="campaign-segmentation">
+
+      <div class="loyal-filter filter">
+        <fieldset class="form-group">
+          <div class="filter_title">
+            <label for="targetsFilter">
+              Targets:
+            </label>
+          </div>
+          <div class="filter_body">
+            <select id="targetsFilter" onchange={{action "selectTargetsFilter" value="target.value"}}>
+              <option value="all">
+                All
+              </option>
+              <option value="loyals">
+                Loyals (more than 2 visits during the last month)
+              </option>
+            </select>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="gender-filter filter">
+        <fieldset class="form-group">
+          <div class="filter_title">
+            <label for="genderFilter">
+              Recepients' gender:
+            </label>
+          </div>
+          <div class="filter_body">
+            <select id="genderFilter" onchange={{action "selectGenderFilter" value="gender.value"}}>
+              <option value="all">
+                All
+              </option>
+              <option value="male">
+                Male
+              </option>
+              <option value="female">
+                Female
+              </option>
+            </select>
+          </div>
+        </fieldset>
+      </div>
+
+    </div>
   <p>Will affect: {{targetsCount.actual}} / {{targetsCount.total}}</p>
     {{partial 'campaigns/form'}}
     {{input type="submit" class="btn btn-success" value="Create"}}

@@ -11,9 +11,7 @@ let CampaignsNewRoute = Ember.Route.extend(AuthenticatedRouteMixin, {
           location: result.get('firstObject'),
           kind: 'sms',
           targets_filters: ['all']
-        }
-        )
-        );
+        }));
       });
     });
   },
