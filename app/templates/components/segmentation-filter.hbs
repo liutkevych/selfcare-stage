@@ -1,0 +1,97 @@
+<div class="segmentation-form">
+
+  <h4>Segmentation</h4>
+
+  <div class="form-block">
+    <div class="filter ">
+      <div class="filter-name">
+        <label>Select the type of e-shot you want to send:</label>
+      </div>
+      <div class="filter-content">
+        <select id="visitBaseFilter">
+          <option value="">Visit Based</option>
+          <option value="">Option 2</option>
+          <option value="">Option 3</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-block">
+    <div class="text-l">
+      <p class="font-bold">Define your parameters</p>
+    </div>
+    <div class="filter">
+      <div class="filter-name">
+        <label>Recipients' gender</label>
+      </div>
+      <div class="filter-content">
+        <select id="genderFilter">
+          <option>Male & Female</option>
+          <option>Male</option>
+          <option>Female</option>
+        </select>
+      </div>
+    </div>
+    <div class="filter filter-age">
+      <div class="filter-name">
+        <label>Recipients' age range</label>
+      </div>
+      <div class="filter-content">
+        <span>From</span>
+        <input id="ageFromFilter" type="text">
+        <span>to</span>
+        <input id="ageToFilter" type="text">
+      </div>
+    </div>
+    <div class="filter">
+      <div class="filter-name">
+        <label>Recipients have visited</label>
+      </div>
+      <div class="filter-content">
+        <select id="placeFilter">
+            <option value="" disabled selected>Select venues</option>
+            <option value="place1">place1</option>
+            <option value="place2">place2</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-block">
+    <div class="filter ">
+      <div class="filter-name">
+        <label style="font-weight: bold;">Parameter type</label>
+      </div>
+      <div class="filter-content">
+        <input type="radio" name="frequent" value="isLoyial" checked>&nbsp;&nbsp;Previous visitor&nbsp;&nbsp;
+        <input type="radio" name="frequent" value="notLoyial" >&nbsp;&nbsp;First time visitor&nbsp;&nbsp;
+      </div>
+    </div>
+  </div>
+
+  <div class="form-block">
+    <div class="filter">
+      <div class="filter-name">
+        <label>This number of times</label>
+      </div>
+      <div class="filter-content">
+        <input id="numberOfVisits" type="text" placeholder="0">
+      </div>
+    </div>
+    <div class="filter">
+      <div class="filter-name">
+        <label>During the last</label>
+      </div>
+      <div class="filter-content">
+        <input id="numberOfVisits" type="text" placeholder="0">
+        <select id="typeOfPeriod">
+            <option value="Day"  selected>Day(s)</option>
+            <option value="Week">Week(s)</option>
+            <option value="Month">Month(s)</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,59 @@
+.segmentation-form {
+  // background: white;
+}
+
+.form-block {
+  border-bottom: 1px solid gray;
+}
+
+.filter {
+  padding: 15px 0;
+}
+
+.filter-name, .filter-content {
+  box-sizing: border-box;
+  display: inline-block;
+  margin-right: -4px;
+  width: 50%;
+  text-align: left;
+}
+
+.filter-name > label {
+  font-weight: normal;
+}
+
+.filter-content > input[type='radio']:after {
+  width: 25px;
+  height: 25px;
+  border-radius: 25px;
+  top: -7px;
+  left: -7px;
+  position: relative;
+  background-color: #ffffff;
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid gray;
+}
+
+.filter-content > input[type='radio']:checked:after {
+  width: 25px;
+  height: 25px;
+  border-radius: 25px;
+  top: -7px;
+  left: -7px;
+  position: relative;
+  background-color: #57ed5d;
+  content: '';
+  display: inline-block;
+  visibility: visible;
+  border: 2px solid gray;
+}
+
+.text-l {
+  text-align: left;
+}
+
+.font-bold {
+  font-weight: 700;
+}
