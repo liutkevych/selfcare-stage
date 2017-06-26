@@ -1,0 +1,26 @@
+html, body {
+  font-size: 15px;
+  font-family: sans-serif;
+  color: $black;
+}
+
+body {
+  background: $white;
+}
+
+input[type=text] {
+  border: 1px solid #999;
+}
+
+a {
+    color: $c-link;
+}
+
+a:hover {
+    color: $c-hover;
+}
+
+@import "config";
+@import "normalize";
+@import "reset";
+@import "typographic"
