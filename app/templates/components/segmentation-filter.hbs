@@ -26,10 +26,10 @@
         <label>Recipients' gender</label>
       </div>
       <div class="filter-content">
-        <select id="genderFilter">
-          <option>Male & Female</option>
-          <option>Male</option>
-          <option>Female</option>
+        <select name="genderFilter" onchange={{action "changeGender"}}>
+          <option value="all">Male & Female</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
         </select>
       </div>
     </div>
@@ -65,12 +65,12 @@
       </div>
       <div class="filter-content">
         <input type="radio" name="frequent" value="isLoyial" checked>&nbsp;&nbsp;Previous visitor&nbsp;&nbsp;
-        <input type="radio" name="frequent" value="notLoyial" >&nbsp;&nbsp;First time visitor&nbsp;&nbsp;
+        <input type="radio" name="frequent" value="notLoial" {{action "hideLoyialSettings"}}>&nbsp;&nbsp;First time visitor&nbsp;&nbsp;
       </div>
     </div>
   </div>
-
-  <div class="form-block">
+  {{#if isLoyial}}
+  <div class="form-block ">
     <div class="filter">
       <div class="filter-name">
         <label>This number of times</label>
@@ -93,5 +93,6 @@
       </div>
     </div>
   </div>
+  {{/if}}
 
 </div>
