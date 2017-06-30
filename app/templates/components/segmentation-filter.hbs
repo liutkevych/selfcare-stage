@@ -39,9 +39,9 @@
       </div>
       <div class="filter-content">
         <span>From</span>
-        <input id="ageFromFilter" type="text">
+        <input type="text" onchange={{action "changeMinAge"}} placeholder="Enter min. age">
         <span>to</span>
-        <input id="ageToFilter" type="text">
+        <input type="text" onchange={{action "changeMaxAge"}} placeholder="Enter max. age">
       </div>
     </div>
     <div class="filter">
@@ -65,7 +65,7 @@
       </div>
       <div class="filter-content">
         <input type="radio" name="frequent" value="isLoyial" checked>&nbsp;&nbsp;Previous visitor&nbsp;&nbsp;
-        <input type="radio" name="frequent" value="notLoial" {{action "hideLoyialSettings"}}>&nbsp;&nbsp;First time visitor&nbsp;&nbsp;
+        <input type="radio" name="frequent" value="notLoial" onclick={{action "hideLoyialSettings"}}>&nbsp;&nbsp;First time visitor&nbsp;&nbsp;
       </div>
     </div>
   </div>
