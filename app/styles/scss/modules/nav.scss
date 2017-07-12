@@ -1,0 +1,14 @@
+.nav {
+  margin-top: 10px;
+  padding: 0;
+  list-style: none;
+  &-item {
+    height: 50px;
+    line-height: 50px;
+  }
+}
+
+.nav-item.active {
+  border-left: 10px solid $c-theme-3;
+  background: $c-theme-2;
+}
