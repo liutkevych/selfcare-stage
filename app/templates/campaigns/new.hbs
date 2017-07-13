@@ -2,12 +2,11 @@
   <form data-remote="true" onsubmit={{action 'create'}}>
     <fieldset class="form-group">
       <div class="btn-group" role="group">
-        <button type="button" class="btn btn-info active" onclick={{action 'changeKind'}} kind='sms'>SMS</button>
-        <button type="button" class="btn btn-info" onclick={{action 'changeKind'}} kind='email'>Email</button>
-        <button type="button" class="btn btn-info" onclick={{action 'changeKind'}} kind='popup'>Pop up</button>
+        <button type="button" class="btn btn-info active" onclick={{action (pipe (action 'changeKind') (action 'changeFilter'))}} kind='sms'>SMS</button>
+        <button type="button" class="btn btn-info" onclick={{action (pipe (action 'changeKind') (action 'changeFilter'))}} kind='email'>Email</button>
+        <button type="button" class="btn btn-info"  kind='popup'>Pop up</button>
       </div>
     </fieldset>
-
     {{!-- {{segmentation-filter model=model onSave=(action 'save')}} --}}
 
     <div class="segmentation-form">
@@ -38,7 +37,7 @@
             <label>Recipients' gender</label>
           </div>
           <div class="filter-content">
-            <select name="genderFilter" onchange={{action "changeGender"}}>
+            <select class="gender" name="genderFilter" onchange={{action "changeFilter"}}>
               <option value="all">Male & Female</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
@@ -51,9 +50,11 @@
           </div>
           <div class="filter-content">
             <span>From</span>
-            <input type="text" onchange={{action "changeMinAge"}} placeholder="Enter min. age">
+            {{!-- {{input type='text' value=filterAgeMin}} --}}
+            <input class="age_min" type="text" onchange={{action "changeFilter"}} placeholder="Enter min. age">
             <span>to</span>
-            <input type="text" onchange={{action "changeMaxAge"}} placeholder="Enter max. age">
+            {{!-- {{input type='text' value=filterAgeMax}} --}}
+            <input class="age_max" type="text" onchange={{action "changeFilter"}} placeholder="Enter max. age">
           </div>
         </div>
         <div class="filter">
@@ -61,7 +62,7 @@
             <label>Recipients have visited</label>
           </div>
           <div class="filter-content">
-            <select id="placeFilter">
+            <select value="filterLocationId" id="placeFilter">
                 <option value="" disabled selected>Select venues</option>
                 <option value="place1">place1</option>
                 <option value="place2">place2</option>
@@ -109,6 +110,7 @@
 
     </div>
   <p>Will affect: {{targetsCount.actual}} / {{targetsCount.total}}</p>
+  <p> {{filterQueryComputed.usersCountAll}} / {{filterQueryComputed.usersCountActual}}</p>
     {{partial 'campaigns/form'}}
     {{input type="submit" class="btn btn-success" value="Create"}}
   </form>

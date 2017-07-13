@@ -43,6 +43,27 @@ let CampaignsNewController = Ember.Controller.extend({
       return 160;
     }
   }),
+  //
+  // filterKind: [],
+  // filterLocationId: [],
+  // filterAgeMin: [],
+  // filterAgeMax: [],
+  // filterGender: [],
+  //
+  // filterQueryComputed: Ember.computed('filterKind', 'filterLocationId', 'filterAgeMin', 'filterAgeMax', 'filterGender', () => {
+  //   let filterKind = this.get('filterKind');
+  //   let filterLocationId = this.get('filterLocationId');
+  //   let filterAgeMin = this.get('filterAgeMin');
+  //   let filterAgeMax = this.get('filterAgeMax');
+  //   let filterGender = this.get('filterGender');
+  //     return this.store.query('filters', {
+  //       location_id: filterLocationId,
+  //       gender: filterGender,
+  //       kind: filterKind,
+  //       min_age: filterAgeMin,
+  //       max_age: filterAgeMax
+  //     });
+  // }),
 
   actions: {
     create() {
@@ -72,20 +93,42 @@ let CampaignsNewController = Ember.Controller.extend({
       }
     },
 
-    selectTargetsFilter(e) {
-      return this.set('model.targets_filters', [e]);
-    },
-
     hideLoyialSettings() {
       this.toggleProperty('isLoyial');
     },
 
-    changeMinAge(event) {
-      event.preventDefault();
-      event.stopPropagation();
-      let targetValue = Ember.$(event.target).val();
-      this.set('ageMinValue', targetValue);
-      console.log(targetValue);
+    changeFilter(event) {
+      // event.preventDefault();
+      // event.stopPropagation();
+      let filterAgeMin = function() {
+        let ageMin = Ember.$('.age_min').val();
+        if(!ageMin) {
+          return 1
+        } else {
+          return ageMin
+        }
+      };
+      let filterAgeMax = function() {
+        let ageMax = Ember.$('.age_max').val();
+        if(!ageMax) {
+          return 100
+        } else {
+          return ageMax
+        }
+      };
+      let filterGender = Ember.$('.gender').val();
+      let locationId = this.get('locationId');
+      let kind = this.get('model.kind');
+      console.log(kind + ' - ' + locationId + ' - ' + filterGender + ' - ' + filterAgeMin() + ' - ' + filterAgeMax());
+      let authorization = this.get('session').authorize('authorizer:devise', (headerName, headerValue) => {
+        let headers = {};
+        headers[headerName] = headerValue;
+        return Ember.$.ajax({
+          type: "GET",
+          url: `${ENV.SERVER_URL}/api/${ENV.API_VERSION}/filters?location_id=`+locationId+`&gender=` +filterGender
+                +`&kind=`+kind+`&min_age=`+filterAgeMin() +`&max_age=`+ filterAgeMax()
+        }).then(console.log("Heey!"))
+      });
     },
 
     changeMaxAge(event) {
@@ -103,24 +146,15 @@ let CampaignsNewController = Ember.Controller.extend({
       let model = this.get('model');
       let kind = this.get('model.kind');
       let locationId = this.get('locationId');
-      // let genderFilterValue = model.get('gender_type');
-      // this.set('genderFilterValue', targetValue);
-      // model.set('gender_type', targetValue);
-      // this.get('onSave')();
-        return this.get('session').authorize('authorizer:devise', (headerName, headerValue) => {
-          let headers = {};
-          headers[headerName] = headerValue;
-          return Ember.$.ajax({
-            type: "GET",
-            url: `${ENV.SERVER_URL}/api/${ENV.API_VERSION}/campaigns/gender?location_id=`+locationId+`&gender=` +targetValue
-                  +`&kind=`+kind+`&min_age=1&max_age=100`
-          }).then(console.log("Heey!"))
-        });
-    },
-
-    save() {
-      let model = this.get('model');
-      model.save();
+      return this.get('session').authorize('authorizer:devise', (headerName, headerValue) => {
+        let headers = {};
+        headers[headerName] = headerValue;
+        return Ember.$.ajax({
+          type: "GET",
+          url: `${ENV.SERVER_URL}/api/${ENV.API_VERSION}/campaigns/gender?location_id=`+locationId+`&gender=` +targetValue
+                +`&kind=`+kind+`&min_age=1&max_age=100`
+        }).then(console.log("Heey!"))
+      });
     }
 
   }});
