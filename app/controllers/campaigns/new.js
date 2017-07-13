@@ -7,7 +7,7 @@ let CampaignsNewController = Ember.Controller.extend({
   locationId: Ember.computed.alias('applicationController.locationId'),
   session: Ember.inject.service(),
 
-//this make query to api/v1/campaigns/targets/:locatioId and as response get all the data from location
+// this make query to api/v1/campaigns/targets/:locatioId and as response get all the data from location
   fetchTargetsCount: Ember.observer('model.targets_filters', 'locationId', 'model.kind', function() {
     let locationId = this.get('locationId');
     if (!locationId) { return; }
@@ -15,6 +15,8 @@ let CampaignsNewController = Ember.Controller.extend({
     return this.get('session').authorize('authorizer:devise', (headerName, headerValue) => {
       let headers = {};
       headers[headerName] = headerValue;
+      let locationId = this.get('locationId');
+      if (!locationId) { return; }
 
       return Ember.$.ajax({
         url: `${ENV.SERVER_URL}/api/${ENV.API_VERSION}/campaigns/targets/${locationId}`,
@@ -100,6 +102,7 @@ let CampaignsNewController = Ember.Controller.extend({
     changeFilter(event) {
       // event.preventDefault();
       // event.stopPropagation();
+      let json = {};
       let filterAgeMin = function() {
         let ageMin = Ember.$('.age_min').val();
         return ageMin ? ageMin : 1;
@@ -115,10 +118,13 @@ let CampaignsNewController = Ember.Controller.extend({
       let authorization = this.get('session').authorize('authorizer:devise', (headerName, headerValue) => {
         let headers = {};
         headers[headerName] = headerValue;
+        let locationId = this.get('locationId');
+        if (!locationId) { return; }
+        console.log(headers);
         return Ember.$.ajax({
           type: "GET",
-          url: `${ENV.SERVER_URL}/api/${ENV.API_VERSION}/filters?location_id=`+locationId+`&gender=` +filterGender
-                +`&kind=`+kind+`&min_age=`+filterAgeMin() +`&max_age=`+ filterAgeMax()
+          url: `${ENV.SERVER_URL}/api/${ENV.API_VERSION}/campaigns/filters?location_id=`+locationId+`&gender=` +filterGender
+                +`&kind=`+kind+`&min_age=`+filterAgeMin() +`&max_age=`+ filterAgeMax(),headers
         }).then(response => {
           console.log(response);
           // return this.set('targets', response);
@@ -126,31 +132,7 @@ let CampaignsNewController = Ember.Controller.extend({
       });
     },
 
-    changeMaxAge(event) {
-      event.preventDefault();
-      event.stopPropagation();
-      let targetValue = Ember.$(event.target).val();
-      this.set('ageMaxValue', targetValue);
-      console.log(targetValue);
-    },
 
-    changeGender(event) {
-      event.preventDefault();
-      event.stopPropagation();
-      let targetValue = Ember.$(event.target).val();
-      let model = this.get('model');
-      let kind = this.get('model.kind');
-      let locationId = this.get('locationId');
-      return this.get('session').authorize('authorizer:devise', (headerName, headerValue) => {
-        let headers = {};
-        headers[headerName] = headerValue;
-        return Ember.$.ajax({
-          type: "GET",
-          url: `${ENV.SERVER_URL}/api/${ENV.API_VERSION}/campaigns/gender?location_id=`+locationId+`&gender=` +targetValue
-                +`&kind=`+kind+`&min_age=1&max_age=100`
-        }).then(console.log("Heey!"))
-      });
-    }
 
   }});
 

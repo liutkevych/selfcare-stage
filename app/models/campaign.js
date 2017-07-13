@@ -13,7 +13,14 @@ let CampaignModel = DS.Model.extend({
   returned_visitors_count:  DS.attr(),
   locationId:               DS.attr(),
   created:                  DS.attr(),
-  gender_type:              DS.attr(),
+  targets:                  DS.attr(),
+
+  gender:                   DS.attr(),
+  age_max:                  DS.attr(),
+  age_min:                  DS.attr(),
+  usersCountAll:            DS.attr(),
+  usersCountActual:         DS.attr(),
+
 
   createdAt: Ember.computed('created', function() {
     return moment(this.get('created')).format('MMM Do YYYY');
