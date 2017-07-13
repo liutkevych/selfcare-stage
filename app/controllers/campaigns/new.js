@@ -102,19 +102,11 @@ let CampaignsNewController = Ember.Controller.extend({
       // event.stopPropagation();
       let filterAgeMin = function() {
         let ageMin = Ember.$('.age_min').val();
-        if(!ageMin) {
-          return 1
-        } else {
-          return ageMin
-        }
+        return ageMin ? ageMin : 1;
       };
       let filterAgeMax = function() {
         let ageMax = Ember.$('.age_max').val();
-        if(!ageMax) {
-          return 100
-        } else {
-          return ageMax
-        }
+        return ageMax ? ageMax : 100;
       };
       let filterGender = Ember.$('.gender').val();
       let locationId = this.get('locationId');
@@ -127,7 +119,10 @@ let CampaignsNewController = Ember.Controller.extend({
           type: "GET",
           url: `${ENV.SERVER_URL}/api/${ENV.API_VERSION}/filters?location_id=`+locationId+`&gender=` +filterGender
                 +`&kind=`+kind+`&min_age=`+filterAgeMin() +`&max_age=`+ filterAgeMax()
-        }).then(console.log("Heey!"))
+        }).then(response => {
+          console.log(response);
+          // return this.set('targets', response);
+        });
       });
     },
 

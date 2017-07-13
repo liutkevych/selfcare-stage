@@ -78,11 +78,11 @@
           </div>
           <div class="filter-content">
             <input type="radio" name="frequent" value="isLoyial" checked>&nbsp;&nbsp;Previous visitor&nbsp;&nbsp;
-            <input type="radio" name="frequent" value="notLoial" onclick={{action "hideLoyialSettings"}}>&nbsp;&nbsp;First time visitor&nbsp;&nbsp;
+            <input type="radio" name="frequent" value="notLoial" >&nbsp;&nbsp;First time visitor&nbsp;&nbsp;
           </div>
         </div>
       </div>
-      {{#if isLoyial}}
+      {{!-- {{#if isLoyial}} --}}
       <div class="form-block ">
         <div class="filter">
           <div class="filter-name">
@@ -106,7 +106,7 @@
           </div>
         </div>
       </div>
-      {{/if}}
+      {{!-- {{/if}} --}}
 
     </div>
   <p>Will affect: {{targetsCount.actual}} / {{targetsCount.total}}</p>
