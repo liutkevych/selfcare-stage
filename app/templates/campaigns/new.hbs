@@ -109,8 +109,7 @@
       {{!-- {{/if}} --}}
 
     </div>
-  <p>Will affect: {{targetsCount.actual}} / {{targetsCount.total}}</p>
-  <p> {{model.targets_count}} / {{filterQueryComputed.usersCountActual}}</p>
+    <p> Will affect: {{model.usersCountActual}} / {{model.usersCountAll}}</p>
     {{partial 'campaigns/form'}}
     {{input type="submit" class="btn btn-success" value="Create"}}
   </form>
