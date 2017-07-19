@@ -69,13 +69,17 @@ let CampaignsNewController = Ember.Controller.extend({
 
   actions: {
     create() {
-      let newCampaign = this.get('model');
+      let model = this.get('model');
+      let total_count = this.get('targetsCount.total');
+      model.set('total_count', total_count);
+      let targets_count = this.get('targetsCount.actual');
+      model.set('targets_count', targets_count);
       let kind = this.get('model.kind');
       if (kind !== 'sms') {
-        newCampaign.set('message', CKEDITOR.instances['campaign-content'].getData());
+        model.set('message', CKEDITOR.instances['campaign-content'].getData());
       }
-      newCampaign.set('location', this.store.peekRecord('location', this.get('locationId')));
-      newCampaign.save().then(() => {
+      model.set('location', this.store.peekRecord('location', this.get('locationId')));
+      model.save().then(() => {
         return this.transitionToRoute('campaigns.index');
       });
 
@@ -125,14 +129,7 @@ let CampaignsNewController = Ember.Controller.extend({
       let dateType = Ember.$('#dateType').val();
       model.set('date_type', dateType);
 
-      let total_count = this.get('targetsCount.total');
-      model.set('total_count', total_count);
 
-      let targets_count = this.get('targetsCount.actual');
-      model.set('targets_count', targets_count);
-
-      console.log(targets_count);
-      console.log(total_count);
 
       let authorization = this.get('session').authorize('authorizer:devise', (headerName, headerValue) => {
         let headers = {};
