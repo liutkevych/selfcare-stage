@@ -46,6 +46,26 @@ let CampaignsNewController = Ember.Controller.extend({
     }
   }),
 
+  filterAgeMin() {
+    let ageMin = Ember.$('.age_min').val();
+    return ageMin ? ageMin : 0;
+  },
+
+  filterAgeMax() {
+    let ageMax = Ember.$('.age_max').val();
+    return ageMax ? ageMax : 100;
+  },
+
+  timesVisited() {
+    let visits = Ember.$('#timesVisited').val();
+    return visits ? visits : 0;
+  },
+
+  dateNamber() {
+    let number = Ember.$('#dateNamber').val();
+    return number ? number : 0;
+  },
+
 
   actions: {
     create() {
@@ -82,37 +102,48 @@ let CampaignsNewController = Ember.Controller.extend({
     changeFilter(event) {
       // event.preventDefault();
       // event.stopPropagation();
-      let filterAgeMin = function() {
-        let ageMin = Ember.$('.age_min').val();
-        return ageMin ? ageMin : 0;
-      };
-      let filterAgeMax = function() {
-        let ageMax = Ember.$('.age_max').val();
-        return ageMax ? ageMax : 100;
-      };
-      let filterGender = Ember.$('.gender').val();
+      let model = this.get('model');
       let locationId = this.get('locationId');
       let kind = this.get('model.kind');
-      let timesVisited = function() {
-        let visits = Ember.$('#timesVisited').val();
-        return visits ? visits : 0;
-      };
-      let dateNamber = function() {
-        let number = Ember.$('#dateNamber').val();
-        return number ? number : 0;
-      };
+
+
+      let filterGender = Ember.$('.gender').val();
+      model.set('gender', filterGender);
+
+      let ageMin = this.get('filterAgeMin')();
+      model.set('min_age', ageMin);
+
+      let ageMax = this.get('filterAgeMax')();
+      model.set('max_age', ageMax);
+
+      let times = this.get('timesVisited')();
+      model.set('times_visited', times);
+
+      let dateNamber = this.get('dateNamber')();
+      model.set('date_number', dateNamber);
+
       let dateType = Ember.$('#dateType').val();
+      model.set('date_type', dateType);
+
+      let total_count = this.get('targetsCount.total');
+      model.set('total_count', total_count);
+
+      let targets_count = this.get('targetsCount.actual');
+      model.set('targets_count', targets_count);
+
+      console.log(targets_count);
+      console.log(total_count);
+
       let authorization = this.get('session').authorize('authorizer:devise', (headerName, headerValue) => {
         let headers = {};
         headers[headerName] = headerValue;
         let locationId = this.get('locationId');
         if (!locationId) { return; }
-        // console.log(headers);
         return Ember.$.ajax({
           type: "GET",
-          url: `${ENV.SERVER_URL}/api/${ENV.API_VERSION}/campaigns/filters?location_id=`+locationId+`&gender=` +filterGender
-                +`&kind=`+kind+`&min_age=`+filterAgeMin() +`&max_age=`+ filterAgeMax() + `&times_visited=`+ timesVisited()
-                + `&date_number=` + dateNamber() + `&date_type=` + dateType, headers
+          url: `${ENV.SERVER_URL}/api/${ENV.API_VERSION}/campaigns/filters?location_id=`+locationId+`&gender=` + filterGender
+                +`&kind=`+kind+`&min_age=`+ageMin +`&max_age=`+ ageMax + `&times_visited=`+ times
+                + `&date_number=` + dateNamber + `&date_type=` + dateType, headers
         }).then(response => {
            this.set('targetsCount.total', response.total_count);
            this.set('targetsCount.actual', response.targets_count);

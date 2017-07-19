@@ -17,9 +17,12 @@ let CampaignModel = DS.Model.extend({
   targets:                  DS.attr(),
 
   gender:                   DS.attr(),
-  age_max:                  DS.attr(),
-  age_min:                  DS.attr(),
-  
+  max_age:                  DS.attr(),
+  min_age:                  DS.attr(),
+  times_visited:            DS.attr(),
+  date_number:              DS.attr(),
+  date_type:                DS.attr(),
+
 
 
   createdAt: Ember.computed('created', function() {
