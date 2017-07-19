@@ -7,7 +7,6 @@
         <button type="button" class="btn btn-info"  kind='popup'>Pop up</button>
       </div>
     </fieldset>
-    {{!-- {{segmentation-filter model=model onSave=(action 'save')}} --}}
 
     <div class="segmentation-form">
 
@@ -50,10 +49,8 @@
           </div>
           <div class="filter-content">
             <span>From</span>
-            {{!-- {{input type='text' value=filterAgeMin}} --}}
             <input class="age_min" type="text" onchange={{action "changeFilter"}} placeholder="Enter min. age">
             <span>to</span>
-            {{!-- {{input type='text' value=filterAgeMax}} --}}
             <input class="age_max" type="text" onchange={{action "changeFilter"}} placeholder="Enter max. age">
           </div>
         </div>
@@ -82,14 +79,13 @@
           </div>
         </div>
       </div>
-      {{!-- {{#if isLoyial}} --}}
       <div class="form-block ">
         <div class="filter">
           <div class="filter-name">
             <label>This number of times</label>
           </div>
           <div class="filter-content">
-            <input id="numberOfVisits" type="text" placeholder="0">
+            <input id="timesVisited" type="text" onchange={{action "changeFilter"}} placeholder="0">
           </div>
         </div>
         <div class="filter">
@@ -97,19 +93,18 @@
             <label>During the last</label>
           </div>
           <div class="filter-content">
-            <input id="numberOfVisits" type="text" placeholder="0">
-            <select id="typeOfPeriod">
-                <option value="Day"  selected>Day(s)</option>
-                <option value="Week">Week(s)</option>
-                <option value="Month">Month(s)</option>
+            <input id="dateNamber" type="text" onchange={{action "changeFilter"}} placeholder="0">
+            <select id="dateType" onchange={{action "changeFilter"}}>
+                <option value="days"  selected>Day(s)</option>
+                <option value="weeks">Week(s)</option>
+                <option value="months">Month(s)</option>
             </select>
           </div>
         </div>
       </div>
-      {{!-- {{/if}} --}}
 
     </div>
-    <p> Will affect: {{model.usersCountActual}} / {{model.usersCountAll}}</p>
+    <p> Will affect: {{targetsCount.actual}} / {{targetsCount.total}}</p>
     {{partial 'campaigns/form'}}
     {{input type="submit" class="btn btn-success" value="Create"}}
   </form>

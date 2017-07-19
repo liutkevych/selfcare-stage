@@ -45,27 +45,7 @@ let CampaignsNewController = Ember.Controller.extend({
       return 160;
     }
   }),
-  //
-  // filterKind: [],
-  // filterLocationId: [],
-  // filterAgeMin: [],
-  // filterAgeMax: [],
-  // filterGender: [],
-  //
-  // filterQueryComputed: Ember.computed('filterKind', 'filterLocationId', 'filterAgeMin', 'filterAgeMax', 'filterGender', () => {
-  //   let filterKind = this.get('filterKind');
-  //   let filterLocationId = this.get('filterLocationId');
-  //   let filterAgeMin = this.get('filterAgeMin');
-  //   let filterAgeMax = this.get('filterAgeMax');
-  //   let filterGender = this.get('filterGender');
-  //     return this.store.query('filters', {
-  //       location_id: filterLocationId,
-  //       gender: filterGender,
-  //       kind: filterKind,
-  //       min_age: filterAgeMin,
-  //       max_age: filterAgeMax
-  //     });
-  // }),
+
 
   actions: {
     create() {
@@ -113,7 +93,15 @@ let CampaignsNewController = Ember.Controller.extend({
       let filterGender = Ember.$('.gender').val();
       let locationId = this.get('locationId');
       let kind = this.get('model.kind');
-      // console.log(kind + ' - ' + locationId + ' - ' + filterGender + ' - ' + filterAgeMin() + ' - ' + filterAgeMax());
+      let timesVisited = function() {
+        let visits = Ember.$('#timesVisited').val();
+        return visits ? visits : 0;
+      };
+      let dateNamber = function() {
+        let number = Ember.$('#dateNamber').val();
+        return number ? number : 0;
+      };
+      let dateType = Ember.$('#dateType').val();
       let authorization = this.get('session').authorize('authorizer:devise', (headerName, headerValue) => {
         let headers = {};
         headers[headerName] = headerValue;
@@ -123,12 +111,11 @@ let CampaignsNewController = Ember.Controller.extend({
         return Ember.$.ajax({
           type: "GET",
           url: `${ENV.SERVER_URL}/api/${ENV.API_VERSION}/campaigns/filters?location_id=`+locationId+`&gender=` +filterGender
-                +`&kind=`+kind+`&min_age=`+filterAgeMin() +`&max_age=`+ filterAgeMax(),headers
+                +`&kind=`+kind+`&min_age=`+filterAgeMin() +`&max_age=`+ filterAgeMax() + `&times_visited=`+ timesVisited()
+                + `&date_number=` + dateNamber() + `&date_type=` + dateType, headers
         }).then(response => {
-          // let targets = {};
-          // console.log(response);
-          console.log(response.targets_count + ' / ' + response.total_count);
-           return this.set('model.usersCountAll', response.total_count).then(this.set('model.usersCountActual', response.targets_count));
+           this.set('targetsCount.total', response.total_count);
+           this.set('targetsCount.actual', response.targets_count);
         });
       });
     },
