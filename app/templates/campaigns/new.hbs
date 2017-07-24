@@ -2,8 +2,8 @@
   <form data-remote="true" onsubmit={{action 'create'}}>
     <fieldset class="form-group">
       <div class="btn-group" role="group">
-        <button type="button" class="btn btn-info active" onclick={{action (pipe (action 'changeKind') (action 'changeFilter'))}} kind='sms'>SMS</button>
-        <button type="button" class="btn btn-info" onclick={{action (pipe (action 'changeKind') (action 'changeFilter'))}} kind='email'>Email</button>
+        <button type="button" class="btn btn-info active" onclick={{action  'changeKind'}} kind='sms'>SMS</button>
+        <button type="button" class="btn btn-info" onclick={{action 'changeKind'}} kind='email'>Email</button>
         <button type="button" class="btn btn-info"  kind='popup'>Pop up</button>
       </div>
     </fieldset>
@@ -36,7 +36,7 @@
             <label>Recipients' gender</label>
           </div>
           <div class="filter-content">
-            <select class="gender" name="genderFilter" onchange={{action "changeFilter"}}>
+            <select class="gender" name="genderFilter" onchange={{action "changeGender"}}>
               <option value="all">Male & Female</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
@@ -49,12 +49,12 @@
           </div>
           <div class="filter-content">
             <span>From</span>
-            <input class="age_min" type="text" onchange={{action "changeFilter"}} placeholder="Enter min. age">
+            <input class="age_min" type="text" onchange={{action "changeAgeMin"}} placeholder="Enter min. age">
             <span>to</span>
-            <input class="age_max" type="text" onchange={{action "changeFilter"}} placeholder="Enter max. age">
+            <input class="age_max" type="text" onchange={{action "changeAgeMax"}} placeholder="Enter max. age">
           </div>
         </div>
-        <div class="filter">
+        {{!-- <div class="filter">
           <div class="filter-name">
             <label>Recipients have visited</label>
           </div>
@@ -65,7 +65,7 @@
                 <option value="place2">place2</option>
             </select>
           </div>
-        </div>
+        </div> --}}
       </div>
 
       <div class="form-block">
@@ -85,7 +85,7 @@
             <label>This number of times</label>
           </div>
           <div class="filter-content">
-            <input id="timesVisited" type="text" onchange={{action "changeFilter"}} placeholder="0">
+            <input class="timesVisited" type="text" onchange={{action "changeTimesVisited"}} placeholder="0">
           </div>
         </div>
         <div class="filter">
@@ -93,18 +93,18 @@
             <label>During the last</label>
           </div>
           <div class="filter-content">
-            <input id="dateNamber" type="text" onchange={{action "changeFilter"}} placeholder="0">
-            <select id="dateType" onchange={{action "changeFilter"}}>
-                <option value="days"  selected>Day(s)</option>
+            <input class="dateNamber" type="text" onchange={{action "changeDateNumber"}} placeholder="1">
+            <select class="dateType" onchange={{action "changeDateType"}}>
+                <option value="days" >Day(s)</option>
                 <option value="weeks">Week(s)</option>
-                <option value="months">Month(s)</option>
+                <option value="months" selected>Month(s)</option>
             </select>
           </div>
         </div>
       </div>
 
     </div>
-    <p> Will affect: {{targetsCount.actual}} / {{targetsCount.total}}</p>
+    <p> Will affect: {{targetCounter.targets_count}}/ {{targetsCount.total}}   </p>
     {{partial 'campaigns/form'}}
     {{input type="submit" class="btn btn-success" value="Create"}}
   </form>

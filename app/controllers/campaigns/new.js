@@ -4,38 +4,95 @@ import ENV from 'simplify-selfcare/config/environment';
 let CampaignsNewController = Ember.Controller.extend({
   currentUser: Ember.inject.service(),
   applicationController: Ember.inject.controller('application'),
-  locationId: Ember.computed.alias('applicationController.locationId'),
+  // locationId: Ember.computed.alias('applicationController.locationId'),
+  locationId: Ember.computed('applicationController.locationId', function() {
+    return this.get('applicationController.locationId');
+  }),
   session: Ember.inject.service(),
 
-// this make query to api/v1/campaigns/targets/:locatioId and as response get all the data from location
-  fetchTargetsCount: Ember.observer('model.targets_filters', 'locationId', 'model.kind', function() {
+
+  kind: 'sms',
+  gender: 'all',
+  max_age: '100',
+  min_age: '0',
+  times_visited: '0',
+  date_number: '1',
+  date_type: 'months',
+  targetCounter: Ember.computed('locationId',
+                                'kind',
+                                'gender',
+                                'max_age',
+                                'min_age',
+                                'times_visited',
+                                'date_number',
+                                'date_type', function () {
     let locationId = this.get('locationId');
-    if (!locationId) { return; }
+    if (locationId) {
+      let kind = this.get('kind');
+      let gender = this.get('gender');
+      let max_age = this.get('max_age');
+      let min_age = this.get('min_age');
+      let times_visited = this.get('times_visited');
+      let date_number = this.get('date_number');
+      let date_type = this.get('date_type');
+      let model = this.get('model');
 
-    return this.get('session').authorize('authorizer:devise', (headerName, headerValue) => {
-      let headers = {};
-      headers[headerName] = headerValue;
-      let locationId = this.get('locationId');
-      if (!locationId) { return; }
-
-      return Ember.$.ajax({
-        url: `${ENV.SERVER_URL}/api/${ENV.API_VERSION}/campaigns/targets/${locationId}`,
-        headers}).then(response => {
-        return this.set('targets', response);
+      model.setProperties({
+        location_id: locationId,
+        kind: kind,
+        gender: gender,
+        max_age: max_age,
+        min_age: min_age,
+        times_visited: times_visited,
+        date_number: date_number,
+        date_type: date_type
       });
-    });
+
+      return this.store.query('campaignfilter', {
+        location_id: locationId,
+        kind: kind,
+        gender: gender,
+        max_age: max_age,
+        min_age: min_age,
+        times_visited: times_visited,
+        date_number: date_number,
+        date_type:date_type
+      }).then( response => {
+        console.log(response);
+      });
+    }
+
   }),
 
-  targetsCount: Ember.computed('model.targets_filters', 'targets', function() {
-    let filter = this.get('model.targets_filters.firstObject');
-    let targets = this.get('targets');
-    if (!targets) { return; }
-
-    return {
-      actual: this.get('targets')[this.get('model.kind')][filter].length,
-      total: this.get('targets')[this.get('model.kind')]['all'].length
-    };
-}),
+// // this make query to api/v1/campaigns/targets/:locatioId and as response get all the data from location
+//   fetchTargetsCount: Ember.observer('model.targets_filters', 'locationId', 'model.kind', function() {
+//     let locationId = this.get('locationId');
+//     if (!locationId) { return; }
+//
+//     return this.get('session').authorize('authorizer:devise', (headerName, headerValue) => {
+//       let headers = {};
+//       headers[headerName] = headerValue;
+//       let locationId = this.get('locationId');
+//       if (!locationId) { return; }
+//
+//       return Ember.$.ajax({
+//         url: `${ENV.SERVER_URL}/api/${ENV.API_VERSION}/campaigns/targets/${locationId}`,
+//         headers}).then(response => {
+//         return this.set('targets', response);
+//       });
+//     });
+//   }),
+//
+//   targetsCount: Ember.computed('model.targets_filters', 'targets', function() {
+//     let filter = this.get('model.targets_filters.firstObject');
+//     let targets = this.get('targets');
+//     if (!targets) { return; }
+//
+//     return {
+//       actual: this.get('targets')[this.get('model.kind')][filter].length,
+//       total: this.get('targets')[this.get('model.kind')]['all'].length
+//     };
+// }),
 
   symbolsLeft: Ember.computed('model.message.length', function() {
     let contentLength = this.get('model.message.length');
@@ -46,25 +103,25 @@ let CampaignsNewController = Ember.Controller.extend({
     }
   }),
 
-  filterAgeMin() {
-    let ageMin = Ember.$('.age_min').val();
-    return ageMin ? ageMin : 0;
-  },
-
-  filterAgeMax() {
-    let ageMax = Ember.$('.age_max').val();
-    return ageMax ? ageMax : 100;
-  },
-
-  timesVisited() {
-    let visits = Ember.$('#timesVisited').val();
-    return visits ? visits : 0;
-  },
-
-  dateNamber() {
-    let number = Ember.$('#dateNamber').val();
-    return number ? number : 0;
-  },
+  // filterAgeMin() {
+  //   let ageMin = Ember.$('.age_min').val();
+  //   return ageMin ? ageMin : 0;
+  // },
+  //
+  // filterAgeMax() {
+  //   let ageMax = Ember.$('.age_max').val();
+  //   return ageMax ? ageMax : 100;
+  // },
+  //
+  // timesVisited() {
+  //   let visits = Ember.$('#timesVisited').val();
+  //   return visits ? visits : 0;
+  // },
+  //
+  // dateNamber() {
+  //   let number = Ember.$('#dateNamber').val();
+  //   return number ? number : 0;
+  // },
 
 
   actions: {
@@ -99,54 +156,80 @@ let CampaignsNewController = Ember.Controller.extend({
       }
     },
 
-    hideLoyialSettings() {
-      this.toggleProperty('isLoyial');
-    },
-
-    changeFilter(event) {
-      // event.preventDefault();
-      // event.stopPropagation();
-      let model = this.get('model');
-      let locationId = this.get('locationId');
-      let kind = this.get('model.kind');
-
-
+    changeGender(event) {
       let filterGender = Ember.$('.gender').val();
-      model.set('gender', filterGender);
-
-      let ageMin = this.get('filterAgeMin')();
-      model.set('min_age', ageMin);
-
-      let ageMax = this.get('filterAgeMax')();
-      model.set('max_age', ageMax);
-
-      let times = this.get('timesVisited')();
-      model.set('times_visited', times);
-
-      let dateNamber = this.get('dateNamber')();
-      model.set('date_number', dateNamber);
-
-      let dateType = Ember.$('#dateType').val();
-      model.set('date_type', dateType);
-
-
-
-      let authorization = this.get('session').authorize('authorizer:devise', (headerName, headerValue) => {
-        let headers = {};
-        headers[headerName] = headerValue;
-        let locationId = this.get('locationId');
-        if (!locationId) { return; }
-        return Ember.$.ajax({
-          type: "GET",
-          url: `${ENV.SERVER_URL}/api/${ENV.API_VERSION}/campaigns/filters?location_id=`+locationId+`&gender=` + filterGender
-                +`&kind=`+kind+`&min_age=`+ageMin +`&max_age=`+ ageMax + `&times_visited=`+ times
-                + `&date_number=` + dateNamber + `&date_type=` + dateType, headers
-        }).then(response => {
-           this.set('targetsCount.total', response.total_count);
-           this.set('targetsCount.actual', response.targets_count);
-        });
-      });
+      this.set('gender', filterGender);
     },
+
+    changeAgeMin(event) {
+      let ageMin = Ember.$('.age_min').val();
+      this.set('min_age', ageMin);
+    },
+
+    changeAgeMax(event) {
+      let ageMax = Ember.$('.age_max').val();
+      this.set('max_age', ageMax);
+    },
+
+    changeTimesVisited(event) {
+      let times = Ember.$('.timesVisited').val();
+      this.set('times_visited', times);
+    },
+
+    changeDateNumber(event) {
+      let dateNamber = Ember.$('.dateNamber').val();
+      this.set('date_number', dateNamber);
+    },
+
+    changeDateType(event) {
+      let dateType = Ember.$('.dateType').val();
+      this.set('date_type', dateType);
+    },
+
+    // changeFilter(event) {
+    //   // event.preventDefault();
+    //   // event.stopPropagation();
+    //   let model = this.get('model');
+    //   let locationId = this.get('locationId');
+    //   let kind = this.get('model.kind');
+    //
+    //
+    //   let filterGender = Ember.$('.gender').val();
+    //   this.set('gender', filterGender);
+    //
+    //   let ageMin = this.get('filterAgeMin')();
+    //   this.set('min_age', ageMin);
+    //
+    //   let ageMax = this.get('filterAgeMax')();
+    //   this.set('max_age', ageMax);
+    //
+    //   let times = this.get('timesVisited')();
+    //   this.set('times_visited', times);
+    //
+    //   let dateNamber = this.get('dateNamber')();
+    //   this.set('date_number', dateNamber);
+    //
+    //   let dateType = Ember.$('#dateType').val();
+    //   this.set('date_type', dateType);
+    //
+    //
+    //
+    //   let authorization = this.get('session').authorize('authorizer:devise', (headerName, headerValue) => {
+    //     let headers = {};
+    //     headers[headerName] = headerValue;
+    //     let locationId = this.get('locationId');
+    //     if (!locationId) { return; }
+    //     return Ember.$.ajax({
+    //       type: "GET",
+    //       url: `${ENV.SERVER_URL}/api/${ENV.API_VERSION}/campaigns/filters?location_id=`+locationId+`&gender=` + filterGender
+    //             +`&kind=`+kind+`&min_age=`+ageMin +`&max_age=`+ ageMax + `&times_visited=`+ times
+    //             + `&date_number=` + dateNamber + `&date_type=` + dateType, headers
+    //     }).then(response => {
+    //        this.set('targetsCount.total', response.total_count);
+    //        this.set('targetsCount.actual', response.targets_count);
+    //     });
+    //   });
+    // },
 
 
 
