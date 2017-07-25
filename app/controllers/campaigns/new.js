@@ -60,6 +60,10 @@ let CampaignsNewController = Ember.Controller.extend({
         date_type:date_type
       }).then(data => {
         console.log(data);
+        return
+          this.set('targets_count', data.targets_count);
+          this.set('total_count', data.total_count);
+        
       });
     }
 
