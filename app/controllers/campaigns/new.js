@@ -18,6 +18,7 @@ let CampaignsNewController = Ember.Controller.extend({
   times_visited: '0',
   date_number: '1',
   date_type: 'months',
+
   targetCounter: Ember.computed('locationId',
                                 'kind',
                                 'gender',
@@ -47,7 +48,7 @@ let CampaignsNewController = Ember.Controller.extend({
         date_number: date_number,
         date_type: date_type
       });
-
+      console.log('Hey from controller1=======>');
       return this.store.query('campaignfilter', {
         location_id: locationId,
         kind: kind,
@@ -57,8 +58,8 @@ let CampaignsNewController = Ember.Controller.extend({
         times_visited: times_visited,
         date_number: date_number,
         date_type:date_type
-      }).then( response => {
-        console.log(response);
+      }).then(data => {
+        console.log(data);
       });
     }
 
@@ -148,6 +149,7 @@ let CampaignsNewController = Ember.Controller.extend({
       let $target = $(e.target);
       $target.addClass('active');
       let newKind = $target.attr('kind');
+      this.set('kind', newKind);
       this.set('model.kind', newKind);
       if (newKind !== 'sms') {
         return CKEDITOR.replace('campaign-content');
