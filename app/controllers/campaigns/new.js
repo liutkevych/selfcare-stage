@@ -18,6 +18,8 @@ let CampaignsNewController = Ember.Controller.extend({
   times_visited: '0',
   date_number: '1',
   date_type: 'months',
+  targets_count: '',
+  total_count: '',
 
   targetCounter: Ember.computed('locationId',
                                 'kind',
@@ -26,6 +28,8 @@ let CampaignsNewController = Ember.Controller.extend({
                                 'min_age',
                                 'times_visited',
                                 'date_number',
+                                'targets_count',
+                                'total_count',
                                 'date_type', function () {
     let locationId = this.get('locationId');
     if (locationId) {
@@ -38,6 +42,8 @@ let CampaignsNewController = Ember.Controller.extend({
       let date_type = this.get('date_type');
       let model = this.get('model');
 
+
+
       model.setProperties({
         location_id: locationId,
         kind: kind,
@@ -46,25 +52,54 @@ let CampaignsNewController = Ember.Controller.extend({
         min_age: min_age,
         times_visited: times_visited,
         date_number: date_number,
-        date_type: date_type
+        date_type: date_type,
+
       });
-      console.log('Hey from controller1=======>');
-      return this.store.query('campaignfilter', {
-        location_id: locationId,
-        kind: kind,
-        gender: gender,
-        max_age: max_age,
-        min_age: min_age,
-        times_visited: times_visited,
-        date_number: date_number,
-        date_type:date_type
-      }).then(data => {
-        console.log(data);
-        return
-          this.set('targets_count', data.targets_count);
-          this.set('total_count', data.total_count);
-        
-      });
+      // console.log('Hey from controller1=======>');
+      return this.get('session').authorize('authorizer:devise', (headerName, headerValue) => {
+        let headers = {};
+        headers[headerName] = headerValue;
+        let locationId = this.get('locationId');
+
+        if (!locationId) { return; }
+        return Ember.$.ajax({
+          type: "GET",
+          url: `${ENV.SERVER_URL}/api/${ENV.API_VERSION}/campaignfilters?location_id=`+locationId+`&gender=` + gender
+                +`&kind=`+kind+`&min_age=`+min_age +`&max_age=`+ max_age + `&times_visited=`+ times_visited
+                + `&date_number=` + date_number + `&date_type=` + date_type, headers
+        }).then(response => {
+          let targets_count = this.get('targets_count');
+          let total_count = this.get('total_count');
+          // console.log(response.targets_count);
+            // return this.set('targets_count', response.targets_count);
+
+              this.set('total_count', response.total_count);
+              this.set('targets_count', response.targets_count);
+
+
+
+        })
+      })
+      // return this.store.query('campaignfilter', {
+      //   location_id: locationId,
+      //   kind: kind,
+      //   gender: gender,
+      //   max_age: max_age,
+      //   min_age: min_age,
+      //   times_visited: times_visited,
+      //   date_number: date_number,
+      //   date_type:date_type
+      // })
+
+
+
+      // .then(data => {
+      //   console.log(data);
+      //   return
+      //     this.set('targets_count', data.targets_count);
+      //     this.set('total_count', data.total_count);
+      //
+      // });
     }
 
   }),
