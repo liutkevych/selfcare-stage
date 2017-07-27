@@ -20,6 +20,7 @@ let CampaignsNewController = Ember.Controller.extend({
   date_type: 'months',
   targets_count: '',
   total_count: '',
+  isDisabled: false,
 
   targetCounter: Ember.computed('locationId',
                                 'kind',
@@ -40,7 +41,10 @@ let CampaignsNewController = Ember.Controller.extend({
       let times_visited = this.get('times_visited');
       let date_number = this.get('date_number');
       let date_type = this.get('date_type');
+      let targets_count = this.get('targets_count');
+      let total_count = this.get('total_count');
       let model = this.get('model');
+
 
 
 
@@ -53,6 +57,8 @@ let CampaignsNewController = Ember.Controller.extend({
         times_visited: times_visited,
         date_number: date_number,
         date_type: date_type,
+        // targets_count: targets_count,
+        // total_count: total_count
 
       });
       // console.log('Hey from controller1=======>');
@@ -72,12 +78,8 @@ let CampaignsNewController = Ember.Controller.extend({
           let total_count = this.get('total_count');
           // console.log(response.targets_count);
             // return this.set('targets_count', response.targets_count);
-
               this.set('total_count', response.total_count);
               this.set('targets_count', response.targets_count);
-
-
-
         })
       })
       // return this.store.query('campaignfilter', {
@@ -143,26 +145,6 @@ let CampaignsNewController = Ember.Controller.extend({
     }
   }),
 
-  // filterAgeMin() {
-  //   let ageMin = Ember.$('.age_min').val();
-  //   return ageMin ? ageMin : 0;
-  // },
-  //
-  // filterAgeMax() {
-  //   let ageMax = Ember.$('.age_max').val();
-  //   return ageMax ? ageMax : 100;
-  // },
-  //
-  // timesVisited() {
-  //   let visits = Ember.$('#timesVisited').val();
-  //   return visits ? visits : 0;
-  // },
-  //
-  // dateNamber() {
-  //   let number = Ember.$('#dateNamber').val();
-  //   return number ? number : 0;
-  // },
-
 
   actions: {
     create() {
@@ -226,6 +208,14 @@ let CampaignsNewController = Ember.Controller.extend({
       let dateType = Ember.$('.dateType').val();
       this.set('date_type', dateType);
     },
+
+    makeDisabled () {
+      this.set('isDisabled', true);
+    },
+
+    makeActive() {
+      this.set('isDisabled', false);
+    }
 
     // changeFilter(event) {
     //   // event.preventDefault();
