@@ -74,8 +74,8 @@
             <label style="font-weight: bold;">Parameter type</label>
           </div>
           <div class="filter-content">
-            <input type="radio" name="frequent" value="isLoyial" checked onchange={{action "makeActive"}}>&nbsp;&nbsp;Previous visitor&nbsp;&nbsp;
-            <input id="notLoyial" type="radio" name="frequent" value="notLoial" onchange={{action "makeDisabled"}}>&nbsp;&nbsp;First time visitor&nbsp;&nbsp;
+            <input type="radio" disabled name="frequent" value="isLoyial" onchange={{action "makeActive"}}>&nbsp;&nbsp;Previous visitor&nbsp;&nbsp;
+            <input id="notLoyial" disabled type="radio" name="frequent" value="notLoial" checked  onchange={{action "makeDisabled"}}>&nbsp;&nbsp;First time visitor&nbsp;&nbsp;
           </div>
         </div>
       </div>
@@ -85,7 +85,7 @@
             <label>This number of times</label>
           </div>
           <div class="filter-content">
-            <input class="timesVisited" disabled={{isDisabled}} type="text" onchange={{action "changeTimesVisited"}} placeholder="0">
+            <input class="timesVisited" disabled type="text" onchange={{action "changeTimesVisited"}} placeholder="0">
           </div>
         </div>
         <div class="filter">
@@ -93,8 +93,9 @@
             <label>During the last</label>
           </div>
           <div class="filter-content">
-            <input class="dateNamber" disabled={{isDisabled}} type="text" onchange={{action "changeDateNumber"}} placeholder="1">
-            <select class="dateType" disabled={{isDisabled}}  onchange={{action "changeDateType"}}>
+            {{!-- for disabled depend on radiobutton use disabled={{isDisabled}} --}}
+            <input class="dateNamber" disabled type="text" onchange={{action "changeDateNumber"}} placeholder="1">
+            <select class="dateType" disabled  onchange={{action "changeDateType"}}>
                 <option value="days" >Day(s)</option>
                 <option value="weeks">Week(s)</option>
                 <option value="months" selected>Month(s)</option>
