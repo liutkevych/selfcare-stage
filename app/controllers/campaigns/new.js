@@ -19,7 +19,7 @@ let CampaignsNewController = Ember.Controller.extend({
   date_number: '6',
   date_type: 'months',
   targetscount: '',
-  total_count: '',
+  totalcount: '',
   isDisabled: false,
 
   targetCounter: Ember.computed('locationId',
@@ -30,7 +30,7 @@ let CampaignsNewController = Ember.Controller.extend({
                                 'times_visited',
                                 'date_number',
                                 'targetscount',
-                                'total_count',
+                                'totalcount',
                                 'date_type', function () {
     let locationId = this.get('locationId');
     if (locationId) {
@@ -42,7 +42,7 @@ let CampaignsNewController = Ember.Controller.extend({
       let date_number = this.get('date_number');
       let date_type = this.get('date_type');
       let targetscount = this.get('targetscount');
-      let total_count = this.get('total_count');
+      let totalcount = this.get('totalcount');
       let model = this.get('model');
 
 
@@ -58,7 +58,7 @@ let CampaignsNewController = Ember.Controller.extend({
         date_number: date_number,
         date_type: date_type,
         // targetscount: targetscount,
-        // total_count: total_count
+        // totalcount: totalcount
 
       });
       // console.log('Hey from controller1=======>');
@@ -74,11 +74,11 @@ let CampaignsNewController = Ember.Controller.extend({
                 +`&kind=`+kind+`&min_age=`+min_age +`&max_age=`+ max_age + `&times_visited=`+ times_visited
                 + `&date_number=` + date_number + `&date_type=` + date_type, headers
         }).then(response => {
-          let targets_count = this.get('targets_count');
-          let totalcount = this.get('total_count');
+          let targetscount = this.get('targetscount');
+          let totalcount = this.get('totalcount');
           // console.log(response.targets_count);
             // return this.set('targets_count', response.targets_count);
-              this.set('total_count', response.total_count);
+              this.set('totalcount', response.total_count);
               this.set('targetscount', response.targets_count);
         })
       })
@@ -149,8 +149,8 @@ let CampaignsNewController = Ember.Controller.extend({
   actions: {
     create() {
       let model = this.get('model');
-      let total_count = this.get('targetsCounter.total');
-      model.set('total_count', total_count);
+      let totalcount = this.get('targetsCounter.total');
+      model.set('total_count', totalcount);
       let targetscount = this.get('targetsCounter.targetscount');
       model.set('targetscount', targetscount);
       let kind = this.get('model.kind');
