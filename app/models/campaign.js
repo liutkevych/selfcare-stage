@@ -7,7 +7,7 @@ let CampaignModel = DS.Model.extend({
   message:                  DS.attr(),
   kind:                     DS.attr(),
   approved:                 DS.attr(),
-  targets_count:            DS.attr(),
+  targetscount:            DS.attr(),
   targets_filters:          DS.attr(),
   total_count:              DS.attr(),
   failures_count:           DS.attr(),

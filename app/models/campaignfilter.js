@@ -11,6 +11,6 @@ export default DS.Model.extend({
   times_visited:            DS.attr(),
   date_number:              DS.attr(),
   date_type:                DS.attr(),
-  targets_count:            DS.attr(),
+  targetscount:            DS.attr(),
   total_count:              DS.attr()
 });

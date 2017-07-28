@@ -15,10 +15,10 @@ let CampaignsNewController = Ember.Controller.extend({
   gender: 'all',
   max_age: '100',
   min_age: '0',
-  times_visited: '0',
-  date_number: '1',
+  times_visited: '1',
+  date_number: '6',
   date_type: 'months',
-  targets_count: '',
+  targetscount: '',
   total_count: '',
   isDisabled: false,
 
@@ -29,7 +29,7 @@ let CampaignsNewController = Ember.Controller.extend({
                                 'min_age',
                                 'times_visited',
                                 'date_number',
-                                'targets_count',
+                                'targetscount',
                                 'total_count',
                                 'date_type', function () {
     let locationId = this.get('locationId');
@@ -41,7 +41,7 @@ let CampaignsNewController = Ember.Controller.extend({
       let times_visited = this.get('times_visited');
       let date_number = this.get('date_number');
       let date_type = this.get('date_type');
-      let targets_count = this.get('targets_count');
+      let targetscount = this.get('targetscount');
       let total_count = this.get('total_count');
       let model = this.get('model');
 
@@ -57,7 +57,7 @@ let CampaignsNewController = Ember.Controller.extend({
         times_visited: times_visited,
         date_number: date_number,
         date_type: date_type,
-        // targets_count: targets_count,
+        // targetscount: targetscount,
         // total_count: total_count
 
       });
@@ -75,11 +75,11 @@ let CampaignsNewController = Ember.Controller.extend({
                 + `&date_number=` + date_number + `&date_type=` + date_type, headers
         }).then(response => {
           let targets_count = this.get('targets_count');
-          let total_count = this.get('total_count');
+          let totalcount = this.get('total_count');
           // console.log(response.targets_count);
             // return this.set('targets_count', response.targets_count);
               this.set('total_count', response.total_count);
-              this.set('targets_count', response.targets_count);
+              this.set('targetscount', response.targets_count);
         })
       })
       // return this.store.query('campaignfilter', {
@@ -149,10 +149,10 @@ let CampaignsNewController = Ember.Controller.extend({
   actions: {
     create() {
       let model = this.get('model');
-      let total_count = this.get('targetsCount.total');
+      let total_count = this.get('targetsCounter.total');
       model.set('total_count', total_count);
-      let targets_count = this.get('targetsCount.actual');
-      model.set('targets_count', targets_count);
+      let targetscount = this.get('targetsCounter.targetscount');
+      model.set('targetscount', targetscount);
       let kind = this.get('model.kind');
       if (kind !== 'sms') {
         model.set('message', CKEDITOR.instances['campaign-content'].getData());
