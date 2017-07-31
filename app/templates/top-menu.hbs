@@ -1,7 +1,7 @@
 <div class="top-menu col-xs-9 col-xs-offset-3 col-md-10 col-md-offset-2">
   {{#if session.isAuthenticated }}
     <div class='location'>
-      <img class="location-icon" src="images/location.svg">
+      <img class="location-icon" src="images/location.svg" onError="this.onerror=null;this.src='/images/location.svg';">
       <select onchange={{action "selectLocation" value="target.value"}}>
         {{#each locations as |location|}}
           <option value={{location.id}} selected={{eq location.id locationId}}>
