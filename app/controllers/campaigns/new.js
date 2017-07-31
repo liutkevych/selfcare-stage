@@ -186,12 +186,20 @@ let CampaignsNewController = Ember.Controller.extend({
 
     changeAgeMin(event) {
       let ageMin = Ember.$('.age_min').val();
-      this.set('min_age', ageMin);
+      if (!ageMin) {
+        return this.set('min_age', 0);
+      }else {
+        return this.set('min_age', ageMin);
+      }
     },
 
     changeAgeMax(event) {
       let ageMax = Ember.$('.age_max').val();
-      this.set('max_age', ageMax);
+      if (!ageMax) {
+        return this.set('max_age', 100);
+      } else {
+        return this.set('max_age', ageMax);
+      }
     },
 
     changeTimesVisited(event) {
