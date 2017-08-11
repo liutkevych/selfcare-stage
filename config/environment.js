@@ -35,8 +35,8 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    ENV.SERVER_URL = 'https://openwifi.simp.no'//'http://localhost:3000'
-    ENV.contentSecurityPolicy['connect-src'][0] += "https://openwifi.simp.no";//"http://localhost:3000";
+    ENV.SERVER_URL = 'http://localhost:3000'
+    ENV.contentSecurityPolicy['connect-src'][0] += "http://localhost:3000";
   }
 
   if (environment === 'test') {
