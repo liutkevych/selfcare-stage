@@ -35,8 +35,8 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
-    ENV.SERVER_URL = 'https://simplify-stage.herokuapp.com/' //'http://localhost:3000'
-    ENV.contentSecurityPolicy['connect-src'][0] += "https://simplify-stage.herokuapp.com/"; //"http://localhost:3000";
+    ENV.SERVER_URL = 'http://localhost:3000'
+    ENV.contentSecurityPolicy['connect-src'][0] += "http://localhost:3000";
   }
 
   if (environment === 'test') {
@@ -51,15 +51,6 @@ module.exports = function(environment) {
     ENV.APP.rootElement = '#ember-testing';
   }
 
-  if (environment === 'production') {
-    ENV.SERVER_URL = 'https://openwifi.simp.no'
-    ENV.contentSecurityPolicy['connect-src'][0] += "https://openwifi.simp.no";
-  }
-
-  if (environment === 'staging') {
-    ENV.SERVER_URL = 'https://simplify-stage.herokuapp.com'
-    ENV.contentSecurityPolicy['connect-src'][0] += "https://simplify-stage.herokuapp.com";
-  }
 
   ENV['ember-simple-auth'] = {
     authenticationRoute: 'sign-in',
